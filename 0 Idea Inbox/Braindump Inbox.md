@@ -30,11 +30,8 @@ up:
 
 ## Task Inbox
 
-### Coding Tasks 
-	 - [ ] Design Signapilot CLI and implement (project and break it down)
-	 - [ ] Add skills to SignalPilot properly
-	 - [ ] Update Docs
-	 - [ ] Redo the 
+### Coding Tasks
+	 - [x] Moved to [[SignalPilot Development]] project (2026-01-03)
 
  - [ ] Work
 	 - [ ] Think through how to close multiplyr
