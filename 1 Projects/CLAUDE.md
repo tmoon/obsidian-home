@@ -4,6 +4,25 @@
 
 ---
 
+## Folder Structure
+
+**0 Running Projects** → This week's focus (1-3 max)
+- Projects you're actively executing on THIS week
+- Review daily, should see progress every day
+- Move to Archive when complete
+
+**1 Next Projects** → Queued for next 1-2 weeks
+- Projects starting within 1-2 weeks
+- Not "someday" but not "today"
+- Review during weekly review, promote to Running when ready
+
+**Someday Tasks** → Parking lot for later
+- Ideas and projects for next month or beyond
+- Review monthly, promote if relevant 3+ times
+- Delete ruthlessly if stale 6+ months
+
+---
+
 ## What Makes a Project
 
 **Finite Goal** → Has a completion state
@@ -84,14 +103,19 @@ If you have >5 projects:
 
 ---
 
-## Someday Tasks File
+## Flow Between Folders
 
-**Special project:** Idea parking lot for later
+**Someday → Next → Running → Archive**
 
-- Not urgent, might never happen
-- Review monthly, promote if relevant 3+ times
-- Delete ruthlessly if stale 6+ months
-- Prevents "maybe someday" from clogging active projects
+1. **Capture** in Someday Tasks (during weekly review or braindump processing)
+2. **Promote** to Next Projects when relevant within 1-2 weeks
+3. **Activate** to Running Projects when starting this week
+4. **Complete** and move to Archive when done
+
+**Key decision points:**
+- Someday → Next: "Will I start this within 1-2 weeks?"
+- Next → Running: "Am I starting this THIS week?"
+- Running → Archive: "Is this complete or no longer relevant?"
 
 ---
 

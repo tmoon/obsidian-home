@@ -30,8 +30,13 @@ up:
 
 ## Task Inbox
 
+### Data Tasks
+- [x] send data dump to Khaled bhai (Dhaka-9 Election data)
+	- Moved to [[Dhaka-9 Election Data Transfer]] project (2026-01-03)
+
 ### Coding Tasks
 	 - [x] Moved to [[SignalPilot Development]] project (2026-01-03)
+	 - [ ] Reduce SignalPilot dependency bloat (117 packages, 3m38s install time)
 
  - [ ] Work
 	 - [ ] Think through how to close multiplyr

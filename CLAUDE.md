@@ -27,7 +27,9 @@ More info in: [[What is SignalPilot]]
 ### PARA Structure
 
 **Projects** → Finite goals with deliverables
-- Active initiatives requiring your attention
+- **0 Running Projects**: This week's focus (1-3 max)
+- **1 Next Projects**: Queued for next 1-2 weeks
+- **Someday Tasks**: Parking lot for later (review monthly)
 - Each project has: Goals, Deliverables (intermediate packets), Tasks
 - Review weekly, archive if inactive 14+ days
 

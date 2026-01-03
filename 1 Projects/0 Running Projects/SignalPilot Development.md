@@ -26,34 +26,64 @@ Build SignalPilot - a context-aware AI copilot for data exploration that aggrega
 - [ ] Skills framework properly integrated
 - [ ] User onboarding documentation (quickstart, examples)
 
-## Tasks
+## THIS WEEK (Week of 2026-01-03)
 
-### 🔴 P0: CLI Design & Implementation
-- [ ] Research CLI patterns for data tools (dbt, great_expectations, etc.)
-- [ ] Define CLI command structure and user flows
-- [ ] Create CLI design spec document
-- [ ] Implement basic CLI framework
-- [ ] Add core commands (init, analyze, configure)
+**Focus:** Ship CLI + CLI Documentation
+
+### 🔴 CLI Implementation (uv-based)
+- [ ] Set up uv + Python 3.12 check/install flow
+- [ ] Create pyproject.toml with dependency tiers ([core], [jupyter], [viz], [ml], [full])
+- [ ] Implement core CLI commands (init, analyze, configure)
 - [ ] Add interactive prompts for better UX
-- [ ] Test CLI with sample workflows
+- [ ] Test installation on clean environment
+- [ ] Verify all dependency tiers work correctly
 
-### 🔴 P0: Skills Framework Integration
-- [ ] Audit existing skills implementation
-- [ ] Define skills architecture and interface
-- [ ] Implement skills registration system properly
-- [ ] Add 3-5 core skills (context gathering, hypothesis generation, code execution)
-- [ ] Test skills integration with CLI
-- [ ] Create skills documentation for developers
+### 🔴 CLI Documentation
+- [ ] Write installation guide (uv-based, <5min setup)
+- [ ] Create quickstart tutorial (first analysis in 5min)
+- [ ] Document all CLI commands with examples
+- [ ] Add troubleshooting section for common issues
+- [ ] Include code examples for each installation tier
 
-### 🟡 P1: User Onboarding Documentation
-- [ ] Outline onboarding flow (install → configure → first analysis)
-- [ ] Write quickstart guide (5min to first insight)
-- [ ] Create step-by-step tutorial with examples
-- [ ] Add troubleshooting guide
-- [ ] Create templates for common use cases
+**Deliverable:** Users can `uv pip install signalpilot-ai`, run `signalpilot init`, and complete their first analysis.
+
+---
+
+## NEXT UP (Parked for Later)
+
+### Skills Framework Refactor
+**Priority:** After CLI ships
+**Scope:**
+- [ ] Design 3-tier override system (default → workspace → project)
+- [ ] Implement skills registration with folder-based overrides
+- [ ] Figure out Claude upload mechanism and end-user UX
+- [ ] Document skills development workflow
+
+### Config Management
+**Priority:** After skills
+**Scope:**
+- [ ] Move user configs to ~/SignalPilotHome
+- [ ] Migrate existing configs automatically
+- [ ] Update CLI to use new config location
+
+### Docs Migration (Scalar → Mintlify)
+**Priority:** After config management
+**Scope:**
+- [ ] Set up Mintlify infrastructure
+- [ ] Migrate existing docs from Scalar
+- [ ] Reorganize to /doc and /blog for SEO
 - [ ] Add screenshots/GIFs for visual learners
 
-### 🟢 P2: Backend Architecture Review (Low Priority)
+### Dependency Optimization (Lower Priority)
+**Current state:** 117 packages installed, 3m 38s installation time
+**Key dependencies to review:** jupyterlab, matplotlib, seaborn, pandas, numpy, scikit-learn
+
+- [ ] Audit all 117 installed packages
+- [ ] Identify unnecessary dependencies
+- [ ] Implement lazy imports for large libraries
+- [ ] Document dependency decisions
+
+### Backend Architecture Review (Lowest Priority)
 - [ ] Review backend architecture implementation
 - [ ] Document any improvements needed
 - [ ] Schedule follow-up work if needed
@@ -65,3 +95,100 @@ Build SignalPilot - a context-aware AI copilot for data exploration that aggrega
 ## References
 - [[What is SignalPilot]]
 - [[CLAUDE.md]] - Project context
+
+---
+
+## Dependency Audit - Current Package List
+
+**Install Stats (as of 2026-01-03):**
+- Total packages: 117
+- Installation time: 3m 38s
+- Preparation time: 5.64s
+- Main package: signalpilot-ai==0.10.1
+
+### Full Package List
+
+**Core Dependencies (likely needed):**
+- signalpilot-ai==0.10.1
+- httpx==0.28.1, httpcore==1.0.9, h11==0.16.0
+- pyyaml==6.0.3
+- requests==2.32.5, urllib3==2.6.2
+- sqlalchemy==2.0.45
+- schema-search==1.0.11
+- bm25s==0.2.14
+- tqdm==4.67.1
+
+**Heavy Data Science Stack (should be optional):**
+- jupyterlab==4.5.1 + 20+ jupyter-* dependencies
+- pandas==2.3.3, numpy==2.4.0
+- matplotlib==3.10.8, seaborn==0.13.2
+- scikit-learn==1.8.0, scipy==1.16.3
+- pyarrow==22.0.0
+- openpyxl==3.1.5
+
+**Jupyter Ecosystem (should be optional extras):**
+- anyio==4.12.0, argon2-cffi==25.1.0, argon2-cffi-bindings==25.1.0
+- arrow==1.4.0, asttokens==3.0.1, async-lru==2.0.5
+- babel==2.17.0, beautifulsoup4==4.14.3, bleach==6.3.0
+- comm==0.2.3, debugpy==1.8.19, decorator==5.2.1
+- defusedxml==0.7.1, ipykernel==7.1.0, ipython==9.8.0
+- ipython-pygments-lexers==1.1.1, isoduration==20.11.0
+- jedi==0.19.2, json5==0.13.0, jsonpointer==3.0.0
+- jupyter-client==8.7.0, jupyter-core==5.9.1, jupyter-events==0.12.0
+- jupyter-lsp==2.3.0, jupyter-server==2.17.0, jupyter-server-terminals==0.5.3
+- jupyterlab-pygments==0.3.0, jupyterlab-server==2.28.0
+- nbclient==0.10.4, nbconvert==7.16.6, nbformat==5.10.4
+- notebook-shim==0.2.4, nest-asyncio==1.6.0
+- pandocfilters==1.5.1, prometheus-client==0.23.1
+- send2trash==2.0.0, terminado==0.18.1, tornado==6.5.4
+- websocket-client==1.9.0, pyzmq==27.1.0
+
+**Visualization Stack (should be optional):**
+- contourpy==1.3.3, cycler==0.12.1, fonttools==4.61.1
+- kiwisolver==1.4.9, pillow==12.1.0, pyparsing==3.3.1
+
+**ML Stack (should be optional):**
+- joblib==1.5.3, threadpoolctl==3.6.0, networkx==3.6.1
+
+**General Utilities:**
+- attrs==25.4.0, certifi==2025.11.12, cffi==2.0.0
+- charset-normalizer==3.4.4, et-xmlfile==2.0.0, executing==2.2.1
+- fastjsonschema==2.21.2, fqdn==1.5.1, greenlet==3.3.0
+- idna==3.11, jinja2==3.1.6, lark==1.3.1
+- markupsafe==3.0.3, matplotlib-inline==0.2.1, mistune==3.2.0
+- packaging==25.0, parso==0.8.5, pexpect==4.9.0
+- platformdirs==4.5.1, prompt-toolkit==3.0.52, psutil==7.2.1
+- ptyprocess==0.7.0, pure-eval==0.2.3, pyarrow==22.0.0
+- pycparser==2.23, pygments==2.19.2, python-dateutil==2.9.0.post0
+- python-json-logger==4.0.0, pytz==2025.2, rapidfuzz==3.14.3
+- referencing==0.37.0, rfc3339-validator==0.1.4, rfc3986-validator==0.1.1
+- rfc3987-syntax==1.1.0, rpds-py==0.30.0, setuptools==80.9.0
+- six==1.17.0, soupsieve==2.8.1, stack-data==0.6.3
+- tinycss2==1.4.0, traitlets==5.14.3, typing-extensions==4.15.0
+- tzdata==2025.3, uri-template==1.3.0, wcwidth==0.2.14
+- webcolors==25.10.0, webencodings==0.5.1
+
+**JSON Schema Utilities:**
+- jsonschema==4.25.1, jsonschema-specifications==2025.9.1
+
+### Analysis & Recommendations
+
+**Immediate wins:**
+1. **Make JupyterLab optional** - 30+ packages can be extras
+2. **Make visualization optional** - matplotlib/seaborn + deps can be extras
+3. **Make ML optional** - scikit-learn/scipy unless core to product
+4. **Lazy imports** - Import heavy libraries only when needed
+
+**Proposed installation tiers:**
+```bash
+pip install signalpilot-ai              # Core only (~30 packages)
+pip install signalpilot-ai[jupyter]     # + JupyterLab integration
+pip install signalpilot-ai[viz]         # + Visualization tools
+pip install signalpilot-ai[ml]          # + ML capabilities
+pip install signalpilot-ai[full]        # Everything (current state)
+```
+
+**Expected impact:**
+- Core install: ~30 packages, <30s install time
+- Full install: 117 packages, 3m38s (same as now)
+- Most users start with core, add extras as needed
