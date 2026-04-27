@@ -14,8 +14,10 @@ Schema and conventions: [CLAUDE.md](CLAUDE.md) · Activity log: [log.md](log.md)
 
 ## Concepts
 
-- [[Why We Beat Claude Code]] — Three structural arguments + Spider 2.0 receipt + buyer pitches (the central new page)
-- [[Objection Handling]] — Sales counter-arguments with citations (read-only DB objection, dbt Copilot, Datafold/Recce)
+- [[Symbiotic Wedge]] — **The deepest reframe.** SP as Claude Code data extension (not competitor); Vercel/Databricks/Cursor pattern; feature roadmap
+- [[Workflow Shifts 2025-2026-2027]] — Per-persona day-in-the-life timeline with verbatim citations; the 2→3 Δ is the wedge
+- [[Why We Beat Claude Code]] — Three structural arguments + Spider 2.0 receipt + buyer pitches
+- [[Objection Handling]] — Sales counter-arguments with citations (read-only DB, dbt Copilot, Datafold/Recce)
 - [[Persona Workflows]] — Data engineer / data scientist / data consumer × where Claude Code fails × where SP wins
 - [[Where the Puck Is Going]] — Six predictions for Q2 2026 → 2027 (forward thesis)
 - [[Trust Runtime Positioning]] — Three-layer monetization: PR pre-flight → autonomous remediation → ambient ops
@@ -47,6 +49,7 @@ Schema and conventions: [CLAUDE.md](CLAUDE.md) · Activity log: [log.md](log.md)
 - [2026-04-27 — SignalPilot repo README snapshot](raw/2026-04-27_repo_signalpilot-readme.md)
 - [2026-04-27 — Paradigm shift web research + competitor / pain landscape](raw/2026-04-27_research_paradigm-shift.md)
 - [2026-04-27 — Claude Code failure evidence + persona workflows (with citations)](raw/2026-04-27_research_claude-code-failure-evidence.md)
+- [2026-04-27 — Workflow evolution + symbiotic-wedge feature roadmap (with citations)](raw/2026-04-27_research_workflow-evolution.md)
 
 ---
 
