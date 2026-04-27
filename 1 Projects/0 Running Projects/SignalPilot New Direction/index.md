@@ -10,7 +10,19 @@ Schema and conventions: [CLAUDE.md](CLAUDE.md) · Activity log: [log.md](log.md)
 
 - [[2026-04-24 — Spider 2.0-DBT win]] — SignalPilot scored 51.56, beating JetBrains' Databao by 7.45 points; first agent across the 50% threshold in 11 months
 - [[2026-04-27 — Repo architecture snapshot]] — signalPilot repo as of today: gateway, plugin, sandbox, benchmark, AutoFyn integration
-- [[2026-04-27 — Paradigm shift research + niche discovery]] — Mar–Apr 2026 paradigm shift; Zscaler PRISM proof; 12-wedge brainstorm; PR pre-flight wedge selected
+- [[2026-04-27 — Paradigm shift research + niche discovery]] — Mar–Apr 2026 paradigm shift; Zscaler PRISM proof; 12-wedge brainstorm
+
+## Concepts
+
+- [[Why We Beat Claude Code]] — Three structural arguments + Spider 2.0 receipt + buyer pitches (the central new page)
+- [[Persona Workflows]] — Data engineer / data scientist / data consumer × where Claude Code fails × where SP wins
+- [[Where the Puck Is Going]] — Six predictions for Q2 2026 → 2027 (forward thesis)
+- [[Trust Runtime Positioning]] — Three-layer monetization: PR pre-flight → autonomous remediation → ambient ops
+- [[Niche Problem Discovery]] — 12 wedge candidates scored
+- [[Governed Data Agent]] — Core positioning: *trusted by default, not trusted by accident*
+- [[dbt Beachhead Strategy]] — Why dbt is the wedge; Apr 22 exclusivity decision
+- [[Autonomous Data Stack Vision]] — Self-healing · compounding · ambient agents (manifesto)
+- [[AutoFyn ↔ SignalPilot Recursive Loop]] — The actual moat: meta-harness builds the harness
 
 ## Entities
 
@@ -25,22 +37,15 @@ Schema and conventions: [CLAUDE.md](CLAUDE.md) · Activity log: [log.md](log.md)
 - [[Zscaler PRISM Case]] — Fortune 500 built the architecture internally; 956 PRs/qtr, 90% time savings, 2,100 hrs/yr saved
 - [[dbt Copilot]] — Incumbent threat (dbt Labs + Fivetran, $600M ARR); we complement, don't compete
 - [[Claude Code Extensibility Stack]] — Hooks/Subagents/Skills/MCP — Anthropic's official surface; we sit on it
-
-## Concepts
-
-- [[Governed Data Agent]] — Core positioning: *trusted by default, not trusted by accident*
-- [[dbt Beachhead Strategy]] — Why dbt is the wedge; Apr 22 exclusivity decision
-- [[Autonomous Data Stack Vision]] — Self-healing · compounding · ambient agents (manifesto)
-- [[AutoFyn ↔ SignalPilot Recursive Loop]] — The actual moat: meta-harness builds the harness
-- [[Where the Puck Is Going]] — Six predictions for Q2 2026 → 2027 (forward thesis)
-- [[Trust Runtime Positioning]] — Three-layer monetization: PR pre-flight → autonomous remediation → ambient ops
-- [[Niche Problem Discovery]] — 12 wedge candidates scored; PR pre-flight (W1, 23/25) recommended
+- [[Claude Code Prod Disasters]] — Cited catalog of documented Claude Code production-data destruction incidents (8+ in 120 days). Sales artifact.
+- [[Ramp Data Team Evolution]] — 80% PMs, 70% compliance, 55% finance running Claude Code at Ramp; the Layer 3 TAM proof point
 
 ## Raw Sources
 
 - [2026-04-24 — SignalPilot blog: Beating JetBrains on Spider 2.0-DBT](raw/2026-04-24_blog_beat-jetbrains-spider2-dbt.md)
 - [2026-04-27 — SignalPilot repo README snapshot](raw/2026-04-27_repo_signalpilot-readme.md)
 - [2026-04-27 — Paradigm shift web research + competitor / pain landscape](raw/2026-04-27_research_paradigm-shift.md)
+- [2026-04-27 — Claude Code failure evidence + persona workflows (with citations)](raw/2026-04-27_research_claude-code-failure-evidence.md)
 
 ---
 

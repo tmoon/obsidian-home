@@ -4,6 +4,56 @@ Append-only. Most recent at top.
 
 ---
 
+## Ingest 2026-04-27 — "Why we beat Claude Code" deep research (firecrawl + grok + WebSearch)
+
+**Trigger (user):** *"the Rank/Wedge/Score table doesn't answer 'why are we better than Claude Code at this' — find the most useful signal of what Claude Code is lacking. That is our ultimate wedge."*
+
+**Method:** parallel research across firecrawl (deep scrape), grok (X.com posts/threads), and WebSearch — semantic, iterative. Every claim traces to a URL.
+
+**Source:** `raw/2026-04-27_research_claude-code-failure-evidence.md` (the citation source-of-truth)
+
+### Killer findings
+
+1. **Production-data destruction is documented and accelerating.** At least 8 viral incidents in 120 days where Claude Code (or Claude-powered agents) wiped production databases + backups. Most recent: 2026-04-26 ([@milesdeutscher](https://x.com/i/status/2048779262552055950)) and 2026-04-27 ([@srbentley](https://x.com/i/status/2048649242621939945)) — within 24 hours of this ingest.
+2. **Anthropic itself acknowledges the structural problem.** [Effective context engineering for AI agents](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) and [Harness design for long-running apps](https://www.anthropic.com/engineering/harness-design-long-running-apps) document context rot + session-degradation + rationalization.
+3. **The "infrastructure not prompting" quote.** [Dori Wilson, Recce, Feb 25 2026](https://blog.reccehq.com/i-let-claude-code-build-my-dbt-models.-the-interesting-part-wasnt-the-code): *"AI-assisted analytics engineering isn't a prompting problem. It's an infrastructure problem. The skills, the MCP configs, the schema conventions, the guardrails. That's the actual work. The generation is the easy part."* — Verbatim our pitch.
+4. **The Ramp adoption stats validate the Layer 3 TAM.** [Ian Macomber](https://x.com/i/status/2023869483706728761): 80% of PMs / 70% compliance / 55% finance running Claude Code. [Eric Glyman](https://x.com/i/status/2047337232864784879): MCP weekly actives 10× in 3 months.
+5. **The Specificity Paradox.** [Recce gates blog](https://blog.reccehq.com/before-you-let-agents-touch-your-codebase-build-these-gates): *"The more specific your review instructions, the more Claude may ignore them."* Wire-level governance is the only structural answer.
+6. **Vanilla Claude Code on Spider 2.0-DBT = 14.70%.** SignalPilot architecture = 51.56%. **3.5× lift.** Altimate Skills (closest competitor) reports only 19% lift. Architecture ≠ skills.
+7. **Bauplan's quote = our governance thesis in a customer's voice.** *"Without that isolation, every agent mistake would be a production incident. With it, agent mistakes become cheap experiments."* ([Recce Data Valentine Challenge](https://blog.reccehq.com/data-valentine-challenge-wrapped))
+
+### The sharper wedge framing
+
+> **"Every team running Claude Code on production data needs SignalPilot or they're one prompt away from a deleted database. We are the only architecture that wraps Claude Code with (1) wire-level governance, (2) deterministic verification, and (3) persistent governed state. The Spider 2.0-DBT 3.5× lift is the receipt."**
+
+PR pre-flight is the **first product**. The wedge is structural — the three architectural arguments are the structural moat.
+
+### Files created this ingest
+
+**New raw source (citation source-of-truth):**
+- `raw/2026-04-27_research_claude-code-failure-evidence.md`
+
+**New wiki concepts:**
+- `wiki/concepts/why-we-beat-claude-code.md` — three structural arguments + buyer pitches with citations
+- `wiki/concepts/persona-workflows.md` — three personas × where CC fails × where SP wins
+
+**New wiki entities:**
+- `wiki/entities/claude-code-prod-disasters.md` — cited catalog of 8+ documented incidents; sales artifact
+- `wiki/entities/ramp-data-team-evolution.md` — Layer 3 TAM proof point with Macomber/Glyman/Yang citations
+
+**Updated:**
+- `index.md` — added 5 new entries
+- `log.md` (this entry)
+
+### Open follow-ups
+
+- Email Ian Macomber and/or Eric Glyman for a customer-interview slot — they're the canonical Layer 3 buyer language
+- Pull the full Wes McKinney interview transcript (Nell Thomas / Shopify VP Data) for the *"Your VP Is Doing a Rogue Analysis in Cursor Right Now"* framing
+- Consider Hex partnership conversation for Persona 2 (data scientist surface)
+- Track `Claude Code Prod Disasters` catalog quarterly; new incidents are accelerating
+
+---
+
 ## Ingest 2026-04-27 — Paradigm shift research + niche-problem brainstorm
 
 **Trigger (user):** *"benchmarks don't sell — buyers buy solutions to specific painful workflows. Run extensive research, ultrathink. The paradigm has shifted hard the last 60 days (Claude Opus 4.6/4.7, OpenClaw, token maxing); make predictions about where the puck is going."*
