@@ -4,6 +4,35 @@ Append-only. Most recent at top.
 
 ---
 
+## Concept 2026-04-27 — `[FUTURE]` Trust Layer for Data Consumption (consumer-pain reframe)
+
+**Trigger (user, strategic):** *"I deeply worry that dbt practitioners would not care and think this is incremental correctness — PMF would fail. A simpler pitch: the data connection / warehouse orchestration / governance layer that helps users (1) ship without losing sleep + self-heal, AND (2) safely route ad-hoc queries so consumers self-serve — without becoming a help center for execs to verify with data scientists."*
+
+**Action:** filed as `wiki/concepts/trust-layer-for-data-consumption.md` with `status: future` flag. **Not yet usable in marketing/outreach** — gated on validation in [[PMF Validation Sprint Week 1]].
+
+### The reframe (in one paragraph)
+
+The wedge is not "dbt PR correctness." That's incremental and slots into CI as a checkbox. The wedge is *"my data team is now an exec verification helpdesk and I cannot scale this."* Companies that gave PMs/ops/finance access to Claude Code (the [[Ramp Data Team Evolution]] pattern) discover every consumer query needs a data scientist to verify it before leadership trusts the number — calendar load multiplies, trust collapses. SignalPilot becomes the layer that **replaces the helpdesk with a governed agent + signed-answer loop.**
+
+### Two surfaces, one engine
+
+| Surface | Buyer | Pain |
+|---|---|---|
+| Engineer trust *(existing wedge)* | Analytics engineer / VP Data | CC ships a bad PR to prod |
+| Consumer trust *(this reframe)* | Head of Data / CDO | Team becomes a verification helpdesk for consumer queries |
+
+Same architecture (Governance Gateway + Verifier + audit + AutoFyn). Different demo, different buyer, **10× seat multiplier on consumer surface.**
+
+### Validation plan
+
+≥2 of 3 targeted Head of Data / VP Data interviews must, **unprompted**, describe a verification-helpdesk dynamic. ≥1 must name a specific time/headcount cost. ≥1 must say some form of "I'd pay to automate this." If criteria fail by 2026-05-03, archive page with `legacy: true` and date of falsification.
+
+### Files
+- **Created:** `wiki/concepts/trust-layer-for-data-consumption.md` (`status: future`)
+- **Touched:** `index.md` (added entry under Concepts with `[FUTURE — unvalidated]` tag)
+
+---
+
 ## Ingest 2026-04-27 — Workflow shifts (2025→2026→2027) + symbiotic-wedge reframe
 
 **Trigger (user, ultrathink):** *"if you think about day to day, what a data eng OR the data consumer would do, think through workflows: 1. last year 2. now (esp ones adopting CC) 3. how their job changes with SignalPilot. The shift from 2 to 3 is our wedge. Also realize SP is early stage — we can add features to steer to blue ocean and avoid competing directly with Claude Code, rather establish a symbiotic relationship as an extension on Claude Code or other IDEs."*

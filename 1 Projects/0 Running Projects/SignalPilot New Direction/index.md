@@ -15,6 +15,7 @@ Schema and conventions: [CLAUDE.md](CLAUDE.md) · Activity log: [log.md](log.md)
 ## Concepts
 
 - [[Symbiotic Wedge]] — **The deepest reframe.** SP as Claude Code data extension (not competitor); Vercel/Databricks/Cursor pattern; feature roadmap
+- [[Trust Layer for Data Consumption]] **[FUTURE — unvalidated]** — consumer-pain reframe: *"stop being a verification helpdesk for execs running Claude Code"*; 10× seat multiplier vs engineer surface
 - [[Workflow Shifts 2025-2026-2027]] — Per-persona day-in-the-life timeline with verbatim citations; the 2→3 Δ is the wedge
 - [[Why We Beat Claude Code]] — Three structural arguments + Spider 2.0 receipt + buyer pitches
 - [[Objection Handling]] — Sales counter-arguments with citations (read-only DB, dbt Copilot, Datafold/Recce)
