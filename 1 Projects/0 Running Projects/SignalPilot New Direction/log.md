@@ -4,6 +4,90 @@ Append-only. Most recent at top.
 
 ---
 
+## Ingest 2026-04-27 — Workflow shifts (2025→2026→2027) + symbiotic-wedge reframe
+
+**Trigger (user, ultrathink):** *"if you think about day to day, what a data eng OR the data consumer would do, think through workflows: 1. last year 2. now (esp ones adopting CC) 3. how their job changes with SignalPilot. The shift from 2 to 3 is our wedge. Also realize SP is early stage — we can add features to steer to blue ocean and avoid competing directly with Claude Code, rather establish a symbiotic relationship as an extension on Claude Code or other IDEs."*
+
+**Method:** parallel firecrawl + grok + WebSearch on per-persona workflow change; deep-fetch of Reliable Data Eng (25-35 hr/wk savings), Kestra "Workflow Engineer" thesis, Hex Notebook Agent, Recce gates blog. Source: `raw/2026-04-27_research_workflow-evolution.md`.
+
+### The deepest reframe (the strategic insight)
+
+SignalPilot is **not a Claude Code competitor**. It is **the data superpower extension** that makes Claude Code 10× better at warehouse work. Pattern of successful infrastructure plays:
+
+| Primitive | Extension that won |
+|---|---|
+| React | Vercel ($3B+) |
+| Spark | Databricks ($50B+) |
+| VS Code | Cursor ($9B+) |
+| Git/Issues | Linear ($1B+) |
+
+Claude Code is the dominant agent primitive. The vertical it most needs (and least solves natively) is *trustworthy data work*. **That's our layer.**
+
+### What changes when we adopt the symbiotic frame
+
+- **Distribution:** plugin marketplace, not direct sales — every CC seat that touches data is a SP candidate
+- **Pricing:** per-CC-user OR per-MCP-call; AutoFyn services priced as % of token-cost-savings (Anthropic admits CC quotas exhaust *"way faster than expected"* per [The Register Mar 31](https://www.theregister.com/2026/03/31/anthropic_claude_code_limits/))
+- **Brand:** "the data layer for Claude Code"
+- **TAM:** millions of CC seats × % that touch data, not 5K dbt shops globally
+- **Moat:** features that ONLY work inside Claude Code's runtime (Hooks, Subagents, Skills, MCP)
+
+### The 2025→2026→2027 timeline (top-line evidence per persona)
+
+**Data engineer / AE:**
+- 2025: 7-12 tools, 33 hrs/wk on repeat tasks, 8 hrs/Mon wrangling ([Reliable Data Eng](https://medium.com/@reliabledataengineering/i-built-a-digital-data-team-in-30-minutes-claude-skills-changed-everything-5e4bdd52f4ed) · [Byte Me Daily](https://bytemedaily.medium.com/i-replaced-my-data-team-with-agents-the-brutal-truth-about-ai-data-scientists-in-2026-7fb4b3594cb6))
+- 2026 with CC: 25-35 hrs/wk freed, PR throughput +67% ([@aakashgupta](https://x.com/i/status/2012396910221693216)), Macomber's *"This number looks off, here's why, here's a PR"* ([@iandmacomber](https://x.com/i/status/2023869483706728761)). BUT: silent inner-joins, prod deletions, context rot.
+- 2027 with SP: Verifier ride-along + persistent schema cache + wire governance + AutoFyn loop = trust runtime engineering
+
+**Data consumer (PM/exec/finance/compliance):**
+- 2025: Slack-ping → ticket queue → wait days
+- 2026 with CC: Ramp 80% PM / 70% compliance / 55% finance running CC; *"ship an MCP, your users never see your UI"* ([@eglyman 84K views](https://x.com/i/status/2047337232864784879)). BUT: no governance, no audit, cost runaway risk.
+- 2027 with SP: governed MCP + Verifier-on-answers + audit log = data leader's role flips from "credential gatekeeper" to "governance contract owner"
+
+**Data scientist:**
+- 2025: Jupyter / Hex / Mode + manual SQL pulls
+- 2026 with Hex Notebook Agent: agentic search, plan-build, summarize ([Hex blog](https://hex.tech/blog/notebook-agent-prompting-guide-agentic-analytics/)). Workspace Rules as text-rules governance. BUT: text instructions vs wire enforcement.
+- 2027 with SP (Hex partnership opportunity): governed MCP + Verifier on outputs + persistent context
+
+### The symbiotic feature roadmap (steered toward the blue ocean)
+
+**Tier 1 — next 60 days:**
+1. PreToolUse hooks for warehouse access (deterministic, can't hallucinate)
+2. Verifier subagent ride-along (Anthropic's subagent pattern)
+3. `/sp-audit-pr` slash command
+4. Schema cache MCP (warms CC sessions; saves tokens)
+5. `/sp-retro` skill (proven pattern from [Agapov LinkedIn](https://www.linkedin.com/posts/oleg-agapov_one-skill-changed-how-we-work-with-claude-activity-7450513370438402048-wvOe) + [Wilson /handsoff](https://blog.reccehq.com/i-let-claude-code-build-my-dbt-models.-the-interesting-part-wasnt-the-code))
+
+**Tier 2 — Q3 2026:** auto-CLAUDE.md generator, PII context manager, governed Slack MCP, cost guardrail MCP, multi-agent governance hooks
+
+**Tier 3 — 2027:** schema-drift autonomous PR, ambient agents in gVisor, AutoFyn-on-customer, cross-CC-session memory layer
+
+### The macro frame: "Everyone's a Workflow Engineer Now"
+
+Per [Kestra Mar 2026](https://kestra.io/blogs/2026-03-05-data-eng-trends-2026): *"AI is commoditizing the 'data' part. Anyone can write SQL or Python with assistance. The 'engineering' part becomes the differentiator: reliability, incident response, cost. The best data engineers of 2026 think like SREs."* SignalPilot is **the trust runtime that the new data-SREs need.**
+
+### Files this ingest
+
+**New raw source:**
+- `raw/2026-04-27_research_workflow-evolution.md`
+
+**New wiki concepts:**
+- `wiki/concepts/workflow-shifts-2025-2026-2027.md` — per-persona timeline with verbatim citations
+- `wiki/concepts/symbiotic-wedge.md` — Claude Code extension reframe + feature roadmap
+
+**Updated:**
+- `index.md` (added 2 concepts + 1 raw source)
+- `log.md` (this entry)
+
+### Strategic implication for [[Niche Problem Discovery]]
+
+The wedge is no longer a list of niche workflows. It's a **strategic posture**: be the canonical Claude Code data extension. The wedge workflows (PR pre-flight, compliance, token efficiency) become natural-extension surfaces of the symbiotic posture.
+
+### The new 30-second pitch (memorize)
+
+> *"Claude Code is the agent runtime. SignalPilot is the data superpower for Claude Code — schema memory that survives sessions, deterministic verification on outputs, wire-level governance on warehouse access, and a recursive harness loop that makes your Claude Code 10× better on data work every week. We are not Claude Code's alternative. We are Claude Code's data layer."*
+
+---
+
 ## Ingest 2026-04-27 — "Why we beat Claude Code" deep research (firecrawl + grok + WebSearch)
 
 **Trigger (user):** *"the Rank/Wedge/Score table doesn't answer 'why are we better than Claude Code at this' — find the most useful signal of what Claude Code is lacking. That is our ultimate wedge."*
