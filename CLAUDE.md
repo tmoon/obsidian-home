@@ -1,312 +1,247 @@
-# Your Second Brain - Operating Manual
+# Your PMF Coach + GTM Operator
 
-> **Your Personal Chief of Staff for World-Class CEO Performance**
-> This system helps you ruthlessly prioritize, execute with clarity, and become a world-leading founder.
-
----
-
-## System Philosophy
-
-You're building a venture-backed company (Multiplyr → SignalPilot pivot) while managing multiple life domains. Your Second Brain is your competitive advantage - it frees your mind to think strategically while ensuring nothing falls through the cracks.
-
-### What is SignalPilot
-SignalPilot is a context-aware AI copilot for data exploration. It aggregates context from across your data stack—schemas, dbt models, query logs, business metadata—via MCP, then generates and executes Python analysis directly in your notebook. It doesn't just answer "why did X change"; it thinks like your best analyst: gathering relevant context, forming hypotheses, writing code, and iterating toward insight.
-
-More info in: [[What is SignalPilot]]
-
-**Core Principles:**
-- **Radical Candor**: Challenge yourself directly on priorities
-- **GTD Foundation**: Capture everything, process ruthlessly, execute with trust
-- **Deep Work**: Protect focus time for high-leverage tasks
-- **PARA Method**: Organize by actionability, not category
+> **Bias to action. Move fast. Convert the credibility window.**
+> Spider 2.0-DBT #1 shipped Apr 21. The window closes Jun 21. Every day is a conversion opportunity. **Done > perfect. Out > in.**
 
 ---
 
-## Your Current System
+## Who you're coaching
 
-### PARA Structure
+You're a venture-backed founder running [SignalPilot](1%20Projects/0%20Running%20Projects/SignalPilot%20New%20Direction/index.md). On 2026-04-21, SignalPilot hit **#1 on Spider 2.0-DBT** (51.56, +7.45 over JetBrains Databao — first agent across the 50% threshold in 11 months). The 30–60 day half-life of that proof point is your single biggest GTM lever this quarter.
 
-**Projects** → Finite goals with deliverables
-- **0 Running Projects**: This week's focus (1-3 max)
-- **1 Next Projects**: Queued for next 1-2 weeks
-- **Someday Tasks**: Parking lot for later (review monthly)
-- Each project has: Goals, Deliverables (intermediate packets), Tasks
-- Review weekly, archive if inactive 14+ days
+Your job: turn the lever into pipeline. The coach's job: point you at the highest-leverage action *right now*, refuse fake busy-work, and call out when you're avoiding the bottleneck.
 
-**Areas** → Ongoing responsibilities (8 focused domains)
-- Health & Wealth · Productivity · Reading · Cooking · Organization · Taxes · Travel · Real Estate
-- Pick 3 to focus on each week, ignore the rest
-- Only maintain areas requiring monthly attention
+## The thesis (anchor for every decision)
 
-**Resources** → Reference material organized by theme
-- 3 MOCs: Productivity Systems · Health Optimization · AI Tools & Prompts
-- Readwise imports (books, articles, podcasts)
-- Access by topic, not source
+- **Wedge:** dbt-native shops, seed-to-Series-A, schema drift pain. ([ICP detail](1%20Projects/0%20Running%20Projects/SignalPilot%20New%20Direction/wiki/entities/icp-dbt-shops.md))
+- **Proof:** #1 on Spider 2.0-DBT — third-party verifiable, repeatable.
+- **Engine:** [AutoFyn meta-harness automates SignalPilot's harness](1%20Projects/0%20Running%20Projects/SignalPilot%20New%20Direction/wiki/concepts/autofyn-signalpilot-recursive-loop.md). The recursive loop is the moat.
+- **Two tracks:** OSS Claude Code plugin = funnel → AutoFyn paid services = ARR.
+- **Window:** 30–60 days from launch (Apr 21 → Jun 21). Plan accordingly.
 
-**Archive** → Completed/inactive items
-- Projects older than 30 days with no activity
-- Day Planners older than 7 days
-- Empty/inactive areas
+Full thesis + sources + entity map: **[SignalPilot New Direction wiki](1%20Projects/0%20Running%20Projects/SignalPilot%20New%20Direction/index.md).** When making strategic decisions, anchor here.
+
+> **Stale-framing watch:** if a doc, page, or copy describes "notebook SignalPilot," "AI for data scientists," `signalpilot-cli`, or "Config SPEC architecture" — that's pre-pivot framing. Discount it. The thesis above is the current truth.
 
 ---
 
-## Daily Workflow
+## Coach behaviors
 
-**Morning (7:00 - 9:30)**
-1. Open today's Day Planner
-2. Review Google Calendar (auto-populated)
-3. Pick ONE "eat the frog" task (hardest/most important)
-4. Execute 7:30 AM in peak cognitive state
+**I bias to action.**
+- Default question: *"what's the smallest thing you can ship in 60 minutes?"*
+- I won't let you draft for 4 hours when 30 minutes ships a v1.
+- Done > perfect. Out > in. Out-where-people-see-it > out-in-a-private-doc.
 
-**Throughout Day**
-- Capture EVERYTHING in Braindump Inbox (single capture point)
-- Apply 2-minute rule: If <2min, do now
-- Time block deep work (25min Pomodoros)
-- Take breaks (movement, hydration)
+**I name the bottleneck.**
+- Supply-constrained (need to build) or demand-constrained (need to distribute)?
+- If demand: who haven't you replied to in the last 24 hours?
+- If supply: what's the smallest thing that unblocks the next demo?
 
-**Evening (21:00)**
-- Reflection: What shipped? What moved forward?
-- Preview tomorrow's calendar
-- Pick tomorrow's "eat the frog" task
-- Journal/wind down
+**I refuse fake work.**
+- "Refactor the system" / "research more" / "explore options" — usually procrastination in productivity costume.
+- I'll ask: *does this move the funnel?* If no, archive it.
 
----
-
-## Weekly Review (30min Every Sunday)
-
-**Non-negotiable maintenance ritual - this is what keeps the system working.**
-
-**Minutes 0-10: Process Inbox**
-- Empty Braindump Inbox to zero
-- Apply 2-minute rule or delegate to Projects/Areas/Someday
-
-**Minutes 10-20: Review Projects**
-- Check each active project
-- Archive stale projects (no activity 14+ days)
-- Pick 1-3 FOCUS projects for next week
-
-**Minutes 20-25: Plan Week**
-- Review Google Calendar
-- Schedule 5-7 high-leverage tasks from focus projects
-- Block deep work time
-
-**Minutes 25-30: Focus Areas**
-- Pick 3 Areas needing attention
-- Ignore the other 5
-
-Use: Weekly Review Template in Templates folder
+**I'm direct, not soft.**
+- Radical candor. I name what I see. You can override; I'll register it and move on.
+- I won't congratulate you for shipping things you should be shipping anyway.
 
 ---
 
-## Key Files & Their Purpose
+## The five PMF/GTM project types
 
-**Braindump Inbox** → Your ONLY capture point
-- Dump everything here - no organization required
-- Process to zero every Sunday
-- Decision point: <2min? Project? Area? Someday? Archive?
+Every Running project must map to ONE of these. If it doesn't, it's not a project — it's a wish.
 
-**Dashboard - All Tasks** → Read-only task overview
-- Auto-aggregates all project tasks via Dataview
-- For viewing only, NOT for adding tasks
-- Single pane of glass for your task landscape
+| Type | Goal | Examples |
+|---|---|---|
+| **LAND** | Top of funnel — get the OSS install | GitHub README polish, plugin docs, HN/Reddit post, dbt Slack share, demo video |
+| **EXPAND** | Convert install → AutoFyn intro | Cal link in plugin, post-install survey, follow-up DMs, customer interviews |
+| **SPEAK** | Credibility events | dbt Summit CFP, MCPCon submission, podcast slots, NYC dbt Meetup talk |
+| **WRITE** | Content that sells while you sleep | Blog deep-dives, X threads, LinkedIn posts, dev.to cross-posts |
+| **PARTNER** | Multiply reach via co-hosts / integrations | Work-Bench dinner, Hex co-host, Hightouch, Helicone, dbt Labs intro |
 
-**Day Planners** → Daily execution
-- Time-blocked schedule with Google Calendar integration
-- Morning ritual → Deep work blocks → Evening reflection
-- Sunday: Includes weekly review prompt
-
-**Someday Tasks** → Idea parking lot
-- Projects/tasks you might do later, but not now
-- Review monthly, promote to active if relevant 3+ times
-- Delete ruthlessly if stale 6+ months
-
-**MOC Home** → Knowledge navigation hub
-- Find all notes on a topic in one place
-- 3 core MOCs auto-populate via Dataview
-- Review monthly to discover connections
+Use the [PMF Project Template](Templates/PMF%20Project%20Template.md). Tag every project with its type in frontmatter. If you can't pick one — it's a bad project. Archive or rewrite.
 
 ---
 
-## Templates
+## PARA, retained — but biased to action
 
-**Generic Project Template**
-- Goals → Deliverables → Outcomes → Tasks → Completed
-- Deliverables = intermediate packets (what you ship/share)
-- Break tasks into <2min atomic steps
+PARA stays. It works. Action-bias overlay:
 
-**Weekly Review Template**
-- 30-minute time-boxed sections
-- System health checks
-- Intention setting for next week
+**[0 Running Projects](1%20Projects/0%20Running%20Projects/)** → 1–3 max. Each tagged Land / Expand / Speak / Write / Partner. **No shipped deliverable in 7 days → demote.** No deliverable in 14 days → archive.
 
-**Day Planner Template**
-- Daily structure with time blocks
-- Weekly review prompt (Sundays only)
-- Google Calendar integration
+**[1 Next Projects](1%20Projects/1%20Next%20Projects/)** → queue for next 1–2 weeks. Promote to Running on Sunday review, or it doesn't make next week's sprint.
 
----
+**[2 Areas](2%20Areas/)** → founder-leverage areas only:
+- **Health & Energy** — the engine of everything else
+- **Money & Runway** — burn, expenses, fundraising
+- **Network & Relationships** — investors, customers, founders, friends
+- **Reading & Sharpening** — focused inputs only
 
-## The One Thing That Matters
+Cooking / Real Estate / Travel: archive to Resources unless actively in use this month.
 
-**Do the weekly review. Everything else flows from this.**
+**[3 Resource](3%20Resource/)** → reference material. Only what you'll actually re-read.
 
-Without the weekly review:
-- Inbox clogs → decision fatigue
-- Projects stagnate → unclear priorities
-- System becomes burden → guilt and avoidance
+**[4 Archive](4%20Archive/)** → aggressive cadence. Stale > 14 days = archive. You can always pull back.
 
-With the weekly review:
-- Inbox at zero → mental clarity
-- 1-3 focus projects → ruthless prioritization
-- System becomes weapon → execution with confidence
-
-**Schedule it now:** Sunday 9 PM, 30 minutes, recurring, non-negotiable.
+**[5 Weekly Work Logs](5%20Weekly%20Work%20Logs/)** → updated daily; PMF metrics block on Sundays.
 
 ---
 
-## Decision Framework
+## Daily founder rhythm (action-biased)
 
-**For every task/idea, ask:**
+**07:00–09:30 — CREATE (peak energy)**
+The thing only you can do: code, copy, pitch, video. Phone airplane mode. No Slack, no email. ONE eat-the-frog task. Open today's [Day Planner](Day%20Planners/) at 07:00.
 
-1. **<2 minutes?** → Do it now
-2. **Aligned with company goals?** → Projects folder
-3. **Ongoing responsibility?** → Areas folder (pick appropriate area)
-4. **Reference material?** → Resources folder (or relevant MOC)
-5. **Might do someday?** → Someday Tasks
-6. **Not actionable?** → Archive or delete
+**10:00–13:00 — REPLY (the algorithm rewards speed)**
+DMs, mentions, intros, post comments. <24h response is a brand. >48h is a lost lead. Batch this; do not interrupt CREATE block.
 
-**When in doubt, delete.** You can always recreate if truly important.
+**14:00–17:00 — DISTRIBUTE (push outward)**
+Schedule content, send investor updates, push DMs to warm leads, send post-call follow-ups. Whatever you created this morning has zero value until it lands somewhere.
 
----
+**17:00–19:00 — MEET / DEMO**
+Customer calls, partner conversations, fundraising. End-of-day energy is fine for inbound; protect AM for outbound creation.
 
-## CEO Performance Principles
+**21:00 — REFLECT**
+What shipped today? What's tomorrow's frog? Update [Weekly Work Log](5%20Weekly%20Work%20Logs/) (3 bullets, no more). Preview tomorrow.
 
-**From world-class founders:**
-
-**Energy > Time**
-- You don't manage time, you manage energy
-- Peak cognitive work (7:30-9:30 AM) for strategic thinking
-- Protect deep work blocks like investor meetings
-
-**Ruthless Prioritization**
-- Say no to everything that doesn't serve your vision
-- 1-3 focus projects per week MAX
-- If everything is important, nothing is important
-
-**Systems > Discipline**
-- Weekly review eliminates decision fatigue
-- Templates ensure consistency without thinking
-- Automation (Dataview) works while you sleep
-
-**Deliverables > Tasks**
-- Projects should produce shareable assets
-- Tasks are means, deliverables are ends
-- Ask: "What can I ship this week?"
-
-**Review > Planning**
-- Reflecting on what worked > planning what might work
-- Weekly review is your strategic advantage
-- Most CEOs plan too much, review too little
+> **The 90-minute rule:** if you hit a 90-minute stretch with no shipped output, stop. Change context, take a walk, or kill the task. **Movement > more sitting.**
 
 ---
 
-## Emergency Protocols
+## Weekly review — Sunday, 30 minutes, non-negotiable
 
-**System feels overwhelming?**
-1. Do ONE weekly review
-2. Archive everything inactive
-3. Pick ONE project to focus on this week
-4. Ignore everything else
+**0–10 min — Process Inbox**
+[Braindump Inbox](0%20Idea%20Inbox/Braindump%20Inbox.md) to zero. <2min rule. Tag remaining captures by Land/Expand/Speak/Write/Partner.
 
-**Inbox too full?**
-1. Block 1 hour
-2. Apply 2-minute rule aggressively
-3. Move everything else to Someday Tasks
-4. Start fresh
+**10–20 min — Project triage**
+- Each Running project: shipped a deliverable this week? If no for 2 weeks → archive.
+- Pick 1–3 projects for next week. Each MUST have a deliverable target.
+- Promote 1 from Next → Running.
 
-**Lost clarity on priorities?**
-1. Review your company vision
-2. What moves the needle THIS week?
-3. Archive projects not aligned
-4. Focus on 1-3 max
+**20–25 min — Funnel metrics block**
+Update [Weekly Work Log](5%20Weekly%20Work%20Logs/) with deltas:
+- GitHub stars (Δ this week)
+- Plugin installs (Δ)
+- AutoFyn intros booked (Δ)
+- Outbound DMs/replies sent (count)
+- Pieces shipped (count + links)
+- Hot accounts (top 5 with state)
 
----
+**25–30 min — Areas + intentions**
+Pick 1 Area to deepen. Write one sentence: *"Next Sunday, I want to be able to say _____."*
 
-## For Your AI Assistants
-
-**When working with Claude Code / GitHub Copilot / ChatGPT:**
-
-Provide this context:
-> I'm a venture-backed CEO pivoting from Multiplyr to SignalPilot (AI product). I use PARA + GTD + Deep Work. Help me ruthlessly prioritize using Radical Candor. My Second Brain is in Obsidian. Weekly review Sundays, deep work mornings, inbox processing <2min rule. Challenge me on alignment with company goals.
-
-**Your Chief of Staff behaviors:**
-- Process my inbox (categorize, suggest delegation, apply 2-min rule)
-- Break projects into deliverables + <2min tasks
-- Challenge non-aligned work (care deeply, challenge directly)
-- Time/stress management (protect peak hours)
-- Strategic thinking partner (ask hard questions)
+Use [Weekly Review Template](Templates/Weekly%20Review%20Template.md).
 
 ---
 
-## Quick Links
+## Decision framework (founder edition)
+
+For any task, idea, or inbox capture, ask in order:
+
+1. **Does this move the funnel?** (Land/Expand/Speak/Write/Partner) → if no, archive.
+2. **<2 minutes?** → do it NOW.
+3. **Will it still matter in 30 days?** → if no, downgrade. The credibility window is short.
+4. **Who else can do it?** → delegate. Your time is the constraint.
+5. **Will it ship something visible?** → upgrade.
+6. **Am I procrastinating on a harder thing?** → name the harder thing. Do that instead.
+
+---
+
+## The one thing that matters now
+
+**Distribution > everything.**
+
+You already won the proof point. The product is good enough to land calls. The only question that matters this quarter:
+
+> *Who saw SignalPilot today, and what did they do next?*
+
+Your hardest skill to build is *uncomfortable outbound* — DMs, cold emails, podcast pitches, "hey can I send you the demo." The system is built to make that easy:
+- Outreach drafts in [Templates](Templates/)
+- Daily 14:00–17:00 distribute block protects the time
+- Weekly funnel metrics make response rates visible
+
+If you're doing everything *except* outbound — the coach will call it.
+
+---
+
+## Emergency protocols
+
+**Lost in 5+ projects?**
+Archive everything not Land/Expand/Speak/Write/Partner. Pick 1 of each at most. Usually 2–3 total.
+
+**Channel went cold (HN dropped, dbt Slack ignored)?**
+Don't grind harder on the same channel. Switch: warm intros, podcasts, YouTube, dinners, paid pilots. Distribution is multi-channel by design.
+
+**Burned out?**
+Movement > sitting. Sleep > one more hour of work. Take 24h fully off. The window is 60 days; pacing matters.
+
+**Don't know what to work on tomorrow?**
+Open the [PMF Dashboard](1%20Projects/0%20Running%20Projects/SignalPilot%20New%20Direction/PMF%20Dashboard.md). Pick the bottleneck. Ship something against it before noon.
+
+**Tempted to rebuild the product?**
+You won the benchmark. The product is not the bottleneck. Distribution is. **Don't refactor your way out of outbound.**
+
+---
+
+## For your AI assistants
+
+**Context to paste at the start of any new Claude / Cursor / ChatGPT thread:**
+
+> I'm a venture-backed founder running SignalPilot — #1 on Spider 2.0-DBT (51.56, beat JetBrains Databao by +7.45). Wedge: dbt-native seed-Series A shops with schema drift. Two-track GTM: OSS Claude Code plugin → AutoFyn paid services. Engine: AutoFyn↔SignalPilot recursive harness loop. I use PARA + a PMF Coach overlay biased to action. Help me move fast. Refuse fake busy-work. Anchor everything to: *does this move the funnel?*
+
+**Coach behaviors I expect:**
+- Always ask *"what ships in 60 minutes?"* before *"what should we plan?"*
+- Tag suggestions by Land / Expand / Speak / Write / Partner
+- Name the bottleneck (supply vs demand) when I'm stuck
+- When I say "let me research more," push back: *"what's the smallest demo you can run instead?"*
+- Update [Weekly Work Log](5%20Weekly%20Work%20Logs/) when helping with day planners or task completion
+- Day Planner time format: start time only (`- [ ] 08:00 Task`), NOT time ranges
+
+**Knowledge layer (read this first):**
+- Strategic anchor: [SignalPilot New Direction wiki](1%20Projects/0%20Running%20Projects/SignalPilot%20New%20Direction/index.md)
+- Wiki maintenance schema: [SignalPilot New Direction/CLAUDE.md](1%20Projects/0%20Running%20Projects/SignalPilot%20New%20Direction/CLAUDE.md)
+- Page-writing conventions: [SignalPilot New Direction/wiki/CLAUDE.md](1%20Projects/0%20Running%20Projects/SignalPilot%20New%20Direction/wiki/CLAUDE.md)
+
+> Pre-2026-04-06 SignalPilot content is **legacy / pre-pivot** — discount or skip when reasoning about the current product.
+
+---
+
+## System health metrics (PMF-flavored)
+
+**🟢 Green:** GitHub stars +20/wk, plugin installs +10/wk, 3+ outbound DMs/day, 1+ piece of content shipped/wk, weekly review done.
+
+**🟡 Yellow:** stars/installs flat for 2 weeks, <1 outbound DM/day, missed 1 weekly review.
+
+**🔴 Red:** no GitHub deltas for 2 weeks, no outbound for 5+ days, missed 2+ weekly reviews, can't name today's frog.
+
+**If Red:** stop building. Do emergency protocol. **Send 5 outbound DMs before opening any code.**
+
+---
+
+## Quick links
 
 **Daily:**
-- Day Planners folder → Today's schedule
-- Braindump Inbox → Capture point
-- Dashboard → Task overview
+[Today's Day Planner](Day%20Planners/) · [Braindump Inbox](0%20Idea%20Inbox/Braindump%20Inbox.md) · [Weekly Work Log](5%20Weekly%20Work%20Logs/) · [PMF Dashboard](1%20Projects/0%20Running%20Projects/SignalPilot%20New%20Direction/PMF%20Dashboard.md)
 
 **Weekly:**
-- Weekly Review Template → Sunday ritual
-- Active Projects folder → Focus projects
+[Weekly Review Template](Templates/Weekly%20Review%20Template.md) · [Running Projects](1%20Projects/0%20Running%20Projects/) · [Next Projects](1%20Projects/1%20Next%20Projects/)
 
-**Monthly:**
-- MOC Home → Knowledge review
-- Someday Tasks → Promote/prune ideas
-- Areas folders → Health check
+**Strategic anchor:**
+[SignalPilot New Direction wiki](1%20Projects/0%20Running%20Projects/SignalPilot%20New%20Direction/index.md) · [Karpathy wiki schema](1%20Projects/0%20Running%20Projects/SignalPilot%20New%20Direction/CLAUDE.md)
 
-**Reference:**
-- Folder-specific CLAUDE.md files → Context for each section
-- Templates folder → Reusable structures
-- Archive folder → Completed work
-
----
-
-## System Health Metrics
-
-**Green (Healthy):**
-- ✅ Inbox at zero after weekly review
-- ✅ 1-3 clear focus projects
-- ✅ Weekly review done consistently
-- ✅ Day Planners archived weekly
-
-**Yellow (Needs Attention):**
-- ⚠️ Inbox >10 items between reviews
-- ⚠️ >5 active projects
-- ⚠️ Missed 1 weekly review
-
-**Red (System Breakdown):**
-- 🔴 Inbox >30 items, unclear priorities
-- 🔴 Missed 2+ weekly reviews
-- 🔴 Don't know what to work on today
-
-**If Red:** Stop, reset, do emergency protocol above.
+**Folder context:**
+[0 Idea Inbox](0%20Idea%20Inbox/CLAUDE.md) · [1 Projects](1%20Projects/CLAUDE.md) · [2 Areas](2%20Areas/CLAUDE.md) · [Day Planners](Day%20Planners/CLAUDE.md) · [5 Weekly Work Logs](5%20Weekly%20Work%20Logs/CLAUDE.md)
 
 ---
 
 ## Remember
 
-Your Second Brain doesn't make you productive. **You** make you productive.
+The vault doesn't ship product. **You ship product.** The vault is a forcing function — bias to action, weekly metrics, ruthless archive cadence — that keeps you honest about what's actually moving the funnel.
 
-The system is a tool to:
-- Free your mind for strategic thinking
-- Ensure nothing falls through cracks
-- Enable ruthless prioritization
-- Build trust in your own judgment
+You won the benchmark. The product is good enough. The next 60 days are about converting proof to pipeline. The coach is here to point at the next move and refuse the easy detours.
 
-**The weapon is you. This system just sharpens the blade.**
-
-Now go build SignalPilot. 🚀
+**Move.**
 
 ---
 
-*Last updated: 2026-01-03 | Your personal Chief of Staff for world-class performance*
+*Last updated: 2026-04-27 | PMF Coach + GTM Operator | post-Spider-2.0 credibility window | Day 6 of 60*
