@@ -4,6 +4,84 @@ Append-only. Most recent at top.
 
 ---
 
+## Ingest 2026-04-27 — Paradigm shift research + niche-problem brainstorm
+
+**Trigger (user):** *"benchmarks don't sell — buyers buy solutions to specific painful workflows. Run extensive research, ultrathink. The paradigm has shifted hard the last 60 days (Claude Opus 4.6/4.7, OpenClaw, token maxing); make predictions about where the puck is going."*
+
+**Source:** `raw/2026-04-27_research_paradigm-shift.md` (multi-source web research synthesis)
+
+### What the research surfaced (top signals)
+
+1. **dbt Labs 2026 State Report:** 72% of teams prioritize AI-assisted *coding*; only 24% prioritize AI-assisted *pipeline management* (testing, observability, quality, governance). 71% fear bad data. Trust importance jumped 66% → 83% YoY. **The 48-pt gap is the blue ocean.**
+2. **Zscaler PRISM case (validation):** Fortune 500 built multi-agent dbt PR-review system internally. Numbers: 956 PRs/quarter automated, 90% reviewer time reduction, 2,100 engineering hrs saved annually, 30% query speedup. **They built bespoke; SignalPilot ships the productized version.** See [[Zscaler PRISM Case]].
+3. **dbt + Fivetran merger** ($600M ARR combined; Oct 2025): explicit roadmap to schema-drift auto-patch + dbt Copilot (model gen, doc gen, tests, refactoring, perf opt, cost analysis). **They will own AI-assisted coding for dbt.**
+4. **Paradigm shift Mar–Apr 2026:**
+   - **Claude Opus 4.7** (Apr 16): xhigh effort default, task budgets (beta), 1M context, `/ultrareview` command. Token-maxing is the official direction.
+   - **OpenClaw chaos** (Apr 4–10): Anthropic banned third-party harnesses; shipped Claude Code Channels as the answer. **Plugin ecosystem becomes winner-take-most.**
+   - **Token-quota crisis:** Anthropic admitted Claude Code limits exhaust "way faster than expected." 5-agent teams burn 27% of daily budget in 45 min, 20× context overhead.
+   - **Skills + Subagents + Hooks + MCP** = the official Claude Code extensibility surface. SignalPilot's plugin already sits on it.
+5. **MCP governance gap:** Kiteworks 2026 — 63% of orgs can't enforce purpose limitations on agents; 60% can't terminate misbehaving agents; 57% lack centralized AI data gateway. Snowflake just shipped Managed MCP Servers. **The compliance buyer is forming now.**
+
+### Forward thesis surfaced
+
+**SignalPilot is the trust runtime for Claude-Code-driven dbt operations.** Three monetization layers, same architecture:
+
+- **Layer 1 (today):** PR pre-flight verification (the wedge — validated by Zscaler PRISM)
+- **Layer 2 (Q3-Q4 2026):** Autonomous remediation when schema drift hits
+- **Layer 3 (2027):** Ambient autonomous operations
+
+See [[Where the Puck Is Going]], [[Trust Runtime Positioning]], [[Niche Problem Discovery]].
+
+### Wedge picked
+
+After scoring 12 candidates: **W1 — PR pre-flight verification (23/25)** is the lead.
+
+- **Co-feature:** W5 (backfill safety) for high-emotional demo
+- **Co-position for enterprise:** W10 (compliance / audit) at platform-eng buyer
+- **Defer to Layer 2:** W2 (schema drift auto-patch — dbt Copilot's roadmap target)
+- **Skip:** W4 (test gen — commodity), W6 (junior AE — red ocean), W11 (token efficiency — angle, not wedge)
+
+### Files created this ingest
+
+**New raw source:**
+- `raw/2026-04-27_research_paradigm-shift.md`
+
+**New wiki concepts:**
+- `wiki/concepts/where-the-puck-is-going.md` — 6 forward predictions for Q2 2026 → 2027
+- `wiki/concepts/trust-runtime-positioning.md` — 3-layer monetization framing
+- `wiki/concepts/niche-problem-discovery.md` — 12 wedges scored on F × S × U × A × P rubric
+
+**New wiki entities:**
+- `wiki/entities/zscaler-prism-case.md` — validated proof point with verbatim quotes
+- `wiki/entities/dbt-copilot.md` — incumbent threat (dbt Labs + Fivetran)
+- `wiki/entities/claude-code-extensibility-stack.md` — Hooks/Subagents/Skills/MCP surface
+
+**New wiki summary:**
+- `wiki/summaries/2026-04-27_paradigm-shift-and-niche-discovery.md`
+
+**New project (outside wiki, in `1 Projects/0 Running Projects/`):**
+- `PMF Validation Sprint - Week 1.md` — 10 customer interviews, Mom Test discipline, decision gate Sunday 2026-05-03
+
+**Updated:**
+- `index.md` — added new entries
+- `log.md` (this entry)
+
+### Decision gate next Sunday (2026-05-03)
+
+After 10 customer interviews:
+- ≥7 mention PR review pain unprompted → commit to W1 wedge
+- ≥5 use Claude Code daily on dbt → commit to Claude-Code-first distribution
+- If neither: re-think wedge framing
+
+### Open follow-ups for next ingest cycle
+
+- Pull AutoFyn repo to verify "26 vulnerabilities" claim
+- Read Coalesce 2025 keynote transcripts for dbt MCP details
+- After 10 interviews: write `wiki/summaries/2026-05-03_validation-sprint-week-1.md` synthesizing what buyers said in their own words
+- File the Firecracker→gVisor correction upstream in plugin README
+
+---
+
 ## Ingest 2026-04-27 — Code-truth verification + Notion strategic context
 
 Pulled ground-truth from `/Users/tarik/codeAlpine/SignalPilot/` and from Notion to resolve outstanding contradictions and ingest current strategic positioning.
