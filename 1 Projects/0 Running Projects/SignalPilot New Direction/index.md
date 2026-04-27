@@ -15,6 +15,7 @@ Schema and conventions: [CLAUDE.md](CLAUDE.md) · Activity log: [log.md](log.md)
 ## Concepts
 
 - [[Why We Beat Claude Code]] — Three structural arguments + Spider 2.0 receipt + buyer pitches (the central new page)
+- [[Objection Handling]] — Sales counter-arguments with citations (read-only DB objection, dbt Copilot, Datafold/Recce)
 - [[Persona Workflows]] — Data engineer / data scientist / data consumer × where Claude Code fails × where SP wins
 - [[Where the Puck Is Going]] — Six predictions for Q2 2026 → 2027 (forward thesis)
 - [[Trust Runtime Positioning]] — Three-layer monetization: PR pre-flight → autonomous remediation → ambient ops

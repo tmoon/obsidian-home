@@ -25,6 +25,8 @@ The competitor closest to us (Altimate Skills) reports a [19% lift on data tasks
 
 ## Argument 1 — Wire-level governance vs prompt-level guardrails
 
+> **Anticipated objection: "I'll just use a read-only DB user with Claude Code."** Steel-manned and answered with citations in [[Objection Handling]] §1. TL;DR: read-only is the floor (blocks DROP TABLE) — it doesn't bound query cost, redact PII, give agent-aware audit trail, or verify correctness. And it's *impossible* for the workflows that need writes (`dbt run`, backfills, schema migrations, autonomous remediation). We are the structural answer for both governed read AND governed write.
+
 ### The failure pattern
 
 Claude Code's safety = system prompts + skills + CLAUDE.md. **All three can be ignored when the agent rationalizes its way around them.** Anthropic itself documents this in [Effective context engineering for AI agents](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) and the March 2026 [Harness design for long-running apps](https://www.anthropic.com/engineering/harness-design-long-running-apps) blog.
@@ -180,6 +182,7 @@ Sandbox + transactional branches → contain blast radius. Their work *validates
 - The architecture: [[Governance Gateway]] · [[Verifier Agent]] · [[MCP Tool Catalog]] · [[AutoFyn ↔ SignalPilot Recursive Loop]]
 - The wedge framing: [[Trust Runtime Positioning]]
 - Workflow detail: [[Persona Workflows]]
+- **Sales objections + answers (with citations):** [[Objection Handling]]
 - Validated case: [[Zscaler PRISM Case]]
 - Competition: [[dbt Copilot]] · [[Claude Code Extensibility Stack]]
 - Forward thesis: [[Where the Puck Is Going]]

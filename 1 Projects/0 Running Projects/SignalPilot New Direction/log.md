@@ -54,6 +54,29 @@ PR pre-flight is the **first product**. The wedge is structural — the three ar
 
 ---
 
+## Update 2026-04-27 — Objection handling: the read-only DB counter-argument
+
+**Trigger (user):** *"the counter argument might be you can always use a read only connection to db with claude code"*
+
+Sharpest objection a sophisticated buyer raises against [[Why We Beat Claude Code]] Argument 1. Steel-manned and answered with citations in new page [[Objection Handling]].
+
+**Two-part answer:**
+- **Part A — Read workflows:** Read-only is necessary but not sufficient. It doesn't bound query cost ([GoDaddy validation](https://www.facebook.com/GoDaddy/posts/how-do-we-know-this-ai-agent-wont-run-forever-and-cost-us-thousands-in-api-calls/1366636518830031/), [arXiv MCP-security paper](https://arxiv.org/html/2511.20920v1)), doesn't redact PII, doesn't give agent-aware audit trail, doesn't catch silent dq decisions like Dori Wilson's documented failures. Spider 2.0-DBT proves the gap quantitatively — vanilla Claude *with* read-only access = 14.70%; SignalPilot architecture = 51.56%.
+- **Part B — Write workflows:** Read-only is *impossible* for `dbt run`, backfills, schema migrations, autonomous remediation. Only governed write makes them safe.
+
+**Bonus citations:** Snowflake's managed MCP is vendor-locked to Cortex Agents only ([Snowflake-Labs/mcp README](https://github.com/Snowflake-Labs/mcp/blob/main/README.md), [docs](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-mcp)). Claude Code permission system itself is bypassable: [@InfoSec_Awards CVE](https://x.com/i/status/2046988415992741975), [@noisyb0y1 default access](https://x.com/i/status/2042086577636061436), [@GuptaSayujya Dangerous Mode](https://x.com/i/status/2047121428387123313); active CVEs CVE-2025-59536 and CVE-2026-21852.
+
+**Files:**
+- New: `wiki/concepts/objection-handling.md` (canonical objection-handling doc, append-only)
+- Updated: `wiki/concepts/why-we-beat-claude-code.md` — anticipated-objection callout in Argument 1
+- Updated: `index.md` (added Objection Handling under Concepts)
+- Updated: `log.md` (this entry)
+
+**The 30-second rebuttal (memorize):**
+> *"Read-only DB is necessary but not sufficient. It blocks DROP TABLE — that's the floor. It doesn't bound query cost, doesn't redact PII, doesn't audit at the agent level, doesn't verify correctness — Spider 2.0-DBT shows vanilla Claude with read-only access scores 14%; we score 51%. And read-only is impossible for `dbt run`, backfills, or autonomous remediation. We are the structural answer for both governed read AND governed write."*
+
+---
+
 ## Ingest 2026-04-27 — Paradigm shift research + niche-problem brainstorm
 
 **Trigger (user):** *"benchmarks don't sell — buyers buy solutions to specific painful workflows. Run extensive research, ultrathink. The paradigm has shifted hard the last 60 days (Claude Opus 4.6/4.7, OpenClaw, token maxing); make predictions about where the puck is going."*
