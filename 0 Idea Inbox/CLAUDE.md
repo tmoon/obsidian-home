@@ -1,65 +1,47 @@
-# Idea Inbox - Strategic Capture & High-Level Thinking
+# Idea Inbox — Capture & Process
 
-> **Function:** Your command center for strategic thinking and quick capture before processing.
-
----
-
-## What Lives Here
-
-**Braindump Inbox** → Your ONLY capture point
-- Dump everything here immediately - no organization
-- Process to zero every Sunday (weekly review)
-- Think of it as your external RAM
-
-**Dashboard** → Read-only task overview
-- Auto-aggregates all project tasks
-- Single pane of glass for your landscape
-- View only - never add tasks here directly
-
-**MOC Home** → Knowledge navigation hub
-- Links to all Maps of Content
-- Find notes by theme, not location
-- Your Second Brain's table of contents
-
-**Strategic Documents** → Big-picture thinking
-- CEO framework notes
-- Life pillars and vision
-- System methodology
+> **Function:** Single capture point, processed weekly. Out of head, into system.
 
 ---
 
-## Rules
+## What lives here
 
-**Capture:**
-- Everything goes to Braindump Inbox first
-- No exceptions - if it's in your head, get it out
-- Don't organize during capture
-
-**Process:**
-- Only during weekly review (Sunday 30min)
-- Apply decision framework: <2min? Project? Area? Resource? Someday? Delete?
-- Goal: Braindump at zero after every review
-
-**Never:**
-- Don't let Braindump grow beyond 30 items
-- Don't add tasks to Dashboard (it's auto-generated)
-- Don't process inbox daily (batching is more efficient)
+- **[Braindump Inbox](Braindump%20Inbox.md)** — your ONLY capture point. Dump anything; no organization at capture time.
+- **Dashboard** — read-only overview of all tasks. View, don't edit.
+- **MOC Home** — knowledge navigation hub.
+- **Strategic docs** — big-picture thinking, vision, frameworks.
 
 ---
 
-## Your Chief of Staff Says
+## Capture rules
 
-**This folder is your mental inbox. It should be EMPTY or close to it after weekly review.**
-
-If Braindump Inbox has >30 items, you're collecting not processing. Block 1 hour, apply 2-minute rule ruthlessly, and get back to zero.
-
-The Dashboard shows you the whole landscape - use it to spot patterns:
-- Same type of task repeating? Create a system
-- Project with no progress? Archive or recommit
-- Too many active projects? Ruthlessly prioritize 1-3
-
-Strategic docs here should challenge you. If they don't, they're platitudes. World-class CEOs revisit vision monthly.
+- Everything goes to Braindump first. Even half-formed thoughts.
+- Don't organize while capturing — friction kills the habit.
+- Don't grow Braindump > 30 items between reviews.
 
 ---
 
-*Your capture system works when it's friction-free IN and ruthlessly processed OUT.*
+## Process rules (Sunday weekly review, 0–10 min slot)
+
+For each item, in order:
+
+1. **<2 min?** → do it now, delete the item.
+2. **Moves the funnel?** (Land/Expand/Speak/Write/Partner) → send to a project; tag the type in frontmatter.
+3. **Ongoing responsibility?** → Areas folder.
+4. **Reference for later?** → Resources folder.
+5. **Maybe later (3+ months out)?** → 2 Deferred Projects.
+6. **Not actionable?** → delete.
+
+**Goal: Braindump at zero after every weekly review.**
+
+---
+
+## AI behavior
+
+- When processing inbox: log archived items in current [Weekly Work Log](../5%20Weekly%20Work%20Logs/).
+- When capturing a new idea, suggest the funnel-stage tag (Land/Expand/Speak/Write/Partner) so processing is faster on Sunday.
+- If Braindump > 30 items, push back: *"block 1 hour, process before adding more."*
+
+---
+
+*Friction-free in. Ruthlessly processed out.*

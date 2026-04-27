@@ -1,166 +1,57 @@
-# Day Planners - Daily Execution Engine
+# Day Planners — Daily Execution
 
-> **Function:** Where planning meets execution. Your daily schedule, time blocks, and reflection system.
-
----
-
-## What Lives Here
-
-**Daily Planner Files** → One file per day
-- Format: `YYYY-MM-DD.md`
-- Created from Day Planner Template
-- Time-blocked schedule with Google Calendar integration
-- Morning ritual → Deep work blocks → Evening reflection
-
-**Key Sections:**
-- Weekly Review (Sundays only - appears at top)
-- Daily Reflections
-- Daily Top-Line Goals
-- Google Calendar (auto-populated)
-- Time-blocked schedule
-- Tomorrow's preview
+> **Function:** Time-blocked schedule + reflection. Strategy becomes shipped output here.
 
 ---
 
-## Daily Workflow
+## File convention
 
-**Morning (7:00 - 9:30)**
-
-**7:00 - Wake & Prepare**
-- Clean up, morning ritual
-- Review today's planner
-
-**7:15 - Meditate**
-- 15 minutes
-- Mental clarity for peak performance
-
-**7:30 - Eat the Frog**
-- Pick hardest/most important task
-- Peak cognitive state = strategic work
-- 90-120 minutes deep work block
-- This is your competitive advantage
-
-**9:30 - Start scheduled work**
-- Follow time blocks
-- Check Google Calendar integration
-- Execute with focus
+- One file per day: `Day Planner-YYYYMMDD.md` (or `YYYY-MM-DD.md`).
+- Created from [Day Planner Template](../Templates/Day%20Planner%20Template.md).
+- Archive to [4 Archive](../4%20Archive/) after 7 days.
 
 ---
 
-**Throughout Day (Pomodoros)**
+## Daily rhythm (action-biased)
 
-**25min focus blocks** with 5min breaks
-- Deep work: Turn off notifications
-- Single task focus (no context switching)
-- Breaks: Movement, hydration, rest
+| Block | Time | Mode |
+|---|---|---|
+| **CREATE** | 07:00–09:30 | Code, copy, pitch — the thing only you can do. Phone airplane mode. ONE frog task. |
+| **REPLY** | 10:00–13:00 | DMs, mentions, intros, post comments. Batched, not interrupted. |
+| **DISTRIBUTE** | 14:00–17:00 | Push outward. Send DMs, schedule content, follow-ups. |
+| **MEET** | 17:00–19:00 | Customer / partner / fundraising calls. |
+| **REFLECT** | 21:00 | 3 bullets to [Weekly Work Log](../5%20Weekly%20Work%20Logs/). Pick tomorrow's frog. |
 
-**Track completion:**
-- Check off completed tasks
-- Note what shipped
-- Adjust schedule if needed
-
----
-
-**Evening (21:00)**
-
-**Reflection (10-15min):**
-- What shipped today?
-- What moved forward?
-- What blocked progress?
-- Learn and adjust
-
-**Tomorrow's Prep:**
-- Preview calendar (auto-populated)
-- Pick tomorrow's "eat the frog"
-- Mental rehearsal
-
-**Wind Down:**
-- Journal if needed
-- No screens 30min before sleep
-- 23:00 target sleep time
+> **Eat the frog at 7:30** is sacred. No meetings, no email, no Slack until the frog is shipped.
+>
+> **90-min rule:** no shipped output in 90 minutes → stop, change context, walk.
 
 ---
 
-## Sunday Special: Weekly Review
+## Sunday special
 
-**First thing on Sunday planner:**
-- Prominent weekly review prompt appears at top
-- Do this BEFORE daily planning
-- 30 minutes, time-boxed, non-negotiable
-
-**Why Sunday:**
-- Sets up entire week
-- Mental clarity before Monday
-- Strategic thinking when rested
-
-**Use:** Weekly Review Template in Templates folder
+The Sunday planner has the [weekly review prompt](../Templates/Weekly%20Review%20Template.md) at the top. Do it BEFORE daily planning. Non-negotiable. 30 minutes.
 
 ---
 
-## Time Blocking Principles
+## Time-block format (strict)
 
-**Energy > Time**
-- 7:30-9:30 AM: Peak cognitive (strategic, creative work)
-- 10:00-12:00: Focused execution
-- 13:00-14:00: Admin, meetings, lower-stakes work
-- 15:00-17:00: Second wind (tactical execution)
-- 19:00+: Review, plan, wind down
+**Use start time only.** No ranges.
 
-**Protect the Frog Time (7:30 AM)**
-- No meetings, no email, no Slack
-- This is YOUR time for strategic work
-- SignalPilot design, investor thinking, product strategy
-- 2 hours here > 8 hours scattered throughout day
+- ✅ `- [ ] 08:00 Send 5 outbound DMs`
+- ❌ `- [ ] 08:00–09:00 Send DMs`
 
-**Calendar Integration**
-- Google Calendar auto-populates today + tomorrow
-- Shows commitments you can't move
-- Plan deep work around fixed commitments
+Ranges are wishes; start times are commitments.
 
 ---
 
-## Archival System
+## AI behavior
 
-**Weekly During Review:**
-- Archive planners older than 7 days
-- Move to Archive/Day Planner Archive/
-- Keeps this folder clean
-- Searchable history maintained
-
-**Why Archive:**
-- Execution history (proof of work)
-- Pattern recognition (what actually works)
-- Time audit (where does time go)
-- Learning material (iterate on schedule)
+- At end of each work session, **update today's entry in the current [Weekly Work Log](../5%20Weekly%20Work%20Logs/)** (3 bullets max).
+- Preserve start-time-only format. Reformat any ranges you see.
+- When asked to plan tomorrow: anchor to the [PMF Dashboard](../1%20Projects/0%20Running%20Projects/SignalPilot%20New%20Direction/PMF%20Dashboard.md) bottleneck.
+- Day Planner archive: move to `4 Archive/Day Planner Archive/` weekly.
 
 ---
 
-## Your Chief of Staff Says
-
-**This is your execution layer. Planning without daily execution = wishful thinking.**
-
-Your Day Planners turn strategy into action. Projects are what you ship. Day Planners are how you ship them.
-
-**The 7:30 "Eat the Frog" time is sacred.**
-
-Most CEOs let their calendar own them. Meetings at 9 AM, reactive all day, exhausted by evening. You're doing opposite:
-
-- 7:30 AM: Strategic work when sharp
-- Meetings later when you can afford distraction
-- Evening: Reflect and plan, not execute
-
-This is how world-class founders operate.
-
-**Time blocking > To-do lists**
-
-A task on a list is a wish. A task in a time block is a commitment.
-
-Block time for your "eat the frog" task FIRST, then fit everything else around it.
-
-**Sunday weekly review appears in your planner.** You can't miss it. Do it. This 30 minutes maintains your entire system.
-
-**Daily execution compounds. Show up 7:30 AM, eat the frog, repeat. That's how SignalPilot gets built.**
-
----
-
-*Day Planners turn intentions into execution. Use them daily.*
+*Show up 7:30. Eat the frog. Repeat. That's how the company gets built.*
