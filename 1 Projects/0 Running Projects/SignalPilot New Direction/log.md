@@ -4,6 +4,56 @@ Append-only. Most recent at top.
 
 ---
 
+## Ingest 2026-04-28 — Visceral pain discovery + GTM playbook
+
+**Trigger (user, ultrathink):** *"help me think through how I can figure out the most viscerally painful daily pain points of the data engineers and then subsequently the data consumers. How do we hit that very high conversion email and GTM motion with highest chance of PMF. We are open to building new features if needed or hone in. Do extensive market research."*
+
+**Method:** parallel research — 3 general-purpose subagents (vendor case studies, consumer-trust products, cold-email playbooks) + Grok visceral-language searches + firecrawl/WebSearch for buyer signals. Source: `raw/2026-04-28_research_visceral-pain-and-gtm.md`.
+
+### Validated buyer pain (top tier, engineer-side)
+
+- **E1: dbt PR review takes a full day** — *"100+ hrs/mo reclaimed"* (Datafold/Nutrafol), *"1 day → <1 hr"* (Recce/Rio). Score 5/5.
+- **E2: Silent failures (fan-outs, NULL drops) leak to prod** — *"merchant retention at risk"* (Synq/Instabee), *"a logic error caused a fan trap, doubling ad displays"* (Elementary/fluct). Score 5/5.
+- **E3: Claude Code generates plausible-but-wrong SQL** — *"reviewed an analysis report using Claude. Riddled with holes"* (@liddycomidee 4/29). Score 5/5. **Blue ocean — nobody is paid yet.**
+
+### Buyer + ROI shape (validated across vendors)
+
+- **Title rank:** Head of Data > VP Data > AE > CTO. Lead with Head of Data; cc the AE.
+- **ROI shape:** **hours saved per month** (universal) and **time-to-resolution collapse** (days→hours, hours→minutes). $-figures rare. Match this language in pitches.
+
+### Consumer-side pain (un-named, validation-gated)
+
+The "verification helpdesk" reframe scored **2.5/5** by Subagent B: the *underlying* pain (50–70% of analyst time on ad-hoc, 69% on prep, *"data team without a strategy is just an expensive support desk"*) is well-documented, but the *AI-amplified* version is **not yet named in public discourse**. Vendors invert the framing ("tickets dropped 72%" not "verification load doubled"). Going after this means **creating a category, not joining one.** Risk: low buyer recognition. Opportunity: first-mover on a real-but-unnamed pain.
+
+### Cold email playbook benchmarks (2026)
+
+- Generic: 1–3% reply. **Signal-based: 5–18% reply** (per [instantly.ai](https://instantly.ai/cold-email-benchmark-report-2026)).
+- Personalized opener: **+142% reply rate**.
+- Timeline-hook subject beats problem-hook 2.3× (10.01% vs 4.39%).
+- Subject lines: 1–4 words, lowercase, under 60 chars.
+- 3-7-7 follow-up cadence captures 93% of replies by day 10.
+- Tier-1 signals (14–25% reply): new Head of Data hired, AE job posted, champion changed companies.
+
+### Build-vs-hone recommendation
+
+- **HONE** the engineer-side Tier-1 features in [[Symbiotic Wedge]].
+- **BUILD** one new thing: the **free `/sp-audit-pr` GitHub App** as the cold-email CTA + conversion artifact. Single highest-leverage build for the next 60 days.
+- **DON'T BUILD YET** the Governed Slack MCP (consumer surface) — gated on Template-3 reply rate + 3 consumer-pain interviews.
+
+### Files
+
+- **Created:** `raw/2026-04-28_research_visceral-pain-and-gtm.md` (heavy-cited compilation)
+- **Created:** `wiki/concepts/visceral-pain-and-gtm-playbook.md` (pain ranking, ICP, 3 email templates, GTM motion, build/hone)
+- **Touched:** `index.md` (added concept + raw source entries)
+
+### Subagent IDs (reusable via SendMessage)
+
+- Vendor case studies: `a9da972f939d9aaf1`
+- Consumer-trust products: `aaffb5ee8c254f815`
+- Cold-email playbooks: `a9c29e1657a83ae31`
+
+---
+
 ## Concept 2026-04-27 — `[FUTURE]` Trust Layer for Data Consumption (consumer-pain reframe)
 
 **Trigger (user, strategic):** *"I deeply worry that dbt practitioners would not care and think this is incremental correctness — PMF would fail. A simpler pitch: the data connection / warehouse orchestration / governance layer that helps users (1) ship without losing sleep + self-heal, AND (2) safely route ad-hoc queries so consumers self-serve — without becoming a help center for execs to verify with data scientists."*
