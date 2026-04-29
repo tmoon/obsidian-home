@@ -4,6 +4,83 @@ Append-only. Most recent at top.
 
 ---
 
+## Ingest 2026-04-28 — Daniel reality check + 3-company GTM + role-evolution deep dive
+
+**Trigger 1 (Daniel Slack convo, eng lead):** 3-company segmentation (A: building internal data agent · B: Claude Code keeps failing · C: defer); self-improvement-is-gimmick reframe; **vendor-neutrality is the moat** against Hex/Cortex/Genie; FDE for enterprise.
+
+**Trigger 2 (Tarik):** *"go even deeper into how the job of data eng - data sci - head of data - analytics folks evolve over time. realize that 2025, 2026 all are shifting and all orgs are under massive pressure to move towards agentic systems."* + *"think about how do we completely decimate the markets of HEX, Cortex, Genie etc by being so good people don't even use any other products"* + *"don't discount FDE motion for larger b2b players, but WE MUST FIND REAL PAINFUL ISSUES."*
+
+### Three hard truths from Daniel (these change positioning)
+
+1. **Self-improvement is a gimmick.** Daniel: *"the memory problem reworded — people claim to want SPEC.md, never use it… we want consistency in our agent's behavior."* → AutoFyn becomes FDE/services, NOT core OSS pitch.
+2. **Buyers want CONTROL, not autonomy.** Daniel: *"the main thing data scientists want is control."* → Pitch DETERMINISTIC verifier; "ambient agents" is Layer 3 / 2027.
+3. **Vendor-neutrality is the structural moat.** Daniel: *"the other products are vendor-locked… we let you build your own custom agent pipeline AND get the #1 benchmark."* → How we beat Hex/Cortex/Genie.
+
+### The 3-company GTM (Daniel's segmentation, sharpened)
+
+- **Company A** (build internal data agent): #1 fit. Buyer = CTO/Head of Data. Signal = AE job post, Anthropic case study, agentic transformation blog. **Target: 6/10 signups.**
+- **Company B** (Claude Code keeps failing): validated pain. Buyer = Senior AE. Signal = public CC failure post, prod-deletion story. **Target: 4/10 signups.**
+- **Company C** (DB-only, wants to be data-driven): defer. Wrong shape for OSS bottom-up.
+
+### The "10× deliverable" gap (Tarik's question — Daniel had no answer)
+
+Two artifacts to ship in 5 days:
+- **Weekly PR Audit Digest email** — auto-emailed Friday. AE forwards to VP → VP becomes upgrade-path buyer.
+- **Spider 2.0 Receipt badge** — sharable LinkedIn / README badge. Career credibility = organic distribution.
+
+### Decimate Hex / Cortex / Genie — 4 kill moves
+
+1. Vendor-neutral surface (any IDE × any warehouse × any agent)
+2. Deterministic, not vibes (AST + 7-check verifier with pass/fail, not probability)
+3. Layer-above strategy (we partner — *"use Cortex Analyst INSIDE SignalPilot's governance MCP"*)
+4. No-lock-in story (Mode→ThoughtSpot, Observe→Snowflake — every walled-garden vendor is one M&A from deprecation)
+
+### FDE motion (the second track)
+
+| Track | OSS bottom-up | FDE enterprise |
+|---|---|---|
+| Buyer | AE / Head of Data Series B-D | CDO / VP Series D+ / F1000 |
+| Pitch | "works 100% out of the box" | "AutoFyn-tunes against your warehouse + business rules + compliance" |
+| Conversion | Free GitHub App → paid hosted | 6-week pilot, $250K-$1M contract |
+| Volume target 2026 | 1000s installs / 10-100 paid | 1-3 logos H2 |
+
+### Role-evolution research validates the wedge
+
+3 parallel general-purpose subagents (DE/AE, DS/AE, Head of Data) + Grok/firecrawl/WebSearch. Source: `raw/2026-04-28_research_role-evolution-2024-2026.md`. Highlights:
+
+- **The 24% / 72% gap** — only 24% of AEs use AI for pipeline mgmt vs 72% for code authoring. Validation gap = blue ocean.
+- **Trust priority 66% → 83% YoY** (dbt 2026). Pre-sold problem.
+- **Hex 2026:** 27% of leaders cite AI as #1 goal (575% YoY); data trust = #1 barrier (31%).
+- **WEF Davos 2026:** 50% of CEOs say job stability depends on AI ROI. Cascades to Head of Data.
+- **PR review backlog inversion** — agents made review the new bottleneck. *"Senior Slop Janitor."*
+- **Junior tier collapse** documented; mid/senior agent-fluent roles growing (+36% BLS).
+- **New roles emerging:** AI Engineer ($185K median), Agentic AI Engineer, Semantic-Layer Engineer, Agent Eval Engineer.
+
+### What to STOP saying
+
+| Old | Replace with |
+|---|---|
+| "self-healing pipeline" | "deterministic verification on every PR" |
+| "AutoFyn meta-harness" | "#1 on Spider 2.0-DBT" |
+| "ambient agents overnight" | "governed agent that runs when you prompt it" |
+| "agent learns your codebase" | "pre-loaded with your dbt project + schema in step 0" |
+| "replace your stack" | "add credentials and soon you won't need anything else" |
+
+### Files
+
+- **Created:** `raw/2026-04-28_slack_daniel-3-company-segmentation.md` (Slack verbatim)
+- **Created:** `raw/2026-04-28_research_role-evolution-2024-2026.md` (3-subagent compilation, heavily cited)
+- **Created:** `wiki/concepts/data-agent-category-win.md` (canonical GTM playbook)
+- **Created:** `wiki/concepts/role-evolution-2024-2026.md` (per-persona granular shifts)
+- **Touched:** `index.md` (added 2 concepts + 2 raw sources)
+
+### Subagent IDs (reusable via SendMessage)
+- DE/AE evolution: `a052ffc6a7b022eb8`
+- DS/AE evolution: `aef1fffce77640276`
+- Head of Data evolution: `af856d313562b8cde`
+
+---
+
 ## Ingest 2026-04-28 — Visceral pain discovery + GTM playbook
 
 **Trigger (user, ultrathink):** *"help me think through how I can figure out the most viscerally painful daily pain points of the data engineers and then subsequently the data consumers. How do we hit that very high conversion email and GTM motion with highest chance of PMF. We are open to building new features if needed or hone in. Do extensive market research."*
