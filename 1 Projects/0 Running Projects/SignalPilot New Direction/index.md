@@ -18,6 +18,7 @@ Schema and conventions: [CLAUDE.md](CLAUDE.md) · Activity log: [log.md](log.md)
 - [[Trust Layer for Data Consumption]] **[FUTURE — unvalidated]** — consumer-pain reframe: *"stop being a verification helpdesk for execs running Claude Code"*; 10× seat multiplier vs engineer surface
 - [[Visceral Pain and GTM Playbook]] — pain ranking (E1/E2/E3 lock); 3 cold-email templates; channel mix; build/hone decision (build the free GitHub App)
 - [[Data Agent Category Win]] — Daniel's 3-company segmentation (A/B/C) · decimate-Hex/Cortex/Genie strategy · FDE motion · 10-signup-in-7-days plan
+- [[Data Agent Category Long-Arc Thesis]] — **the 1-3 year structural call.** Cloudflare-for-data-agents · 5 end-state scenarios · threat ranking (dbt 65% / Snowflake 55%) · 18-month decision tree · kill conditions · two specific actions today
 - [[Role Evolution 2024-2026]] — granular per-persona task-allocation shifts, new emerging roles, 2027 prediction; the validation behind the wedge
 - [[Workflow Shifts 2025-2026-2027]] — Per-persona day-in-the-life timeline with verbatim citations; the 2→3 Δ is the wedge
 - [[Why We Beat Claude Code]] — Three structural arguments + Spider 2.0 receipt + buyer pitches
@@ -57,6 +58,7 @@ Schema and conventions: [CLAUDE.md](CLAUDE.md) · Activity log: [log.md](log.md)
 - [2026-04-28 — Visceral pain + GTM playbook research (vendor ROI, cold-email benchmarks, AI-amplified pain quotes)](raw/2026-04-28_research_visceral-pain-and-gtm.md)
 - [2026-04-28 — Slack convo with Daniel (eng lead): 3-company segmentation, self-improvement-is-gimmick, vendor-neutrality moat](raw/2026-04-28_slack_daniel-3-company-segmentation.md)
 - [2026-04-28 — Role evolution 2024→2026 research (DE/AE/DS/Head of Data time allocation, layoff signal, new roles)](raw/2026-04-28_research_role-evolution-2024-2026.md)
+- [2026-04-29 — Long-arc thesis research (4 subagents: layer ownership, hyperscaler+dbt roadmaps, MCP/OSI/regulation, market sizing+contrarian)](raw/2026-04-29_research_data-agent-category-long-arc.md)
 
 ---
 

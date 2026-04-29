@@ -7,7 +7,9 @@ updated: 2026-04-28
 
 # How We Win the Data Agent Category — GTM Pipeline
 
-> **The action layer.** Daniel's eng-lead reality check + 3-company segmentation + the answer to *"how do we decimate Hex / Cortex / Genie"* + the FDE-for-enterprise motion + the conversion artifact gap. This page is the canonical GTM playbook.
+> **The action layer (60-90 day GTM execution).** Daniel's eng-lead reality check + 3-company segmentation + the answer to *"how do we decimate Hex / Cortex / Genie"* + the FDE-for-enterprise motion + the conversion artifact gap.
+>
+> **For the 1-3 year structural thesis** (Cloudflare-for-data-agents framing, 5 end-state scenarios, threat ranking, 18-month decision tree, kill conditions): see [[Data Agent Category Long-Arc Thesis]].
 >
 > Trigger conversation: [raw/2026-04-28 Slack — Daniel](../../raw/2026-04-28_slack_daniel-3-company-segmentation.md).
 

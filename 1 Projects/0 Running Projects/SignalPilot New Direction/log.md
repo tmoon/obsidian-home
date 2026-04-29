@@ -4,6 +4,76 @@ Append-only. Most recent at top.
 
 ---
 
+## Ingest 2026-04-29 — Long-arc thesis (data agent category 2026-2029)
+
+**Trigger (Tarik):** *"we never finished the agent data category win hypothesis over a longer period of time — hash this out thinking from first principle and prioritizing a massive amount of search over grok firecrawl search etc."*
+
+**Method:** 4 parallel general-purpose subagents (A: category architecture + first-principles winning; B: hyperscaler + dbt Labs roadmaps; C: standards/regulation/M&A; D: market sizing + contrarian) + heavy Grok / firecrawl / WebSearch direct calls.
+
+### TL;DR — the structural call
+
+**SignalPilot is Cloudflare for data agents.** Cloudflare didn't own HTTP; we don't own dbt. Cloudflare monetized the safety/governance layer above an open primitive — same shape, same physics. EU AI Act Aug 2 2026 plays the role HTTPS regulation played.
+
+**Category will exist:** $5-15B by EOY 2028, 2-3 winners. Hyperscalers (Snowflake Cortex, Databricks Unity AI Gateway) own ~50% of in-warehouse spend. Vendor-neutral runtime slot is open with 1-2 winner spots.
+
+### Threat ranking (12-month closure probability)
+
+- **dbt Labs (post-Fivetran): 65%** — shipped Developer Agent Apr 7 2026; Coalesce 2026 Sept watershed
+- **Snowflake: 55%** — Cortex Code GA Mar 9 2026; Trust Center integration Apr 27 2026
+- **Databricks: 35%** — Genie Inspect in PP; **best partner candidate**
+- Google: 25% · Anthropic: 20% (platform-tax) · AWS: 15%
+
+### 5 end-state scenarios for 2028
+
+| Scenario | Prob | SP odds |
+|---|---|---|
+| A — MCP wins, open standards dominate | 45% | 4/5 |
+| B — Hyperscaler walled gardens dominate | 35% | 2/5 |
+| C — Regulation forces governance-first procurement | 20% | 5/5 |
+
+Weighted SP outcome: **3.5/5** — favorable but execution-dependent.
+
+### Two specific actions this week
+
+1. **File a public OSI proposal for "agent execution context" sub-spec** — claim protocol authorship before warehouses do. 1 PR + 1 blog. 7-day timeline.
+2. **Ship Claude Code marketplace plugin emitting signed audit receipts** — EU AI Act Aug 2026 forcing function we're best positioned for. 14-day v0.1.
+
+### Kill conditions (run as quarterly tripwires)
+
+1. dbt Labs ships verifier benchmark within 65% of Spider 2.0
+2. Snowflake or Databricks acquires Atlan or Monte Carlo for $1B+
+3. MCP fragments (Google or Anthropic ships non-MCP-compatible protocol)
+4. Read-only DB credential pattern hits >70% adoption among Series B-D dbt shops
+5. Anthropic ships native dbt-aware Claude Code skill blessed in marketplace
+6. 3 quarters of <30% QoQ ARR growth
+
+### Realistic exit math
+
+- **Floor:** $150-300M (Mode/SYNQ class, 5-8× ARR on $25-50M)
+- **Mid:** $500M-$1.5B (Atlan class, 8-15× ARR on $60-100M)
+- **Strategic:** $2-4B (Snowflake or dbt-Fivetran at $100M+ ARR)
+- **IPO:** structurally difficult (Monte Carlo couldn't escape velocity from $1.6B in 4 years)
+
+### Honest bear case
+
+dbt+Fivetran ships "good-enough" verifier Q3 2026 → **Spider 2.0-DBT #1 = Pyrrhic flag.** SignalPilot becomes a $2-4M consultancy on AutoFyn FDE. Datafold trajectory: technically excellent, commercially trapped.
+
+### Files
+
+- **Created:** `wiki/concepts/data-agent-category-long-arc-thesis.md` (canonical 1-3 year thesis)
+- **Created:** `raw/2026-04-29_research_data-agent-category-long-arc.md` (4-subagent compilation)
+- **Touched:** `wiki/concepts/data-agent-category-win.md` (cross-reference long-arc)
+- **Touched:** `index.md` (added concept + raw source entries)
+
+### Subagent IDs (reusable)
+
+- A category architecture: `a5e018f50d08d631b`
+- B hyperscaler + dbt: `a74fd69aa7d522348`
+- C standards + regulation: `a7cc35b2372279edc`
+- D market sizing + contrarian: `a736554b961030b95`
+
+---
+
 ## Ingest 2026-04-28 — Daniel reality check + 3-company GTM + role-evolution deep dive
 
 **Trigger 1 (Daniel Slack convo, eng lead):** 3-company segmentation (A: building internal data agent · B: Claude Code keeps failing · C: defer); self-improvement-is-gimmick reframe; **vendor-neutrality is the moat** against Hex/Cortex/Genie; FDE for enterprise.
