@@ -97,17 +97,17 @@ Discourse is **bimodal:** existential dread on X, "we still matter" on practitio
 
 Pre-LLM baseline: ~51-80% on data prep ("80/20 rule"); ~25%+ time managing/cleaning/labeling — [Pragmatic Institute](https://www.pragmaticinstitute.com/resources/articles/data/overcoming-the-80-20-rule-in-data-science/), [O'Reilly 2015 Salary Survey](https://www.oreilly.com/library/view/2015-data-science/9781492048640/ch04.html). Joe Reis: *"60-80% of their time on data work versus actual data science."*
 
-| Task | 2024 | 2026 | Driver |
-|---|---|---|---|
-| Pulling data / SQL | ~20% | ~5% | Hex Notebook Agent / Cortex Analyst auto-write |
-| EDA | ~15% | ~5% | dbt Roundup: *"profiling drops from 3 minutes to 10 seconds"* |
-| Notebook iteration | ~20% | ~10% | Agents one-shot CTEs/window funcs |
-| Hypothesis formulation | ~5% | **~15%** | [ericmjl](https://ericmjl.github.io/blog/2025/8/15/data-scientists-arent-becoming-obsolete-in-the-llm-era/): *"returning us to our scientific roots"* |
-| Validation / peer review | ~5% | **~20%** | rmoff: *"Wrong is worse than absent"* |
-| Stakeholder framing | ~10% | ~15% | Genie/Cortex shift to governance |
-| Model deployment / agent productionization | ~5% | **~15%** | [Google Cloud](https://cloud.google.com/blog/products/data-analytics/enabling-data-scientists-to-become-agentic-architects): *"notebook-as-prototype to agent-as-product"* |
-| Dashboard / writeup | ~10% | ~5% | Agents auto-build |
-| Meetings | ~10% | ~10% | Constant |
+| Task                                       | 2024 | 2026     | Driver                                                                                                                                                                     |
+| ------------------------------------------ | ---- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Pulling data / SQL                         | ~20% | ~5%      | Hex Notebook Agent / Cortex Analyst auto-write                                                                                                                             |
+| EDA                                        | ~15% | ~5%      | dbt Roundup: *"profiling drops from 3 minutes to 10 seconds"*                                                                                                              |
+| Notebook iteration                         | ~20% | ~10%     | Agents one-shot CTEs/window funcs                                                                                                                                          |
+| Hypothesis formulation                     | ~5%  | **~15%** | [ericmjl](https://ericmjl.github.io/blog/2025/8/15/data-scientists-arent-becoming-obsolete-in-the-llm-era/): *"returning us to our scientific roots"*                      |
+| Validation / peer review                   | ~5%  | **~20%** | rmoff: *"Wrong is worse than absent"*                                                                                                                                      |
+| Stakeholder framing                        | ~10% | ~15%     | Genie/Cortex shift to governance                                                                                                                                           |
+| Model deployment / agent productionization | ~5%  | **~15%** | [Google Cloud](https://cloud.google.com/blog/products/data-analytics/enabling-data-scientists-to-become-agentic-architects): *"notebook-as-prototype to agent-as-product"* |
+| Dashboard / writeup                        | ~10% | ~5%      | Agents auto-build                                                                                                                                                          |
+| Meetings                                   | ~10% | ~10%     | Constant                                                                                                                                                                   |
 
 dbt cites *"2x to 3x speedup in model writing"* — [dbt Roundup](https://roundup.getdbt.com/p/a-dispatch-from-the-jagged-frontier).
 
