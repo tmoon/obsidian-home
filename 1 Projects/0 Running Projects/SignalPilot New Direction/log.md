@@ -4,6 +4,78 @@ Append-only. Most recent at top.
 
 ---
 
+## Ingest 2026-05-02 — MLP locked: the "PR Receipt" GitHub App
+
+**Trigger (Tarik):** *"there are too many db, too many ingestion, too many warehouse… we are trying to build too much in the name of a minimally lovable product. In Lenny's podcast they talk about how this one tiny core feature can solve some pain point exceptionally well. How do we even find that?"* + ultrathink directive.
+
+**Method:** 3 parallel general-purpose subagents (A: 5 stack archetypes ranked, B: MLP framework + 7 case studies, C: sharpest 30-day pain) + Grok / firecrawl / WebSearch direct calls. Source: `raw/2026-05-02_research_mlp-and-stack-archetypes.md`.
+
+### The MLP locked
+
+**The GitHub App that posts a "PR Receipt" comment on every dbt PR.** One feature. One persona pair (AE user / Head of Data buyer). One pain. One demo. <2 weeks to ship.
+
+### Why this beats the other candidates (Lenny rubric, 6 tests)
+
+| | PR Receipt | Verifier subagent | Schema-cache MCP | Slack-MCP for execs |
+|---|---|---|---|---|
+| Whole-job (skateboard) | ✅ | ✅ but invisible | ❌ wheel | ✅ |
+| 10× for ONE persona | ✅ | ✅ | ❌ infrastructure | ❌ wrong persona |
+| Tweetability | ✅ receipt screenshot | ❌ invisible inside CC | ❌ | ✅ but premature |
+| Spider 2.0 leverage | ✅ verifier IS the win | ✅ | ❌ orthogonal | ❌ |
+| One-week-to-ship | ✅ verifier exists | ✅ | ✅ | ❌ |
+| Saturday test | ✅ | ❌ | ✅ | ❌ |
+
+**PR Receipt sweeps. Lock.**
+
+### Stack archetype focus — win 2 of 5
+
+- **Primary: Archetype 2** (Snowflake + dbt Core + Hex + Select Star, ~22-26% TAM). Highest CC adoption density, lowest verifier integration cost, no incumbent owns the verify-AI-PR slot.
+- **Expansion: Archetype 1** (Snowflake + dbt Cloud + Looker + Atlan, ~28-32% TAM). Adjacent integration surface.
+- **Out of scope:** Archetype 3 (Databricks/Unity), 4 (BigQuery/Dataform), 5 (Postgres/scrappy). Total in-scope: ~50-58% of dbt-shop TAM with one integration surface.
+
+### The 60-second killer demo
+
+Public dbt repo + planted silent fan-out. Claude Code reviews and approves. SignalPilot GitHub App posts within 60 sec: *"❌ Fan-out detected on customers × orders. Cardinality 1.99×. Estimated MRR inflation: +30%."* Tagline: *"Claude wrote it. SignalPilot proved it."*
+
+### The forcing function (why now)
+
+1. **Chainguard mandate, [Alfred Lin Apr 29 2026](https://x.com/i/status/2049491198352769414):** *"engineering leaders must hit 50th-percentile Claude Code token usage."* Every dbt-shop CTO will copy this.
+2. **shazcodes ambient fear, [@shazcodes Apr 11 2026, 50K+ likes](https://x.com/i/status/2042995039245344816):** *"CEO fired 12-person QA team for AI, lost $6M when bot hallucinated 0% discount code."*
+3. **EU AI Act enforcement Aug 2 2026** — registry of every agent + permissions = the receipt.
+
+**Cold-email opener:** *"You're now mandated to ship CC adoption. Your team is reviewing AI dbt PRs at 1× speed while CC generates them at 10×. The bugs are silent. Aug 2 2026 — what's your audit trail for agent actions on production data?"*
+
+### What we DO NOT BUILD (the discipline list)
+
+- No web dashboard (receipt URL IS the dashboard)
+- No auto-remediation (Daniel: *"data scientists want control"*)
+- No Slack-MCP for non-engineers (gated on validation)
+- No notebook integration (different surface)
+- No DSPM / database governance (wrong category)
+- No AutoFyn meta-harness as core pitch (Daniel: *"self-improvement is a gimmick"*)
+- No custom IDE / agent runtime fork
+- No multi-warehouse runtime until Archetype 2+1 lock
+
+### Kill conditions
+
+- 30 days: <50 installs OR <5% reply rate → demo/brand revisit
+- 60 days: <100 installs AND <2 pilots AND no Anthropic/dbt/Snowflake inbound → sub-pivot
+- 90 days: dbt+Fivetran or Snowflake ships competing PR Receipt → strategist session
+
+### Files
+
+- **Created:** `wiki/concepts/minimally-lovable-product.md` (canonical MLP statement + DO-NOT-BUILD list + this-week actions)
+- **Created:** `raw/2026-05-02_research_mlp-and-stack-archetypes.md` (3-subagent compilation, Lenny rubric, 30-day verbatim quotes)
+- **Touched:** `index.md` (added concept + raw source entries)
+
+### Subagent IDs (reusable)
+
+- A stack archetypes: `ae3258aceeaaea788`
+- B MLP framework + case studies: `a3cd8e3d642c78aa0`
+- C sharpest 30-day pain: `ac4ed6a5cc7ca311c`
+
+---
+
 ## Ingest 2026-04-29 — Long-arc thesis (data agent category 2026-2029)
 
 **Trigger (Tarik):** *"we never finished the agent data category win hypothesis over a longer period of time — hash this out thinking from first principle and prioritizing a massive amount of search over grok firecrawl search etc."*
