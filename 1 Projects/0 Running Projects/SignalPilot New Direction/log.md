@@ -4,6 +4,56 @@ Append-only. Most recent at top.
 
 ---
 
+## Concept 2026-05-02 — Competitive positioning vs PR reviewers (the category reframe)
+
+**Trigger (Tarik):** *"biggest pushback we will likely get is 'claude code can already review my PR' or 'there are already too many products like devin that triggers on PR' — feels very not differentiated."*
+
+**Action:** filed `wiki/concepts/competitive-positioning-vs-pr-reviewers.md` and added Objection #4 to `wiki/concepts/objection-handling.md`.
+
+### The core reframe
+
+CodeRabbit, Greptile, Devin, vanilla Claude `/review`, Cursor Bugbot, GitHub Copilot Code Review all do the **same thing**: read code, generate **advisory prose**. SignalPilot is in a different row of the stack: **empirical agent verifier**. We connect to the warehouse, run the AI-generated SQL with bounded data, measure cardinality / fan-out / row-count math, post a signed mathematical receipt.
+
+**Not "better AI review." Different category** — like the difference between a code-quality linter (CodeRabbit) and an integration test (SignalPilot).
+
+### The category map
+
+| Layer | Examples | Output |
+|---|---|---|
+| 1. Linter | Pylint, SQLFluff, dbt-checkpoint | Lint warnings |
+| 2. AI advisory review | CodeRabbit, Greptile, Devin, Claude `/review`, Cursor Bugbot, Copilot Code Review | Advisory prose |
+| 3. Diff visualization | Datafold, Recce | Visual diff |
+| 4. **Empirical agent verifier** | **SignalPilot** | **Mathematical receipt** |
+| 5. Post-merge observability | Monte Carlo, Synq, Elementary | Alerts |
+| 6. Catalog / lineage | Atlan, Collibra, Unity Catalog | Lineage graph |
+
+### The triple-reviewer demo (replaces v0 demo)
+
+Claude `/review`, CodeRabbit, AND Devin approve the planted-fan-out PR. SignalPilot catches it: *"Cardinality 1.99×. Expected 84,332 rows. Observed 167,891. 30% MRR inflation if shipped."* Tagline: **"Three reviewers approved. One ran the numbers."**
+
+### Structural moat (why this differentiation is durable 9-15 months)
+
+1. CodeRabbit's horizontal architecture can't add warehouse execution without breaking model
+2. Buyer mismatch — they sell per-dev-seat to eng managers; we sell per-org to Head of Data
+3. Spider 2.0-DBT #1 is publicly verifiable; competitors haven't benchmarked
+4. AutoFyn per-customer optimization compounds; horizontal products can't
+5. EU AI Act audit-trail format requires structured receipt, not prose
+
+### Kill signal
+
+3+ buyers in 30 days unprompted say *"prose review is good enough"* → category reframe failed. Sub-pivot to:
+- HoD audit-trail pure-play (drop AE PR Receipt)
+- $-quantified receipt (*"this PR would have cost you $2.3M"*)
+- FDE-only ($250K-$1M per logo, drop SaaS)
+
+### Files
+
+- **Created:** `wiki/concepts/competitive-positioning-vs-pr-reviewers.md` (canonical category reframe + 6 head-to-heads + triple-reviewer demo + cold-email opener + kill signal)
+- **Touched:** `wiki/concepts/objection-handling.md` (added Objection #4)
+- **Touched:** `index.md` (added concept entry)
+
+---
+
 ## Ingest 2026-05-02 — MLP locked: the "PR Receipt" GitHub App
 
 **Trigger (Tarik):** *"there are too many db, too many ingestion, too many warehouse… we are trying to build too much in the name of a minimally lovable product. In Lenny's podcast they talk about how this one tiny core feature can solve some pain point exceptionally well. How do we even find that?"* + ultrathink directive.

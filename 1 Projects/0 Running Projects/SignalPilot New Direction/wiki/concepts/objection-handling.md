@@ -178,6 +178,45 @@ Short answer:
 
 ---
 
+## Objection #4 — *"Claude Code already reviews PRs / CodeRabbit / Greptile / Devin / Cursor Bugbot already does this — feels not differentiated"*
+
+**This is the sharpest 2026 objection** raised internally on 2026-05-02. Full handling in [[Competitive Positioning vs PR Reviewers]] — short version below.
+
+### Reframe (insist on this — don't fight in their category)
+
+We are NOT in the AI PR reviewer category. CodeRabbit, Greptile, Devin, vanilla Claude `/review`, Cursor Bugbot, GitHub Copilot Code Review all do the **same thing**: read code, generate **advisory prose**. SignalPilot is in a different row of the stack: **empirical agent verifier**. We connect to the warehouse, run the AI-generated SQL with bounded data, measure cardinality / fan-out / row-count math, and post a signed mathematical receipt.
+
+**Not "better AI review." Different category — like the difference between a code-quality linter (CodeRabbit) and an integration test (SignalPilot).**
+
+### Key proof points
+
+| Claim | Receipt |
+|---|---|
+| Vanilla Claude `/review` scores ~14.7% on dbt-specific accuracy | [Spider 2.0-DBT leaderboard](https://spider2-sql.github.io/) |
+| SignalPilot scores 51.56% — #1, 3.5× vanilla Claude | Same leaderboard, beat JetBrains Databao by 7.45 points |
+| CodeRabbit / Greptile / Devin / Bugbot have NO dbt-specific public benchmark | Search any of them + "Spider 2.0-DBT" — empty |
+| Buyer differentiation | CodeRabbit/Greptile/Devin sell to engineering managers per-seat; we sell to Head of Data per-org for audit-trail compliance (EU AI Act Aug 2 2026) |
+
+### The 30-second voice rebuttal
+
+> *"Yeah — keep [CodeRabbit/Greptile/whatever]. They read the code and write a review. We're a different category — we connect to your warehouse and actually run the AI-generated SQL with bounded data. Measure cardinality, detect fan-outs, check row-count math. The receipt isn't opinion — it's measurement. CodeRabbit can't do that, not because their product is bad but because reading-the-code is a category boundary they sit on the wrong side of. Spider 2.0-DBT public benchmark — we're #1 at 51.56%; vanilla Claude is at 14.7%. 3.5× the dbt-specific accuracy. Leaderboard is public — verify yourself in 60 seconds."*
+
+### The triple-reviewer demo (the killer asset)
+
+In the 60-second Loom: show Claude `/review`, CodeRabbit, AND Devin all approving the planted-fan-out PR. Then SignalPilot catches it with `Cardinality 1.99×. Expected 84,332 rows. Observed 167,891. 30% MRR inflation if shipped.` Tagline: **"Three reviewers approved. One ran the numbers."** Full demo script in [[Competitive Positioning vs PR Reviewers]] §4.
+
+### Cold-email opener that handles this objection upfront
+
+Drop into [Outbound List - Week of 2026-04-28](../../../Outbound%20List%20-%20Week%20of%202026-04-28.md) Templates 1 and 2:
+
+> *"You probably already use CodeRabbit, Greptile, or vanilla Claude `/review` on PRs. Those generate prose review. We're different category — we execute the AI-generated dbt SQL against your warehouse and post mathematical receipts (cardinality, fan-out, row-count math). Spider 2.0-DBT #1 — 3.5× vanilla Claude on dbt-specific accuracy. The receipt format is the audit trail your CISO will need when EU AI Act enforces Aug 2."*
+
+### Kill signal
+
+If 3+ buyers in 30 days unprompted say *"the prose review is good enough"* — the category-reframe failed. Sub-pivot options in [[Competitive Positioning vs PR Reviewers]] §8.
+
+---
+
 ## Connects to
 
 - Central thesis: [[Why We Beat Claude Code]]

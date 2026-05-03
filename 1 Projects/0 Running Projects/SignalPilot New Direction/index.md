@@ -20,6 +20,7 @@ Schema and conventions: [CLAUDE.md](CLAUDE.md) · Activity log: [log.md](log.md)
 - [[Data Agent Category Win]] — Daniel's 3-company segmentation (A/B/C) · decimate-Hex/Cortex/Genie strategy · FDE motion · 10-signup-in-7-days plan
 - [[Data Agent Category Long-Arc Thesis]] — **the 1-3 year structural call.** Cloudflare-for-data-agents · 5 end-state scenarios · threat ranking (dbt 65% / Snowflake 55%) · 18-month decision tree · kill conditions · two specific actions today
 - [[Minimally Lovable Product]] — **the MLP locked: PR Receipt GitHub App.** 60-sec demo · win Archetype 2 + 1 (50-58% TAM) · what we DO NOT BUILD · Chainguard+shazcodes+EU-AI-Act forcing function · kill conditions · this-week action items
+- [[Competitive Positioning vs PR Reviewers]] — **the category reframe** that defends MLP against *"we already have CodeRabbit / Devin / Claude `/review`"*: empirical-evidence verifier vs advisory-prose reviewer · triple-reviewer demo · 30-sec voice rebuttal · kill signal
 - [[Role Evolution 2024-2026]] — granular per-persona task-allocation shifts, new emerging roles, 2027 prediction; the validation behind the wedge
 - [[Workflow Shifts 2025-2026-2027]] — Per-persona day-in-the-life timeline with verbatim citations; the 2→3 Δ is the wedge
 - [[Why We Beat Claude Code]] — Three structural arguments + Spider 2.0 receipt + buyer pitches
