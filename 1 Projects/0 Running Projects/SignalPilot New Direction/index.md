@@ -1,6 +1,6 @@
 # SignalPilot New Direction — Wiki Index
 
-Strategic wiki tracking SignalPilot's pivot: **dbt beachhead → Governed Data Agent → Autonomous Data Stack**.
+Strategic wiki tracking SignalPilot's pivot: **dbt beachhead → Trust Runtime for Claude-Code-driven dbt operations → Autonomous Data Stack**.
 
 Schema and conventions: [CLAUDE.md](CLAUDE.md) · Activity log: [log.md](log.md)
 
@@ -10,6 +10,29 @@ Schema and conventions: [CLAUDE.md](CLAUDE.md) · Activity log: [log.md](log.md)
 
 - [[2026-04-24 — Spider 2.0-DBT win]] — SignalPilot scored 51.56, beating JetBrains' Databao by 7.45 points; first agent across the 50% threshold in 11 months
 - [[2026-04-27 — Repo architecture snapshot]] — signalPilot repo as of today: gateway, plugin, sandbox, benchmark, AutoFyn integration
+- [[2026-04-27 — Paradigm shift research + niche discovery]] — Mar–Apr 2026 paradigm shift; Zscaler PRISM proof; 12-wedge brainstorm
+
+## Concepts
+
+- [[Symbiotic Wedge]] — **The deepest reframe.** SP as Claude Code data extension (not competitor); Vercel/Databricks/Cursor pattern; feature roadmap
+- [[Trust Layer for Data Consumption]] **[FUTURE — unvalidated]** — consumer-pain reframe: *"stop being a verification helpdesk for execs running Claude Code"*; 10× seat multiplier vs engineer surface
+- [[Visceral Pain and GTM Playbook]] — pain ranking (E1/E2/E3 lock); 3 cold-email templates; channel mix; build/hone decision (build the free GitHub App)
+- [[Data Agent Category Win]] — Daniel's 3-company segmentation (A/B/C) · decimate-Hex/Cortex/Genie strategy · FDE motion · 10-signup-in-7-days plan
+- [[Data Agent Category Long-Arc Thesis]] — **the 1-3 year structural call.** Cloudflare-for-data-agents · 5 end-state scenarios · threat ranking (dbt 65% / Snowflake 55%) · 18-month decision tree · kill conditions · two specific actions today
+- [[Minimally Lovable Product]] — **the MLP locked: PR Receipt GitHub App.** 60-sec demo · win Archetype 2 + 1 (50-58% TAM) · what we DO NOT BUILD · Chainguard+shazcodes+EU-AI-Act forcing function · kill conditions · this-week action items
+- [[Competitive Positioning vs PR Reviewers]] — **the category reframe** that defends MLP against *"we already have CodeRabbit / Devin / Claude `/review`"*: empirical-evidence verifier vs advisory-prose reviewer · triple-reviewer demo · 30-sec voice rebuttal · kill signal
+- [[Role Evolution 2024-2026]] — granular per-persona task-allocation shifts, new emerging roles, 2027 prediction; the validation behind the wedge
+- [[Workflow Shifts 2025-2026-2027]] — Per-persona day-in-the-life timeline with verbatim citations; the 2→3 Δ is the wedge
+- [[Why We Beat Claude Code]] — Three structural arguments + Spider 2.0 receipt + buyer pitches
+- [[Objection Handling]] — Sales counter-arguments with citations (read-only DB, dbt Copilot, Datafold/Recce)
+- [[Persona Workflows]] — Data engineer / data scientist / data consumer × where Claude Code fails × where SP wins
+- [[Where the Puck Is Going]] — Six predictions for Q2 2026 → 2027 (forward thesis)
+- [[Trust Runtime Positioning]] — Three-layer monetization: PR pre-flight → autonomous remediation → ambient ops
+- [[Niche Problem Discovery]] — 12 wedge candidates scored
+- [[Governed Data Agent]] — Core positioning: *trusted by default, not trusted by accident*
+- [[dbt Beachhead Strategy]] — Why dbt is the wedge; Apr 22 exclusivity decision
+- [[Autonomous Data Stack Vision]] — Self-healing · compounding · ambient agents (manifesto)
+- [[AutoFyn ↔ SignalPilot Recursive Loop]] — The actual moat: meta-harness builds the harness
 
 ## Entities
 
@@ -21,15 +44,27 @@ Schema and conventions: [CLAUDE.md](CLAUDE.md) · Activity log: [log.md](log.md)
 - [[MCP Tool Catalog]] — 40 governed tools across 6 categories
 - [[Claude Code Plugin]] — `signalpilot-dbt` plugin: 10 skills + 1 verifier agent
 - [[ICP — dbt Shops]] — seed-Series A dbt-native shops with schema drift (per Apr 22 decision)
-
-## Concepts
-
-- [[Governed Data Agent]] — Core positioning: *trusted by default, not trusted by accident*
-- [[dbt Beachhead Strategy]] — Why dbt is the wedge; Apr 22 exclusivity decision
-- [[Autonomous Data Stack Vision]] — Self-healing · compounding · ambient agents (manifesto)
-- [[AutoFyn ↔ SignalPilot Recursive Loop]] — The actual moat: meta-harness builds the harness
+- [[Zscaler PRISM Case]] — Fortune 500 built the architecture internally; 956 PRs/qtr, 90% time savings, 2,100 hrs/yr saved
+- [[dbt Copilot]] — Incumbent threat (dbt Labs + Fivetran, $600M ARR); we complement, don't compete
+- [[Claude Code Extensibility Stack]] — Hooks/Subagents/Skills/MCP — Anthropic's official surface; we sit on it
+- [[Claude Code Prod Disasters]] — Cited catalog of documented Claude Code production-data destruction incidents (8+ in 120 days). Sales artifact.
+- [[Ramp Data Team Evolution]] — 80% PMs, 70% compliance, 55% finance running Claude Code at Ramp; the Layer 3 TAM proof point
 
 ## Raw Sources
 
 - [2026-04-24 — SignalPilot blog: Beating JetBrains on Spider 2.0-DBT](raw/2026-04-24_blog_beat-jetbrains-spider2-dbt.md)
 - [2026-04-27 — SignalPilot repo README snapshot](raw/2026-04-27_repo_signalpilot-readme.md)
+- [2026-04-27 — Paradigm shift web research + competitor / pain landscape](raw/2026-04-27_research_paradigm-shift.md)
+- [2026-04-27 — Claude Code failure evidence + persona workflows (with citations)](raw/2026-04-27_research_claude-code-failure-evidence.md)
+- [2026-04-27 — Workflow evolution + symbiotic-wedge feature roadmap (with citations)](raw/2026-04-27_research_workflow-evolution.md)
+- [2026-04-28 — Visceral pain + GTM playbook research (vendor ROI, cold-email benchmarks, AI-amplified pain quotes)](raw/2026-04-28_research_visceral-pain-and-gtm.md)
+- [2026-04-28 — Slack convo with Daniel (eng lead): 3-company segmentation, self-improvement-is-gimmick, vendor-neutrality moat](raw/2026-04-28_slack_daniel-3-company-segmentation.md)
+- [2026-04-28 — Role evolution 2024→2026 research (DE/AE/DS/Head of Data time allocation, layoff signal, new roles)](raw/2026-04-28_research_role-evolution-2024-2026.md)
+- [2026-04-29 — Long-arc thesis research (4 subagents: layer ownership, hyperscaler+dbt roadmaps, MCP/OSI/regulation, market sizing+contrarian)](raw/2026-04-29_research_data-agent-category-long-arc.md)
+- [2026-05-02 — MLP framework + stack archetypes + sharpest 30-day pain (3 subagents: 5 archetypes ranked, Lenny/Saarinen/Rauch case studies, 30-day verbatim pain quotes)](raw/2026-05-02_research_mlp-and-stack-archetypes.md)
+
+---
+
+## Active sprint
+
+- [[PMF Validation Sprint Week 1]] — `1 Projects/0 Running Projects/PMF Validation Sprint - Week 1.md` — 10 customer interviews by 2026-05-03; decision gate Sunday

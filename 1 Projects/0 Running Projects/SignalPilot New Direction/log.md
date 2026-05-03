@@ -4,6 +4,589 @@ Append-only. Most recent at top.
 
 ---
 
+## Concept 2026-05-02 — Competitive positioning vs PR reviewers (the category reframe)
+
+**Trigger (Tarik):** *"biggest pushback we will likely get is 'claude code can already review my PR' or 'there are already too many products like devin that triggers on PR' — feels very not differentiated."*
+
+**Action:** filed `wiki/concepts/competitive-positioning-vs-pr-reviewers.md` and added Objection #4 to `wiki/concepts/objection-handling.md`.
+
+### The core reframe
+
+CodeRabbit, Greptile, Devin, vanilla Claude `/review`, Cursor Bugbot, GitHub Copilot Code Review all do the **same thing**: read code, generate **advisory prose**. SignalPilot is in a different row of the stack: **empirical agent verifier**. We connect to the warehouse, run the AI-generated SQL with bounded data, measure cardinality / fan-out / row-count math, post a signed mathematical receipt.
+
+**Not "better AI review." Different category** — like the difference between a code-quality linter (CodeRabbit) and an integration test (SignalPilot).
+
+### The category map
+
+| Layer | Examples | Output |
+|---|---|---|
+| 1. Linter | Pylint, SQLFluff, dbt-checkpoint | Lint warnings |
+| 2. AI advisory review | CodeRabbit, Greptile, Devin, Claude `/review`, Cursor Bugbot, Copilot Code Review | Advisory prose |
+| 3. Diff visualization | Datafold, Recce | Visual diff |
+| 4. **Empirical agent verifier** | **SignalPilot** | **Mathematical receipt** |
+| 5. Post-merge observability | Monte Carlo, Synq, Elementary | Alerts |
+| 6. Catalog / lineage | Atlan, Collibra, Unity Catalog | Lineage graph |
+
+### The triple-reviewer demo (replaces v0 demo)
+
+Claude `/review`, CodeRabbit, AND Devin approve the planted-fan-out PR. SignalPilot catches it: *"Cardinality 1.99×. Expected 84,332 rows. Observed 167,891. 30% MRR inflation if shipped."* Tagline: **"Three reviewers approved. One ran the numbers."**
+
+### Structural moat (why this differentiation is durable 9-15 months)
+
+1. CodeRabbit's horizontal architecture can't add warehouse execution without breaking model
+2. Buyer mismatch — they sell per-dev-seat to eng managers; we sell per-org to Head of Data
+3. Spider 2.0-DBT #1 is publicly verifiable; competitors haven't benchmarked
+4. AutoFyn per-customer optimization compounds; horizontal products can't
+5. EU AI Act audit-trail format requires structured receipt, not prose
+
+### Kill signal
+
+3+ buyers in 30 days unprompted say *"prose review is good enough"* → category reframe failed. Sub-pivot to:
+- HoD audit-trail pure-play (drop AE PR Receipt)
+- $-quantified receipt (*"this PR would have cost you $2.3M"*)
+- FDE-only ($250K-$1M per logo, drop SaaS)
+
+### Files
+
+- **Created:** `wiki/concepts/competitive-positioning-vs-pr-reviewers.md` (canonical category reframe + 6 head-to-heads + triple-reviewer demo + cold-email opener + kill signal)
+- **Touched:** `wiki/concepts/objection-handling.md` (added Objection #4)
+- **Touched:** `index.md` (added concept entry)
+
+---
+
+## Ingest 2026-05-02 — MLP locked: the "PR Receipt" GitHub App
+
+**Trigger (Tarik):** *"there are too many db, too many ingestion, too many warehouse… we are trying to build too much in the name of a minimally lovable product. In Lenny's podcast they talk about how this one tiny core feature can solve some pain point exceptionally well. How do we even find that?"* + ultrathink directive.
+
+**Method:** 3 parallel general-purpose subagents (A: 5 stack archetypes ranked, B: MLP framework + 7 case studies, C: sharpest 30-day pain) + Grok / firecrawl / WebSearch direct calls. Source: `raw/2026-05-02_research_mlp-and-stack-archetypes.md`.
+
+### The MLP locked
+
+**The GitHub App that posts a "PR Receipt" comment on every dbt PR.** One feature. One persona pair (AE user / Head of Data buyer). One pain. One demo. <2 weeks to ship.
+
+### Why this beats the other candidates (Lenny rubric, 6 tests)
+
+| | PR Receipt | Verifier subagent | Schema-cache MCP | Slack-MCP for execs |
+|---|---|---|---|---|
+| Whole-job (skateboard) | ✅ | ✅ but invisible | ❌ wheel | ✅ |
+| 10× for ONE persona | ✅ | ✅ | ❌ infrastructure | ❌ wrong persona |
+| Tweetability | ✅ receipt screenshot | ❌ invisible inside CC | ❌ | ✅ but premature |
+| Spider 2.0 leverage | ✅ verifier IS the win | ✅ | ❌ orthogonal | ❌ |
+| One-week-to-ship | ✅ verifier exists | ✅ | ✅ | ❌ |
+| Saturday test | ✅ | ❌ | ✅ | ❌ |
+
+**PR Receipt sweeps. Lock.**
+
+### Stack archetype focus — win 2 of 5
+
+- **Primary: Archetype 2** (Snowflake + dbt Core + Hex + Select Star, ~22-26% TAM). Highest CC adoption density, lowest verifier integration cost, no incumbent owns the verify-AI-PR slot.
+- **Expansion: Archetype 1** (Snowflake + dbt Cloud + Looker + Atlan, ~28-32% TAM). Adjacent integration surface.
+- **Out of scope:** Archetype 3 (Databricks/Unity), 4 (BigQuery/Dataform), 5 (Postgres/scrappy). Total in-scope: ~50-58% of dbt-shop TAM with one integration surface.
+
+### The 60-second killer demo
+
+Public dbt repo + planted silent fan-out. Claude Code reviews and approves. SignalPilot GitHub App posts within 60 sec: *"❌ Fan-out detected on customers × orders. Cardinality 1.99×. Estimated MRR inflation: +30%."* Tagline: *"Claude wrote it. SignalPilot proved it."*
+
+### The forcing function (why now)
+
+1. **Chainguard mandate, [Alfred Lin Apr 29 2026](https://x.com/i/status/2049491198352769414):** *"engineering leaders must hit 50th-percentile Claude Code token usage."* Every dbt-shop CTO will copy this.
+2. **shazcodes ambient fear, [@shazcodes Apr 11 2026, 50K+ likes](https://x.com/i/status/2042995039245344816):** *"CEO fired 12-person QA team for AI, lost $6M when bot hallucinated 0% discount code."*
+3. **EU AI Act enforcement Aug 2 2026** — registry of every agent + permissions = the receipt.
+
+**Cold-email opener:** *"You're now mandated to ship CC adoption. Your team is reviewing AI dbt PRs at 1× speed while CC generates them at 10×. The bugs are silent. Aug 2 2026 — what's your audit trail for agent actions on production data?"*
+
+### What we DO NOT BUILD (the discipline list)
+
+- No web dashboard (receipt URL IS the dashboard)
+- No auto-remediation (Daniel: *"data scientists want control"*)
+- No Slack-MCP for non-engineers (gated on validation)
+- No notebook integration (different surface)
+- No DSPM / database governance (wrong category)
+- No AutoFyn meta-harness as core pitch (Daniel: *"self-improvement is a gimmick"*)
+- No custom IDE / agent runtime fork
+- No multi-warehouse runtime until Archetype 2+1 lock
+
+### Kill conditions
+
+- 30 days: <50 installs OR <5% reply rate → demo/brand revisit
+- 60 days: <100 installs AND <2 pilots AND no Anthropic/dbt/Snowflake inbound → sub-pivot
+- 90 days: dbt+Fivetran or Snowflake ships competing PR Receipt → strategist session
+
+### Files
+
+- **Created:** `wiki/concepts/minimally-lovable-product.md` (canonical MLP statement + DO-NOT-BUILD list + this-week actions)
+- **Created:** `raw/2026-05-02_research_mlp-and-stack-archetypes.md` (3-subagent compilation, Lenny rubric, 30-day verbatim quotes)
+- **Touched:** `index.md` (added concept + raw source entries)
+
+### Subagent IDs (reusable)
+
+- A stack archetypes: `ae3258aceeaaea788`
+- B MLP framework + case studies: `a3cd8e3d642c78aa0`
+- C sharpest 30-day pain: `ac4ed6a5cc7ca311c`
+
+---
+
+## Ingest 2026-04-29 — Long-arc thesis (data agent category 2026-2029)
+
+**Trigger (Tarik):** *"we never finished the agent data category win hypothesis over a longer period of time — hash this out thinking from first principle and prioritizing a massive amount of search over grok firecrawl search etc."*
+
+**Method:** 4 parallel general-purpose subagents (A: category architecture + first-principles winning; B: hyperscaler + dbt Labs roadmaps; C: standards/regulation/M&A; D: market sizing + contrarian) + heavy Grok / firecrawl / WebSearch direct calls.
+
+### TL;DR — the structural call
+
+**SignalPilot is Cloudflare for data agents.** Cloudflare didn't own HTTP; we don't own dbt. Cloudflare monetized the safety/governance layer above an open primitive — same shape, same physics. EU AI Act Aug 2 2026 plays the role HTTPS regulation played.
+
+**Category will exist:** $5-15B by EOY 2028, 2-3 winners. Hyperscalers (Snowflake Cortex, Databricks Unity AI Gateway) own ~50% of in-warehouse spend. Vendor-neutral runtime slot is open with 1-2 winner spots.
+
+### Threat ranking (12-month closure probability)
+
+- **dbt Labs (post-Fivetran): 65%** — shipped Developer Agent Apr 7 2026; Coalesce 2026 Sept watershed
+- **Snowflake: 55%** — Cortex Code GA Mar 9 2026; Trust Center integration Apr 27 2026
+- **Databricks: 35%** — Genie Inspect in PP; **best partner candidate**
+- Google: 25% · Anthropic: 20% (platform-tax) · AWS: 15%
+
+### 5 end-state scenarios for 2028
+
+| Scenario | Prob | SP odds |
+|---|---|---|
+| A — MCP wins, open standards dominate | 45% | 4/5 |
+| B — Hyperscaler walled gardens dominate | 35% | 2/5 |
+| C — Regulation forces governance-first procurement | 20% | 5/5 |
+
+Weighted SP outcome: **3.5/5** — favorable but execution-dependent.
+
+### Two specific actions this week
+
+1. **File a public OSI proposal for "agent execution context" sub-spec** — claim protocol authorship before warehouses do. 1 PR + 1 blog. 7-day timeline.
+2. **Ship Claude Code marketplace plugin emitting signed audit receipts** — EU AI Act Aug 2026 forcing function we're best positioned for. 14-day v0.1.
+
+### Kill conditions (run as quarterly tripwires)
+
+1. dbt Labs ships verifier benchmark within 65% of Spider 2.0
+2. Snowflake or Databricks acquires Atlan or Monte Carlo for $1B+
+3. MCP fragments (Google or Anthropic ships non-MCP-compatible protocol)
+4. Read-only DB credential pattern hits >70% adoption among Series B-D dbt shops
+5. Anthropic ships native dbt-aware Claude Code skill blessed in marketplace
+6. 3 quarters of <30% QoQ ARR growth
+
+### Realistic exit math
+
+- **Floor:** $150-300M (Mode/SYNQ class, 5-8× ARR on $25-50M)
+- **Mid:** $500M-$1.5B (Atlan class, 8-15× ARR on $60-100M)
+- **Strategic:** $2-4B (Snowflake or dbt-Fivetran at $100M+ ARR)
+- **IPO:** structurally difficult (Monte Carlo couldn't escape velocity from $1.6B in 4 years)
+
+### Honest bear case
+
+dbt+Fivetran ships "good-enough" verifier Q3 2026 → **Spider 2.0-DBT #1 = Pyrrhic flag.** SignalPilot becomes a $2-4M consultancy on AutoFyn FDE. Datafold trajectory: technically excellent, commercially trapped.
+
+### Files
+
+- **Created:** `wiki/concepts/data-agent-category-long-arc-thesis.md` (canonical 1-3 year thesis)
+- **Created:** `raw/2026-04-29_research_data-agent-category-long-arc.md` (4-subagent compilation)
+- **Touched:** `wiki/concepts/data-agent-category-win.md` (cross-reference long-arc)
+- **Touched:** `index.md` (added concept + raw source entries)
+
+### Subagent IDs (reusable)
+
+- A category architecture: `a5e018f50d08d631b`
+- B hyperscaler + dbt: `a74fd69aa7d522348`
+- C standards + regulation: `a7cc35b2372279edc`
+- D market sizing + contrarian: `a736554b961030b95`
+
+---
+
+## Ingest 2026-04-28 — Daniel reality check + 3-company GTM + role-evolution deep dive
+
+**Trigger 1 (Daniel Slack convo, eng lead):** 3-company segmentation (A: building internal data agent · B: Claude Code keeps failing · C: defer); self-improvement-is-gimmick reframe; **vendor-neutrality is the moat** against Hex/Cortex/Genie; FDE for enterprise.
+
+**Trigger 2 (Tarik):** *"go even deeper into how the job of data eng - data sci - head of data - analytics folks evolve over time. realize that 2025, 2026 all are shifting and all orgs are under massive pressure to move towards agentic systems."* + *"think about how do we completely decimate the markets of HEX, Cortex, Genie etc by being so good people don't even use any other products"* + *"don't discount FDE motion for larger b2b players, but WE MUST FIND REAL PAINFUL ISSUES."*
+
+### Three hard truths from Daniel (these change positioning)
+
+1. **Self-improvement is a gimmick.** Daniel: *"the memory problem reworded — people claim to want SPEC.md, never use it… we want consistency in our agent's behavior."* → AutoFyn becomes FDE/services, NOT core OSS pitch.
+2. **Buyers want CONTROL, not autonomy.** Daniel: *"the main thing data scientists want is control."* → Pitch DETERMINISTIC verifier; "ambient agents" is Layer 3 / 2027.
+3. **Vendor-neutrality is the structural moat.** Daniel: *"the other products are vendor-locked… we let you build your own custom agent pipeline AND get the #1 benchmark."* → How we beat Hex/Cortex/Genie.
+
+### The 3-company GTM (Daniel's segmentation, sharpened)
+
+- **Company A** (build internal data agent): #1 fit. Buyer = CTO/Head of Data. Signal = AE job post, Anthropic case study, agentic transformation blog. **Target: 6/10 signups.**
+- **Company B** (Claude Code keeps failing): validated pain. Buyer = Senior AE. Signal = public CC failure post, prod-deletion story. **Target: 4/10 signups.**
+- **Company C** (DB-only, wants to be data-driven): defer. Wrong shape for OSS bottom-up.
+
+### The "10× deliverable" gap (Tarik's question — Daniel had no answer)
+
+Two artifacts to ship in 5 days:
+- **Weekly PR Audit Digest email** — auto-emailed Friday. AE forwards to VP → VP becomes upgrade-path buyer.
+- **Spider 2.0 Receipt badge** — sharable LinkedIn / README badge. Career credibility = organic distribution.
+
+### Decimate Hex / Cortex / Genie — 4 kill moves
+
+1. Vendor-neutral surface (any IDE × any warehouse × any agent)
+2. Deterministic, not vibes (AST + 7-check verifier with pass/fail, not probability)
+3. Layer-above strategy (we partner — *"use Cortex Analyst INSIDE SignalPilot's governance MCP"*)
+4. No-lock-in story (Mode→ThoughtSpot, Observe→Snowflake — every walled-garden vendor is one M&A from deprecation)
+
+### FDE motion (the second track)
+
+| Track | OSS bottom-up | FDE enterprise |
+|---|---|---|
+| Buyer | AE / Head of Data Series B-D | CDO / VP Series D+ / F1000 |
+| Pitch | "works 100% out of the box" | "AutoFyn-tunes against your warehouse + business rules + compliance" |
+| Conversion | Free GitHub App → paid hosted | 6-week pilot, $250K-$1M contract |
+| Volume target 2026 | 1000s installs / 10-100 paid | 1-3 logos H2 |
+
+### Role-evolution research validates the wedge
+
+3 parallel general-purpose subagents (DE/AE, DS/AE, Head of Data) + Grok/firecrawl/WebSearch. Source: `raw/2026-04-28_research_role-evolution-2024-2026.md`. Highlights:
+
+- **The 24% / 72% gap** — only 24% of AEs use AI for pipeline mgmt vs 72% for code authoring. Validation gap = blue ocean.
+- **Trust priority 66% → 83% YoY** (dbt 2026). Pre-sold problem.
+- **Hex 2026:** 27% of leaders cite AI as #1 goal (575% YoY); data trust = #1 barrier (31%).
+- **WEF Davos 2026:** 50% of CEOs say job stability depends on AI ROI. Cascades to Head of Data.
+- **PR review backlog inversion** — agents made review the new bottleneck. *"Senior Slop Janitor."*
+- **Junior tier collapse** documented; mid/senior agent-fluent roles growing (+36% BLS).
+- **New roles emerging:** AI Engineer ($185K median), Agentic AI Engineer, Semantic-Layer Engineer, Agent Eval Engineer.
+
+### What to STOP saying
+
+| Old | Replace with |
+|---|---|
+| "self-healing pipeline" | "deterministic verification on every PR" |
+| "AutoFyn meta-harness" | "#1 on Spider 2.0-DBT" |
+| "ambient agents overnight" | "governed agent that runs when you prompt it" |
+| "agent learns your codebase" | "pre-loaded with your dbt project + schema in step 0" |
+| "replace your stack" | "add credentials and soon you won't need anything else" |
+
+### Files
+
+- **Created:** `raw/2026-04-28_slack_daniel-3-company-segmentation.md` (Slack verbatim)
+- **Created:** `raw/2026-04-28_research_role-evolution-2024-2026.md` (3-subagent compilation, heavily cited)
+- **Created:** `wiki/concepts/data-agent-category-win.md` (canonical GTM playbook)
+- **Created:** `wiki/concepts/role-evolution-2024-2026.md` (per-persona granular shifts)
+- **Touched:** `index.md` (added 2 concepts + 2 raw sources)
+
+### Subagent IDs (reusable via SendMessage)
+- DE/AE evolution: `a052ffc6a7b022eb8`
+- DS/AE evolution: `aef1fffce77640276`
+- Head of Data evolution: `af856d313562b8cde`
+
+---
+
+## Ingest 2026-04-28 — Visceral pain discovery + GTM playbook
+
+**Trigger (user, ultrathink):** *"help me think through how I can figure out the most viscerally painful daily pain points of the data engineers and then subsequently the data consumers. How do we hit that very high conversion email and GTM motion with highest chance of PMF. We are open to building new features if needed or hone in. Do extensive market research."*
+
+**Method:** parallel research — 3 general-purpose subagents (vendor case studies, consumer-trust products, cold-email playbooks) + Grok visceral-language searches + firecrawl/WebSearch for buyer signals. Source: `raw/2026-04-28_research_visceral-pain-and-gtm.md`.
+
+### Validated buyer pain (top tier, engineer-side)
+
+- **E1: dbt PR review takes a full day** — *"100+ hrs/mo reclaimed"* (Datafold/Nutrafol), *"1 day → <1 hr"* (Recce/Rio). Score 5/5.
+- **E2: Silent failures (fan-outs, NULL drops) leak to prod** — *"merchant retention at risk"* (Synq/Instabee), *"a logic error caused a fan trap, doubling ad displays"* (Elementary/fluct). Score 5/5.
+- **E3: Claude Code generates plausible-but-wrong SQL** — *"reviewed an analysis report using Claude. Riddled with holes"* (@liddycomidee 4/29). Score 5/5. **Blue ocean — nobody is paid yet.**
+
+### Buyer + ROI shape (validated across vendors)
+
+- **Title rank:** Head of Data > VP Data > AE > CTO. Lead with Head of Data; cc the AE.
+- **ROI shape:** **hours saved per month** (universal) and **time-to-resolution collapse** (days→hours, hours→minutes). $-figures rare. Match this language in pitches.
+
+### Consumer-side pain (un-named, validation-gated)
+
+The "verification helpdesk" reframe scored **2.5/5** by Subagent B: the *underlying* pain (50–70% of analyst time on ad-hoc, 69% on prep, *"data team without a strategy is just an expensive support desk"*) is well-documented, but the *AI-amplified* version is **not yet named in public discourse**. Vendors invert the framing ("tickets dropped 72%" not "verification load doubled"). Going after this means **creating a category, not joining one.** Risk: low buyer recognition. Opportunity: first-mover on a real-but-unnamed pain.
+
+### Cold email playbook benchmarks (2026)
+
+- Generic: 1–3% reply. **Signal-based: 5–18% reply** (per [instantly.ai](https://instantly.ai/cold-email-benchmark-report-2026)).
+- Personalized opener: **+142% reply rate**.
+- Timeline-hook subject beats problem-hook 2.3× (10.01% vs 4.39%).
+- Subject lines: 1–4 words, lowercase, under 60 chars.
+- 3-7-7 follow-up cadence captures 93% of replies by day 10.
+- Tier-1 signals (14–25% reply): new Head of Data hired, AE job posted, champion changed companies.
+
+### Build-vs-hone recommendation
+
+- **HONE** the engineer-side Tier-1 features in [[Symbiotic Wedge]].
+- **BUILD** one new thing: the **free `/sp-audit-pr` GitHub App** as the cold-email CTA + conversion artifact. Single highest-leverage build for the next 60 days.
+- **DON'T BUILD YET** the Governed Slack MCP (consumer surface) — gated on Template-3 reply rate + 3 consumer-pain interviews.
+
+### Files
+
+- **Created:** `raw/2026-04-28_research_visceral-pain-and-gtm.md` (heavy-cited compilation)
+- **Created:** `wiki/concepts/visceral-pain-and-gtm-playbook.md` (pain ranking, ICP, 3 email templates, GTM motion, build/hone)
+- **Touched:** `index.md` (added concept + raw source entries)
+
+### Subagent IDs (reusable via SendMessage)
+
+- Vendor case studies: `a9da972f939d9aaf1`
+- Consumer-trust products: `aaffb5ee8c254f815`
+- Cold-email playbooks: `a9c29e1657a83ae31`
+
+---
+
+## Concept 2026-04-27 — `[FUTURE]` Trust Layer for Data Consumption (consumer-pain reframe)
+
+**Trigger (user, strategic):** *"I deeply worry that dbt practitioners would not care and think this is incremental correctness — PMF would fail. A simpler pitch: the data connection / warehouse orchestration / governance layer that helps users (1) ship without losing sleep + self-heal, AND (2) safely route ad-hoc queries so consumers self-serve — without becoming a help center for execs to verify with data scientists."*
+
+**Action:** filed as `wiki/concepts/trust-layer-for-data-consumption.md` with `status: future` flag. **Not yet usable in marketing/outreach** — gated on validation in [[PMF Validation Sprint Week 1]].
+
+### The reframe (in one paragraph)
+
+The wedge is not "dbt PR correctness." That's incremental and slots into CI as a checkbox. The wedge is *"my data team is now an exec verification helpdesk and I cannot scale this."* Companies that gave PMs/ops/finance access to Claude Code (the [[Ramp Data Team Evolution]] pattern) discover every consumer query needs a data scientist to verify it before leadership trusts the number — calendar load multiplies, trust collapses. SignalPilot becomes the layer that **replaces the helpdesk with a governed agent + signed-answer loop.**
+
+### Two surfaces, one engine
+
+| Surface | Buyer | Pain |
+|---|---|---|
+| Engineer trust *(existing wedge)* | Analytics engineer / VP Data | CC ships a bad PR to prod |
+| Consumer trust *(this reframe)* | Head of Data / CDO | Team becomes a verification helpdesk for consumer queries |
+
+Same architecture (Governance Gateway + Verifier + audit + AutoFyn). Different demo, different buyer, **10× seat multiplier on consumer surface.**
+
+### Validation plan
+
+≥2 of 3 targeted Head of Data / VP Data interviews must, **unprompted**, describe a verification-helpdesk dynamic. ≥1 must name a specific time/headcount cost. ≥1 must say some form of "I'd pay to automate this." If criteria fail by 2026-05-03, archive page with `legacy: true` and date of falsification.
+
+### Files
+- **Created:** `wiki/concepts/trust-layer-for-data-consumption.md` (`status: future`)
+- **Touched:** `index.md` (added entry under Concepts with `[FUTURE — unvalidated]` tag)
+
+---
+
+## Ingest 2026-04-27 — Workflow shifts (2025→2026→2027) + symbiotic-wedge reframe
+
+**Trigger (user, ultrathink):** *"if you think about day to day, what a data eng OR the data consumer would do, think through workflows: 1. last year 2. now (esp ones adopting CC) 3. how their job changes with SignalPilot. The shift from 2 to 3 is our wedge. Also realize SP is early stage — we can add features to steer to blue ocean and avoid competing directly with Claude Code, rather establish a symbiotic relationship as an extension on Claude Code or other IDEs."*
+
+**Method:** parallel firecrawl + grok + WebSearch on per-persona workflow change; deep-fetch of Reliable Data Eng (25-35 hr/wk savings), Kestra "Workflow Engineer" thesis, Hex Notebook Agent, Recce gates blog. Source: `raw/2026-04-27_research_workflow-evolution.md`.
+
+### The deepest reframe (the strategic insight)
+
+SignalPilot is **not a Claude Code competitor**. It is **the data superpower extension** that makes Claude Code 10× better at warehouse work. Pattern of successful infrastructure plays:
+
+| Primitive | Extension that won |
+|---|---|
+| React | Vercel ($3B+) |
+| Spark | Databricks ($50B+) |
+| VS Code | Cursor ($9B+) |
+| Git/Issues | Linear ($1B+) |
+
+Claude Code is the dominant agent primitive. The vertical it most needs (and least solves natively) is *trustworthy data work*. **That's our layer.**
+
+### What changes when we adopt the symbiotic frame
+
+- **Distribution:** plugin marketplace, not direct sales — every CC seat that touches data is a SP candidate
+- **Pricing:** per-CC-user OR per-MCP-call; AutoFyn services priced as % of token-cost-savings (Anthropic admits CC quotas exhaust *"way faster than expected"* per [The Register Mar 31](https://www.theregister.com/2026/03/31/anthropic_claude_code_limits/))
+- **Brand:** "the data layer for Claude Code"
+- **TAM:** millions of CC seats × % that touch data, not 5K dbt shops globally
+- **Moat:** features that ONLY work inside Claude Code's runtime (Hooks, Subagents, Skills, MCP)
+
+### The 2025→2026→2027 timeline (top-line evidence per persona)
+
+**Data engineer / AE:**
+- 2025: 7-12 tools, 33 hrs/wk on repeat tasks, 8 hrs/Mon wrangling ([Reliable Data Eng](https://medium.com/@reliabledataengineering/i-built-a-digital-data-team-in-30-minutes-claude-skills-changed-everything-5e4bdd52f4ed) · [Byte Me Daily](https://bytemedaily.medium.com/i-replaced-my-data-team-with-agents-the-brutal-truth-about-ai-data-scientists-in-2026-7fb4b3594cb6))
+- 2026 with CC: 25-35 hrs/wk freed, PR throughput +67% ([@aakashgupta](https://x.com/i/status/2012396910221693216)), Macomber's *"This number looks off, here's why, here's a PR"* ([@iandmacomber](https://x.com/i/status/2023869483706728761)). BUT: silent inner-joins, prod deletions, context rot.
+- 2027 with SP: Verifier ride-along + persistent schema cache + wire governance + AutoFyn loop = trust runtime engineering
+
+**Data consumer (PM/exec/finance/compliance):**
+- 2025: Slack-ping → ticket queue → wait days
+- 2026 with CC: Ramp 80% PM / 70% compliance / 55% finance running CC; *"ship an MCP, your users never see your UI"* ([@eglyman 84K views](https://x.com/i/status/2047337232864784879)). BUT: no governance, no audit, cost runaway risk.
+- 2027 with SP: governed MCP + Verifier-on-answers + audit log = data leader's role flips from "credential gatekeeper" to "governance contract owner"
+
+**Data scientist:**
+- 2025: Jupyter / Hex / Mode + manual SQL pulls
+- 2026 with Hex Notebook Agent: agentic search, plan-build, summarize ([Hex blog](https://hex.tech/blog/notebook-agent-prompting-guide-agentic-analytics/)). Workspace Rules as text-rules governance. BUT: text instructions vs wire enforcement.
+- 2027 with SP (Hex partnership opportunity): governed MCP + Verifier on outputs + persistent context
+
+### The symbiotic feature roadmap (steered toward the blue ocean)
+
+**Tier 1 — next 60 days:**
+1. PreToolUse hooks for warehouse access (deterministic, can't hallucinate)
+2. Verifier subagent ride-along (Anthropic's subagent pattern)
+3. `/sp-audit-pr` slash command
+4. Schema cache MCP (warms CC sessions; saves tokens)
+5. `/sp-retro` skill (proven pattern from [Agapov LinkedIn](https://www.linkedin.com/posts/oleg-agapov_one-skill-changed-how-we-work-with-claude-activity-7450513370438402048-wvOe) + [Wilson /handsoff](https://blog.reccehq.com/i-let-claude-code-build-my-dbt-models.-the-interesting-part-wasnt-the-code))
+
+**Tier 2 — Q3 2026:** auto-CLAUDE.md generator, PII context manager, governed Slack MCP, cost guardrail MCP, multi-agent governance hooks
+
+**Tier 3 — 2027:** schema-drift autonomous PR, ambient agents in gVisor, AutoFyn-on-customer, cross-CC-session memory layer
+
+### The macro frame: "Everyone's a Workflow Engineer Now"
+
+Per [Kestra Mar 2026](https://kestra.io/blogs/2026-03-05-data-eng-trends-2026): *"AI is commoditizing the 'data' part. Anyone can write SQL or Python with assistance. The 'engineering' part becomes the differentiator: reliability, incident response, cost. The best data engineers of 2026 think like SREs."* SignalPilot is **the trust runtime that the new data-SREs need.**
+
+### Files this ingest
+
+**New raw source:**
+- `raw/2026-04-27_research_workflow-evolution.md`
+
+**New wiki concepts:**
+- `wiki/concepts/workflow-shifts-2025-2026-2027.md` — per-persona timeline with verbatim citations
+- `wiki/concepts/symbiotic-wedge.md` — Claude Code extension reframe + feature roadmap
+
+**Updated:**
+- `index.md` (added 2 concepts + 1 raw source)
+- `log.md` (this entry)
+
+### Strategic implication for [[Niche Problem Discovery]]
+
+The wedge is no longer a list of niche workflows. It's a **strategic posture**: be the canonical Claude Code data extension. The wedge workflows (PR pre-flight, compliance, token efficiency) become natural-extension surfaces of the symbiotic posture.
+
+### The new 30-second pitch (memorize)
+
+> *"Claude Code is the agent runtime. SignalPilot is the data superpower for Claude Code — schema memory that survives sessions, deterministic verification on outputs, wire-level governance on warehouse access, and a recursive harness loop that makes your Claude Code 10× better on data work every week. We are not Claude Code's alternative. We are Claude Code's data layer."*
+
+---
+
+## Ingest 2026-04-27 — "Why we beat Claude Code" deep research (firecrawl + grok + WebSearch)
+
+**Trigger (user):** *"the Rank/Wedge/Score table doesn't answer 'why are we better than Claude Code at this' — find the most useful signal of what Claude Code is lacking. That is our ultimate wedge."*
+
+**Method:** parallel research across firecrawl (deep scrape), grok (X.com posts/threads), and WebSearch — semantic, iterative. Every claim traces to a URL.
+
+**Source:** `raw/2026-04-27_research_claude-code-failure-evidence.md` (the citation source-of-truth)
+
+### Killer findings
+
+1. **Production-data destruction is documented and accelerating.** At least 8 viral incidents in 120 days where Claude Code (or Claude-powered agents) wiped production databases + backups. Most recent: 2026-04-26 ([@milesdeutscher](https://x.com/i/status/2048779262552055950)) and 2026-04-27 ([@srbentley](https://x.com/i/status/2048649242621939945)) — within 24 hours of this ingest.
+2. **Anthropic itself acknowledges the structural problem.** [Effective context engineering for AI agents](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) and [Harness design for long-running apps](https://www.anthropic.com/engineering/harness-design-long-running-apps) document context rot + session-degradation + rationalization.
+3. **The "infrastructure not prompting" quote.** [Dori Wilson, Recce, Feb 25 2026](https://blog.reccehq.com/i-let-claude-code-build-my-dbt-models.-the-interesting-part-wasnt-the-code): *"AI-assisted analytics engineering isn't a prompting problem. It's an infrastructure problem. The skills, the MCP configs, the schema conventions, the guardrails. That's the actual work. The generation is the easy part."* — Verbatim our pitch.
+4. **The Ramp adoption stats validate the Layer 3 TAM.** [Ian Macomber](https://x.com/i/status/2023869483706728761): 80% of PMs / 70% compliance / 55% finance running Claude Code. [Eric Glyman](https://x.com/i/status/2047337232864784879): MCP weekly actives 10× in 3 months.
+5. **The Specificity Paradox.** [Recce gates blog](https://blog.reccehq.com/before-you-let-agents-touch-your-codebase-build-these-gates): *"The more specific your review instructions, the more Claude may ignore them."* Wire-level governance is the only structural answer.
+6. **Vanilla Claude Code on Spider 2.0-DBT = 14.70%.** SignalPilot architecture = 51.56%. **3.5× lift.** Altimate Skills (closest competitor) reports only 19% lift. Architecture ≠ skills.
+7. **Bauplan's quote = our governance thesis in a customer's voice.** *"Without that isolation, every agent mistake would be a production incident. With it, agent mistakes become cheap experiments."* ([Recce Data Valentine Challenge](https://blog.reccehq.com/data-valentine-challenge-wrapped))
+
+### The sharper wedge framing
+
+> **"Every team running Claude Code on production data needs SignalPilot or they're one prompt away from a deleted database. We are the only architecture that wraps Claude Code with (1) wire-level governance, (2) deterministic verification, and (3) persistent governed state. The Spider 2.0-DBT 3.5× lift is the receipt."**
+
+PR pre-flight is the **first product**. The wedge is structural — the three architectural arguments are the structural moat.
+
+### Files created this ingest
+
+**New raw source (citation source-of-truth):**
+- `raw/2026-04-27_research_claude-code-failure-evidence.md`
+
+**New wiki concepts:**
+- `wiki/concepts/why-we-beat-claude-code.md` — three structural arguments + buyer pitches with citations
+- `wiki/concepts/persona-workflows.md` — three personas × where CC fails × where SP wins
+
+**New wiki entities:**
+- `wiki/entities/claude-code-prod-disasters.md` — cited catalog of 8+ documented incidents; sales artifact
+- `wiki/entities/ramp-data-team-evolution.md` — Layer 3 TAM proof point with Macomber/Glyman/Yang citations
+
+**Updated:**
+- `index.md` — added 5 new entries
+- `log.md` (this entry)
+
+### Open follow-ups
+
+- Email Ian Macomber and/or Eric Glyman for a customer-interview slot — they're the canonical Layer 3 buyer language
+- Pull the full Wes McKinney interview transcript (Nell Thomas / Shopify VP Data) for the *"Your VP Is Doing a Rogue Analysis in Cursor Right Now"* framing
+- Consider Hex partnership conversation for Persona 2 (data scientist surface)
+- Track `Claude Code Prod Disasters` catalog quarterly; new incidents are accelerating
+
+---
+
+## Update 2026-04-27 — Objection handling: the read-only DB counter-argument
+
+**Trigger (user):** *"the counter argument might be you can always use a read only connection to db with claude code"*
+
+Sharpest objection a sophisticated buyer raises against [[Why We Beat Claude Code]] Argument 1. Steel-manned and answered with citations in new page [[Objection Handling]].
+
+**Two-part answer:**
+- **Part A — Read workflows:** Read-only is necessary but not sufficient. It doesn't bound query cost ([GoDaddy validation](https://www.facebook.com/GoDaddy/posts/how-do-we-know-this-ai-agent-wont-run-forever-and-cost-us-thousands-in-api-calls/1366636518830031/), [arXiv MCP-security paper](https://arxiv.org/html/2511.20920v1)), doesn't redact PII, doesn't give agent-aware audit trail, doesn't catch silent dq decisions like Dori Wilson's documented failures. Spider 2.0-DBT proves the gap quantitatively — vanilla Claude *with* read-only access = 14.70%; SignalPilot architecture = 51.56%.
+- **Part B — Write workflows:** Read-only is *impossible* for `dbt run`, backfills, schema migrations, autonomous remediation. Only governed write makes them safe.
+
+**Bonus citations:** Snowflake's managed MCP is vendor-locked to Cortex Agents only ([Snowflake-Labs/mcp README](https://github.com/Snowflake-Labs/mcp/blob/main/README.md), [docs](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-mcp)). Claude Code permission system itself is bypassable: [@InfoSec_Awards CVE](https://x.com/i/status/2046988415992741975), [@noisyb0y1 default access](https://x.com/i/status/2042086577636061436), [@GuptaSayujya Dangerous Mode](https://x.com/i/status/2047121428387123313); active CVEs CVE-2025-59536 and CVE-2026-21852.
+
+**Files:**
+- New: `wiki/concepts/objection-handling.md` (canonical objection-handling doc, append-only)
+- Updated: `wiki/concepts/why-we-beat-claude-code.md` — anticipated-objection callout in Argument 1
+- Updated: `index.md` (added Objection Handling under Concepts)
+- Updated: `log.md` (this entry)
+
+**The 30-second rebuttal (memorize):**
+> *"Read-only DB is necessary but not sufficient. It blocks DROP TABLE — that's the floor. It doesn't bound query cost, doesn't redact PII, doesn't audit at the agent level, doesn't verify correctness — Spider 2.0-DBT shows vanilla Claude with read-only access scores 14%; we score 51%. And read-only is impossible for `dbt run`, backfills, or autonomous remediation. We are the structural answer for both governed read AND governed write."*
+
+---
+
+## Ingest 2026-04-27 — Paradigm shift research + niche-problem brainstorm
+
+**Trigger (user):** *"benchmarks don't sell — buyers buy solutions to specific painful workflows. Run extensive research, ultrathink. The paradigm has shifted hard the last 60 days (Claude Opus 4.6/4.7, OpenClaw, token maxing); make predictions about where the puck is going."*
+
+**Source:** `raw/2026-04-27_research_paradigm-shift.md` (multi-source web research synthesis)
+
+### What the research surfaced (top signals)
+
+1. **dbt Labs 2026 State Report:** 72% of teams prioritize AI-assisted *coding*; only 24% prioritize AI-assisted *pipeline management* (testing, observability, quality, governance). 71% fear bad data. Trust importance jumped 66% → 83% YoY. **The 48-pt gap is the blue ocean.**
+2. **Zscaler PRISM case (validation):** Fortune 500 built multi-agent dbt PR-review system internally. Numbers: 956 PRs/quarter automated, 90% reviewer time reduction, 2,100 engineering hrs saved annually, 30% query speedup. **They built bespoke; SignalPilot ships the productized version.** See [[Zscaler PRISM Case]].
+3. **dbt + Fivetran merger** ($600M ARR combined; Oct 2025): explicit roadmap to schema-drift auto-patch + dbt Copilot (model gen, doc gen, tests, refactoring, perf opt, cost analysis). **They will own AI-assisted coding for dbt.**
+4. **Paradigm shift Mar–Apr 2026:**
+   - **Claude Opus 4.7** (Apr 16): xhigh effort default, task budgets (beta), 1M context, `/ultrareview` command. Token-maxing is the official direction.
+   - **OpenClaw chaos** (Apr 4–10): Anthropic banned third-party harnesses; shipped Claude Code Channels as the answer. **Plugin ecosystem becomes winner-take-most.**
+   - **Token-quota crisis:** Anthropic admitted Claude Code limits exhaust "way faster than expected." 5-agent teams burn 27% of daily budget in 45 min, 20× context overhead.
+   - **Skills + Subagents + Hooks + MCP** = the official Claude Code extensibility surface. SignalPilot's plugin already sits on it.
+5. **MCP governance gap:** Kiteworks 2026 — 63% of orgs can't enforce purpose limitations on agents; 60% can't terminate misbehaving agents; 57% lack centralized AI data gateway. Snowflake just shipped Managed MCP Servers. **The compliance buyer is forming now.**
+
+### Forward thesis surfaced
+
+**SignalPilot is the trust runtime for Claude-Code-driven dbt operations.** Three monetization layers, same architecture:
+
+- **Layer 1 (today):** PR pre-flight verification (the wedge — validated by Zscaler PRISM)
+- **Layer 2 (Q3-Q4 2026):** Autonomous remediation when schema drift hits
+- **Layer 3 (2027):** Ambient autonomous operations
+
+See [[Where the Puck Is Going]], [[Trust Runtime Positioning]], [[Niche Problem Discovery]].
+
+### Wedge picked
+
+After scoring 12 candidates: **W1 — PR pre-flight verification (23/25)** is the lead.
+
+- **Co-feature:** W5 (backfill safety) for high-emotional demo
+- **Co-position for enterprise:** W10 (compliance / audit) at platform-eng buyer
+- **Defer to Layer 2:** W2 (schema drift auto-patch — dbt Copilot's roadmap target)
+- **Skip:** W4 (test gen — commodity), W6 (junior AE — red ocean), W11 (token efficiency — angle, not wedge)
+
+### Files created this ingest
+
+**New raw source:**
+- `raw/2026-04-27_research_paradigm-shift.md`
+
+**New wiki concepts:**
+- `wiki/concepts/where-the-puck-is-going.md` — 6 forward predictions for Q2 2026 → 2027
+- `wiki/concepts/trust-runtime-positioning.md` — 3-layer monetization framing
+- `wiki/concepts/niche-problem-discovery.md` — 12 wedges scored on F × S × U × A × P rubric
+
+**New wiki entities:**
+- `wiki/entities/zscaler-prism-case.md` — validated proof point with verbatim quotes
+- `wiki/entities/dbt-copilot.md` — incumbent threat (dbt Labs + Fivetran)
+- `wiki/entities/claude-code-extensibility-stack.md` — Hooks/Subagents/Skills/MCP surface
+
+**New wiki summary:**
+- `wiki/summaries/2026-04-27_paradigm-shift-and-niche-discovery.md`
+
+**New project (outside wiki, in `1 Projects/0 Running Projects/`):**
+- `PMF Validation Sprint - Week 1.md` — 10 customer interviews, Mom Test discipline, decision gate Sunday 2026-05-03
+
+**Updated:**
+- `index.md` — added new entries
+- `log.md` (this entry)
+
+### Decision gate next Sunday (2026-05-03)
+
+After 10 customer interviews:
+- ≥7 mention PR review pain unprompted → commit to W1 wedge
+- ≥5 use Claude Code daily on dbt → commit to Claude-Code-first distribution
+- If neither: re-think wedge framing
+
+### Open follow-ups for next ingest cycle
+
+- Pull AutoFyn repo to verify "26 vulnerabilities" claim
+- Read Coalesce 2025 keynote transcripts for dbt MCP details
+- After 10 interviews: write `wiki/summaries/2026-05-03_validation-sprint-week-1.md` synthesizing what buyers said in their own words
+- File the Firecracker→gVisor correction upstream in plugin README
+
+---
+
 ## Ingest 2026-04-27 — Code-truth verification + Notion strategic context
 
 Pulled ground-truth from `/Users/tarik/codeAlpine/SignalPilot/` and from Notion to resolve outstanding contradictions and ingest current strategic positioning.
