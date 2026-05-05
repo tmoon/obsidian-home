@@ -23,6 +23,7 @@ Schema and conventions: [CLAUDE.md](CLAUDE.md) · Activity log: [log.md](log.md)
 - [[Competitive Positioning vs PR Reviewers]] — **the category reframe** that defends MLP against *"we already have CodeRabbit / Devin / Claude `/review`"*: empirical-evidence verifier vs advisory-prose reviewer · triple-reviewer demo · 30-sec voice rebuttal · kill signal
 - [[Durable Moat Analysis Brutal]] **★ NO-COMFORT** — 7-subagent convergence: 0 Powers today, 1.5 in 18 months, 40% survival probability May 2028. Smoke-tests every previous moat claim. Realistic ceiling: $5-15M ARR Harvey-pattern. **Read this before investor conversations.**
 - [[Path to 2 Powers Roadmap]] **★ THE PLAN** — constructive companion to the brutal verdict. Counter-Positioning (~65%) + emerging Process Power (~50%) by Sept 2027 Series A. Outcome-priced verified-fix-as-a-service pricing locks CP. Frozen-team test for AutoFyn locks PP. Q4 2026 kill signal. 5 things to AVOID. Quarterly milestones with ARR + headcount.
+- [[Five Paths Decision Tree]] **★ ULTIMATE DECISION** — layer-collapse-aware synthesis of 12 subagent reports. Kills 3 paths (replace-the-stack, full-regulated-pivot, separate-consumer-trust). Keeps 2 (PR Receipt expanded to Claim Receipt + acquisition-optimized parallel track). Phase 2 expansion: dbt PR Receipt → Claim Receipt for CFO buyer. Decision point Q3 2027.
 - [[Role Evolution 2024-2026]] — granular per-persona task-allocation shifts, new emerging roles, 2027 prediction; the validation behind the wedge
 - [[Workflow Shifts 2025-2026-2027]] — Per-persona day-in-the-life timeline with verbatim citations; the 2→3 Δ is the wedge
 - [[Why We Beat Claude Code]] — Three structural arguments + Spider 2.0 receipt + buyer pitches
@@ -66,6 +67,7 @@ Schema and conventions: [CLAUDE.md](CLAUDE.md) · Activity log: [log.md](log.md)
 - [2026-05-02 — MLP framework + stack archetypes + sharpest 30-day pain (3 subagents: 5 archetypes ranked, Lenny/Saarinen/Rauch case studies, 30-day verbatim pain quotes)](raw/2026-05-02_research_mlp-and-stack-archetypes.md)
 - [2026-05-04 — No-comfort moat analysis (7 subagents: FDE commoditization, AutoFyn-as-security dead, funding signals, historical patterns, $100M-overnight dissection, horizontal threat, Helmer 7 Powers smoke test)](raw/2026-05-04_research_no-comfort-moat-analysis.md)
 - [2026-05-04 — Path to 2 Powers by Series A (Counter-Positioning + emerging Process Power roadmap, frozen-team test, 5 things to avoid)](raw/2026-05-04_research_path-to-2-powers-by-series-a.md)
+- [2026-05-04 — Layer-collapse + 5 paths research (5 subagents: BI death-watch, replace-the-stack, regulated-vertical, acquisition-optimized, layer-collapse for/against)](raw/2026-05-04_research_layer-collapse-five-paths.md)
 - [2026-05-04 — YC App (Summer 2026 application source)](raw/2026-05-04_YC%20App.md)
 
 ---
