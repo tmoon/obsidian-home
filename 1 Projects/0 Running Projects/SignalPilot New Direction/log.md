@@ -4,6 +4,94 @@ Append-only. Most recent at top.
 
 ---
 
+## Ingest 2026-05-04 — Path to 2 Powers by Series A (constructive companion)
+
+**Trigger (Tarik):** *"shoot off the 7-Powers agent the question 'given 0 Powers today and 1.5 in 18 months, what is the SHORTEST path to 2 Powers by Series A — counter-positioning + emerging Process Power?'"*
+
+**Method:** Single deep general-purpose agent (`af21c868302651f0f`) applying Helmer 7 Powers framework. Source: `raw/2026-05-04_research_path-to-2-powers-by-series-a.md`.
+
+### Headline
+
+**~30% probability of acquiring both Powers by Series A close (Sept 2027).** ~65% Counter-Positioning, ~50% Process Power emerging, ~15% Process Power locked. Higher than 5-10% baseline for a 4-person team but not comforting.
+
+### The Counter-Positioning lock — ONE business-model decision
+
+**Verified-fix-as-a-service with money-back accuracy SLA on dbt PR review.**
+- $2K-$5K per merged fix OR $15K-$40K/mo per dbt project
+- 95% precision floor, 100% credit on prod-shipped false positives, 30-day money-back if accuracy <90%
+- "PR Receipt" cryptographically-signed verification artifact
+
+Why incumbents structurally cannot copy:
+- dbt Labs+Fivetran: revenue-cannibalizes their seat+consumption model; lawyers won't sign indemnity
+- Snowflake Cortex: compute-credit revenue inverts the incentive
+- Databricks Genie: same compute conflict + Databricks-only
+- Anthropic Claude Code: TOS explicitly disclaims output warranty
+- CodeRabbit/Greptile/Devin: per-seat horizontal valuations; narrowing = down-round move
+
+**4-6-person Counter-Positioning examples that worked:** Eudia ($105M Series A), Rogo ($50M Series B), Everstar ($11M seed), Decagon ($65M Series B). Pattern is real and reproducible.
+
+### The Process Power emergence test — ONE empirical proof
+
+**Frozen-team test:** for any 30-day window, freeze engineering team's commits to harness. AutoFyn runs autonomously.
+- If per-customer accuracy still climbs >2% absolute over the window across ≥5 customers → it is compounding
+- If accuracy is flat or declines without team commits → it's FDE
+
+Publish quarterly **"AutoFyn Compounding Report"** with customer-anonymized curves. Target: +8-12% absolute precision improvement on customer-specific dbt PR review over 90 days, with team-frozen weeks accounting for ≥40% of gain.
+
+**Reference class (all took ≥18 months from first paid customer):** Stripe Radar 2016-18, Datadog 2014-16, Tesla Autopilot data engine 2018-20, Cresta 2020-22.
+
+### The Q4 2026 kill signal
+
+By Dec 31 2026, if any of:
+- Frozen-team weeks show flat/declining accuracy across ≥3 customers
+- Cross-customer transfer undetectable (config from A doesn't improve B's baseline by ≥1% absolute)
+- Customer-specific gains require >20 hrs/week engineer-in-loop tuning
+- AutoFyn compute cost per customer per month >30% of contract value
+
+→ AutoFyn is NOT Process Power. Pivot to Harvey-pattern services-led raise ($10-15M Series A at $60-90M post on $2.5M services ARR).
+
+### The 18-month roadmap (Power-stacking)
+
+| Quarter | CP milestone | PP milestone | ARR | Headcount |
+|---|---|---|---|---|
+| Q3 2026 | PR Receipt v1, 5 pilots flat-fee | First frozen week | $0.3M | 5 |
+| Q4 2026 | 3 outcome-priced SLA contracts | 8 customers, first Compounding Report, **kill-signal checkpoint** | $0.8M | 7 |
+| Q1 2027 | 15 logos, named case study | Cross-customer transfer demonstrated | $1.5M | 9 |
+| Q2 2027 | **Incumbent ships non-SLA competitor (proof)** | 20 customers, audited curve | $2.5M | 11 |
+| Q3 2027 | **Series A close** at outcome-priced ARR | Compounding Report Q2 in deck | $4M | 13 |
+| Q4 2027 | 50 logos | Frozen-month run | $5-7M | 15 |
+
+### Three products (multi-product Helmer-stack)
+
+1. **PR Receipt for dbt** (Q3 2026) — locks Counter-Positioning via accuracy SLA
+2. **AutoFyn Compounding Console** (Q1 2027) — customer-facing dashboard makes Process Power visible to buyer
+3. **Incident-Bond for pipeline failures** (Q3 2027) — extends accuracy SLA to runtime incidents; Power-stacking
+
+### Fundraising sequencing
+
+| Time | Milestone | Raise |
+|---|---|---|
+| Now | Spider 2.0 + 400 stars + YC S26 | Seed/seed+ $4-6M @ $25-40M post |
+| Q1 2027 ($1.5M ARR) | **Don't raise yet** — premature without PP evidence | — |
+| Q3 2027 ($4M ARR + audited curve + incumbent-decline proof) | **Series A** | $20-30M @ $120-180M post |
+| If kill-signal triggers Dec 2026 | Harvey-pattern services raise Q2 2027 | $10-15M @ $60-90M post |
+
+### 5 things to AVOID
+
+1. Going horizontal beyond dbt before $5M ARR
+2. Seat-based pricing as default (one capitulation destroys CP for every future deal)
+3. Accepting FDE engagements that hide AutoFyn's autonomy (corrupts frozen-team test)
+4. Building horizontal code-review feature to compete with Cursor/CodeRabbit (red-ocean drift)
+5. Raising Series A on stars + benchmark alone without ARR + accuracy curve (Adept→Amazon acqhire June 2024 cautionary tale)
+
+### Files
+
+- **Created:** `wiki/concepts/path-to-2-powers-roadmap.md` (canonical roadmap + quarterly milestones + kill signal + 5 avoids)
+- **Created:** `raw/2026-05-04_research_path-to-2-powers-by-series-a.md` (full agent report, heavy citations)
+- **Touched:** `index.md` (added concept + raw source entries)
+
+---
+
 ## Ingest 2026-05-04 — No-comfort moat analysis (the brutal truth)
 
 **Trigger (Tarik):** *"in the world where everyone can potentially build everything, how do we find our moat and piece of land? does it exist anymore? how do people grow these companies seemingly overnight in this AI age to 100s of millions of ARR. if you think you have thought enough? think more and find more sources to make argument for and against. **not looking for something comforting me, I want the plain hard truth and we need to smoke test all the assumptions.**"*
