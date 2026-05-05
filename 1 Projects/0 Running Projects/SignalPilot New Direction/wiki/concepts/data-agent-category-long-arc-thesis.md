@@ -7,6 +7,8 @@ updated: 2026-04-29
 
 # Long-Arc Thesis — How SignalPilot Wins the Data Agent Category 2026-2029
 
+> **⚠️ Overclaim correction (2026-05-04):** This page's "Cloudflare for data agents" framing is directionally right but **overclaims the starting position**. Per [[Durable Moat Analysis Brutal]] (7-subagent smoke test), SignalPilot has **0 Helmer-grade Powers today**, 1.5 plausible at 18 months. The realistic 24-month outcome is **$5-15M ARR / $150-400M val (Harvey-pattern at smaller scale)** — not the $100M-ARR scenario implied here. Read [[Durable Moat Analysis Brutal]] first; treat this page as the *aspirational structural map*, not the realistic 24-month plan.
+>
 > **The 1-3 year strategic frame.** [[Data Agent Category Win]] covers the next 60-90 days of GTM execution. This page covers the long-arc structural physics: what category we're in, who else is in it, what determines who wins, what kills us, and the decision tree that gets us from $0 to $100M+ ARR.
 >
 > Sourced from 4 parallel general-purpose research subagents + heavy Grok / firecrawl / WebSearch on April 28-29, 2026. Full citations in [raw/2026-04-29 research](../../raw/2026-04-29_research_data-agent-category-long-arc.md).

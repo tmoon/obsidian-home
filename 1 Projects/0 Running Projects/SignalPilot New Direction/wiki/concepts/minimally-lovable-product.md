@@ -7,6 +7,8 @@ updated: 2026-05-02
 
 # Minimally Lovable Product — The PR Receipt
 
+> **⚠️ Note (2026-05-04):** The PR Receipt as v0 ship still passes the rubric. **But the moat narrative around it has been corrected** — see [[Durable Moat Analysis Brutal]]. The v0 ship plan in this page stands; the "Datadog-style multi-product attach" framing has been demoted (Helmer-fail, no 4-person precedent in 18 months). Reposition publicly from "agent" → "verification layer that horizontal agents call into."
+>
 > **The MLP locked.** Three parallel research subagents + the Lenny/Saarinen/Rauch/Truell case-study rubric + 30-day verbatim pain quotes converge on **one** wedge that passes every test. This page is the canonical statement of what we ship FIRST, what we deliberately DO NOT BUILD, and how we expand from this single thing.
 >
 > If you read only one section, read §1. If you read two, read §1 + §11 (kill conditions).

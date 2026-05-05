@@ -7,6 +7,8 @@ updated: 2026-04-28
 
 # How We Win the Data Agent Category — GTM Pipeline
 
+> **⚠️ Overclaim correction (2026-05-04):** The "FDE-for-enterprise motion" framing on this page is now corrected. Per [[Durable Moat Analysis Brutal]] (Subagent 1: FDE commoditization), **FDE is table stakes in 2026** — not differentiation. 800-1165% rise in FDE postings; Anthropic/OpenAI/Salesforce all run programs at scale. The 60-90 day GTM moves on this page stand; the moat narrative around FDE has been demoted. The honest pitch: *"FDE is our delivery mechanism, not our differentiation. The differentiation is the AutoFyn loop underneath, candidate Process Power, 18-24 months from proven."*
+>
 > **The action layer (60-90 day GTM execution).** Daniel's eng-lead reality check + 3-company segmentation + the answer to *"how do we decimate Hex / Cortex / Genie"* + the FDE-for-enterprise motion + the conversion artifact gap.
 >
 > **For the 1-3 year structural thesis** (Cloudflare-for-data-agents framing, 5 end-state scenarios, threat ranking, 18-month decision tree, kill conditions): see [[Data Agent Category Long-Arc Thesis]].
