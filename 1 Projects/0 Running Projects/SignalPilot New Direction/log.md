@@ -4,6 +4,520 @@ Append-only. Most recent at top.
 
 ---
 
+## Course-correct 2026-05-06 (round 3) — Time-stratified collapse + purpose-vs-job-gap
+
+**Trigger (Tarik):** *"In the agentic age when the CEO would be able to ask questions and get answers, do we really need these 20-80k tableau trained users? what is even the purpose of their job? if only 5% query needs human audit, do they even need these clunky tools? the problem used to be the skill gap of data engineer and the execs (who could not do pipeline or write sql) but over time this has collapsed too and agents writing sql that are auditable coppalses this. ultrathink"*
+
+**Diagnosis:** my prior wedge-to-stack-collapse page used "15% probability" of Tableau collapse on a 24-36 month horizon, then implicitly used that number to justify a posture that read as "BI installs persist indefinitely." That was wrong. The 7 of 10 brutal objections I'd raised were *time-decaying friction*, not *structural barriers*. On a 10-year horizon, Tarik's purpose-collapse thesis is the dominant scenario, not a tail outcome. The strategic terrain we earn revenue in is the **3-7 year gap between purpose-collapse (the role no longer needs to exist) and job-collapse (the role is no longer employed)**.
+
+### Edits to [[From Wedge to Stack Collapse — Critique + Discipline]]
+
+**1. Replaced single 15% number with time-stratified probability table.** New table covers 8 questions × 3 horizons (24-36mo / 5yr / 10yr). Key findings:
+- Tableau categorical collapse: 5-15% (24-36mo) → 30-50% (5yr) → 60-80% (10yr)
+- Tableau share-shift at greenfield analytics-eng teams: 50-70% even at 24-36mo
+- BI-analyst headcount down >50% at large enterprise: <10% (24-36mo) → 35-55% (5yr) → 60-80% (10yr)
+- Data-platform team compresses to <10 people: <5% (24-36mo) → 50-65% (10yr)
+- dbt semantic layer becomes more valuable: 80-95%+ all horizons (Tristan thesis)
+
+**2. Reclassified the 10 brutal objections as structural vs time-decaying.** Only 3 are genuinely structural:
+- #2 substrate ownership (we don't own warehouse)
+- #3 identity/access (eventually OAuth-for-agents erodes, but slowly)
+- #7 frontier-model dependency (genuinely conditional)
+
+The other 7 (layer collapse uneven, buyer fragmentation, time-horizon mismatch, hubris cost, switching costs, internal complexity, Harvey-services ratchet) are management problems disguised as market problems. They decay with time, capital, and discipline.
+
+**3. Added new section: "The purpose-collapse vs job-collapse gap."** Empirical base rates from analogous role transitions (travel agents 7yr, bank tellers 25yr, print journalists 13yr, customer service agents reversed at Klarna). 5 reasons the gap exists: management lag, role morphing, Jevons paradox, 5%-of-N is full-time work at scale, new roles created. **BI-analyst job-collapse latency estimate: 5-12 years to >50% collapse at large enterprises.**
+
+**4. Buyer transition table across phases:** Phase 1 buyer = analytics engineer ($15-40K/mo, team of 2-8). Phase 5 buyer = CDO/CIO of compressed automated platform (team of 2-6, $300K-1M/mo). Margin profile shifts from Tableau-shape (every-user-low-$) to Datadog-shape (few-power-users-high-$).
+
+**5. Revised probability tree to be time-stratified.** 5yr full collapse: 3-5%. **10yr full collapse: 8-15%.** Most-likely-success at 5yr is "Phase 1 win only" (20-30%); at 10yr it shifts to "Partial collapse" or "Strategic acquisition" (combined 40-60%). **If we survive to year 5 with PMF intact, the long-arc tailwind from purpose-collapse compounds in our favor.**
+
+**6. Revised one-paragraph honest summary** to lead with: "directionally correct on a 10-year horizon" + "of 10 objections, only 3 are genuinely structural" + "discipline buys us optionality on the 10-year tailwind."
+
+### Cross-reference edit to [[Data Agent Category Long-Arc Thesis]]
+
+Added a second warning callout (after the existing 2026-05-04 overclaim correction) noting the time-horizon nuance: page's bullishness is more defensible on 10yr than 5yr; pointing readers to the wedge-to-stack-collapse page's time-stratified tree.
+
+### What's reaffirmed
+
+- Phase 1 wedge logic (PR Receipts for analytics engineers) is still correct — they're the budget holder NOW even if their role compresses long-term
+- Disciplined wedge-then-overreach playbook still right — discipline buys long-arc optionality
+- Communication discipline (internal: collapse / external: receipts) still right
+- Premature-overreach risk (dashboard MCP shipping in parallel with PR Receipt) still the live danger
+
+### What's sharpened
+
+- Long-arc end-state product is **audit/control plane for compressed data orgs**, not "more dashboards"
+- Buyer transitions across phases — different humans, different motions, anticipate role changes
+- Don't pitch to teams about to be downsized — qualify on team trajectory not just current headcount
+- Resist SaaS-default seat-expansion motion; expansion path is value-per-seat, not seat-count
+
+### Honest pushback I gave Tarik
+
+His "do we even need these clunky tools" framing slightly over-rotates: most consumer surface usage in 2027-2029 will still be passive-consumption of cached views (board packs, weekly dashboards), not chat-based question-asking. We win the question-asking surface fast (3-5yr); we win the passive-consumption surface slowly (7-15yr). Both are real.
+
+### Files created/touched
+
+- Updated: `wiki/concepts/wedge-to-stack-collapse.md` (4 major edits: time-stratified table, friction-vs-structural classification table, purpose-vs-job-collapse new section, time-stratified probability tree, revised summary)
+- Updated: `wiki/concepts/data-agent-category-long-arc-thesis.md` (added time-horizon-nuance callout cross-referencing the revised wedge-to-stack-collapse page)
+- Updated: `log.md` (this entry)
+
+---
+
+## Course-correct 2026-05-06 (round 2) — Category reframe + Phase 2 + Stack-collapse critique
+
+**Trigger 1 (Tarik):** *"realize that for a data engineer there are two surfaces 1) claude code cli 2) pushing to PR... Key risk is this gets taken as 'another PR review product'. So we need somehow convince users it is more of a data pipeline builder + integrity test suite and this should help the data engineers to be fully served"*
+
+**Trigger 2 (Tarik):** *"once they are served, we can tackle the 'right side' i.e. the data consumer — there the issue likely is primarily trust and how to know when I need a second opinion of analytics engineer to double check it while making sure the data eng org doesnt become a helpdesk (i.e. enabling them to be empowered by agents so that agent does most of the checks and they just validate)"*
+
+**Trigger 3 (Tarik):** *"now ultimately write a full critique about this 'collapsing the whole data to BI stack'? it obviously is the long term vision but how do we wedge ourselfes with a lean but extremely highly loved product and then overreach to build the product we want to build which is collapsing the whole BI stack between the compute and storage of warehouse all the way to decisionmaking. ultrathink"*
+
+**Diagnosis:** the Receipt-as-Primitive page (and most of the wiki marketing surface) implicitly slot-typed us as a PR-review product → red ocean. The fix is a positive category claim (**dbt-tests for the AI era** running across BOTH data-engineer surfaces) + a Phase 2 thinking that empowers DE rather than helpdesks them + a brutally honest critique of the full stack-collapse vision and the disciplined wedge-then-overreach playbook to actually pursue it.
+
+**Three new concept pages:**
+
+### Page 1 — [[Data Engineering Companion]] (Phase 1 category reframe)
+
+Diagnoses the two surfaces (Claude Code CLI 60–80% / GitHub 20–40%) and the visible-artifact-bias that flattened us into Surface 2 only. Reframes us as dbt-tests for the AI era — adjacent to Datafold/Recce, NOT CodeRabbit/Greptile. Explicit comparison table of "PR review tool framing" vs "Companion + integrity test suite framing" across category gravity, comparison set, buyer mental model, pricing benchmark, differentiation, distribution.
+
+What we ship in each surface:
+- **Surface 1 (Build):** Claude Code skills (test generation, catalog read, in-line verifier), `signalpilot test` CLI command (NEW, ~3 days, must-add to MLP), operational catalog regenerator
+- **Surface 2 (Deliver):** GitHub App + Receipt + override flow
+- **Surface 3 (Eventual):** `dbt-signalpilot` adapter for `dbt build --signalpilot`, `signalpilot ci` for non-GitHub CI
+
+3 objection responses memorized: "aren't you another PR reviewer?" / "we use /review for free" / "why not write tests ourselves." 3 new validation experiments (E11 Surface-1 demo Loom; E12 cold-email subject A/B "dbt-tests for AI era" vs "Receipts for dbt PRs"; E13 Datafold/Recce comparison-set test).
+
+Updated language guide — use: "dbt-tests for the AI era" / "Receipt is the output, not the product" / "adjacent to Datafold/Recce." Avoid: "AI-powered PR reviewer" / "code review for data" / "copilot for dbt" / "verification platform."
+
+### Page 2 — [[Consumer Trust + DE Empowerment]] (Phase 2, right side)
+
+**Gated on Phase 1 PMF (5+ design partners + ≥3 paid contracts).** This is direction, not a plan.
+
+The right-side problem: agent-driven consumer queries hit two correlated risks — (A) consumer trust gap (exec gets answer with no provenance), (B) DE-helpdesk trap (DEs become verification helpdesk via Slack DMs). Both compound.
+
+**The 95/5 routing principle:**
+- Score ≥90 → ship autonomously with Claim Receipt
+- Score 75–89 → ship with structured caveat
+- Score <75 → escalate to DE queue (NOT Slack DM): structured 5-min validation task with pre-populated context
+
+DE-empowerment design: queue replaces 30 ad-hoc DMs/day with 1.5 structured 5-min validations. **Pitch to DE org: "we route 5% in structured tasks instead of 30 DMs interrupting your day."**
+
+**Claim 7-check protocol** (different from code-side 7-check): source authority / freshness / definition match / time-window alignment / cohort consistency / recent test pass / **lineage trust** (every model in dependency chain has recent PR Receipt with Score ≥85).
+
+**Critical inversion:** Phase 1 IS Phase 2's moat. Every PR Receipt becomes a node in lineage trust graph. Competitor entering Phase 2 fresh has zero receipt history → can't anchor lineage trust → can't make the SLA bet.
+
+Buyer expansion: Phase 1 $15–40K/mo → Phase 1+2 combined $60–80K/mo per customer (3–5× multiplier). 5 validation experiments (E14 helpdesk-DM count survey, E15 Mock Claim Receipt + queue test, E16 Exec willingness-to-trust, E17 Claim 7-check spec validation, E18 Score-routing threshold test) — **run only post-Phase-1 PMF.**
+
+### Page 3 — [[From Wedge to Stack Collapse — Critique + Discipline]] (strategist-mode audit)
+
+The brutally honest counterpart to [[Data Agent Category Long-Arc Thesis]]. Smoke-tests the full vision against the 5-person-team, 18-month-runway reality.
+
+**The full vision (audacious version):** collapse modern BI stack between dbt and exec decision into one product. ~$40–50B TAM headline number. **Honest re-statement: ~$8–12B realistically displaceable** because Tableau/Looker/PowerBI enterprise installs aren't dying on this horizon (only 15% probability per layer-collapse research).
+
+**10 brutal objections ranked by severity:**
+
+1. Layer collapse is uneven (notebooks 70% / dashboards 55% / Tableau 15% probability)
+2. We don't own substrate (Snowflake/Databricks/dbt Labs can pull rug)
+3. Identity/access is the persistent moat — never ours
+4. Buyer fragmentation across phases (different humans, different motions)
+5. Time horizon mismatch (5–10yr vision vs 18mo runway)
+6. Hubris cost (the Combinator pattern — over-promise, lose credibility)
+7. Frontier model dependency (slow-AI world breaks the thesis)
+8. Switching costs work AGAINST us at consumer side (existing dashboards persist)
+9. Internal complexity (~12 distinct surfaces under full collapse)
+10. The Harvey-pattern services ratchet (services starve product)
+
+**Honest probability tree:**
+- Full stack collapse $1B+ outcome: **3–5%**
+- Partial collapse $200M–$1B: **15–25%**
+- Phase 1 only $50–200M: **20–30%**
+- Harvey services $5–15M ARR: **20–30%**
+- Acqui-hire: **15–20%**
+- Outright fail: **5–10%**
+
+**Most-likely success path = the disciplined wedge-then-overreach.**
+
+**5-phase playbook with earn-the-right + kill conditions:**
+
+- Phase 1 (Q3 2026 NOW): Lean Phase-1 MLP per [[Data Engineering Companion]] + [[Receipt-as-Primitive]] scope cut. Earn Phase 2: 5+ paid customers, ≥80% retention 6mo, ≥1000 Receipts/customer, AutoFyn frozen-team test pass, ≥1 customer voluntarily asks for Phase 2.
+- Phase 2 (Q1–Q2 2027): Consumer trust + DE empowerment. Earn Phase 3: 5+ Phase-1 expansions, E14 helpdesk reduction, E16 exec trust, $5M ARR.
+- Phase 3 (Q3–Q4 2027): BI surface displacement (notebooks first, NOT Tableau). Earn Phase 4: ≥3 customers replace ≥50% Hex/Mode usage, $15M ARR.
+- Phase 4 (2028): Stack-collapse-to-decision. Earn Phase 5: cross-vertical pattern transfer, ≥1 enterprise $1M+ contract, Receipt format adopted by another vendor.
+- Phase 5 (2029+): Direct exec-to-warehouse-with-receipts. Honest probability: 3–5%.
+
+**Cross-cutting kill conditions** (any halts further phases): AutoFyn frozen-team test fails Q4 2026; dbt Labs first-party verifier at Coalesce; Anthropic native /verify; 12mo no Phase-1 customers; AI capabilities slow >40% YoY; Snowflake/Databricks first-party verified-fix.
+
+**Communication discipline:**
+- Internal: speak the long vision freely
+- Customers: only Phase 1 ever, until receipts back Phase 2
+- Investors: long arc with honest probabilities
+- Recruits: destination + discipline both
+- Avoid: "we'll replace Tableau," "Vercel for data," "stack collapse" externally
+
+**The danger NOW:** dashboard MCP + notebook MCP shipping in parallel with PR Receipt = premature Phase 3 over-reach with Phase 1 budget = the Combinator pattern. Per [[2026-05-06 — Mid-week Sync direction snapshot]] Bottleneck #2.
+
+**The honest summary:** "Internally we're chasing stack collapse; externally we're shipping receipts. The over-reach is earned, not declared. The discipline is the moat."
+
+### Pitch Ladder updated
+
+[[Pitch Ladder + PMF Experiments]] elevator + 5-min "THE THING" section + variants block updated to lead with "dbt-tests for the AI era." New "Part 1.5 — Objection handling" section memorialized with 3 rehearsed responses to "aren't you another PR review tool" + "/review is free" + "we'll write tests ourselves." Sequencing rule: if these objections come up in first 60 seconds of a call, the demo Loom is wrong (leading with PR Receipt instead of Claude Code session).
+
+### Files created/touched
+
+- New concept: `wiki/concepts/data-engineering-companion.md` ★ Phase 1 category reframe
+- New concept: `wiki/concepts/consumer-trust-and-de-empowerment.md` ★ Phase 2 right-side
+- New concept: `wiki/concepts/wedge-to-stack-collapse.md` ★ strategist-mode brutal critique + 5-phase discipline playbook
+- Updated: `wiki/concepts/pitch-ladder-and-pmf-experiments.md` (elevator + 5-min + objection handling)
+- Updated: `index.md` (3 new concepts at top of list)
+- Updated: `log.md` (this entry)
+
+### Pages flagged for follow-up edit
+
+- [[Receipt-as-Primitive]] — intro callout: Receipt is delivery artifact, not product
+- [[Minimally Lovable Product]] — MLP must include `signalpilot test` CLI + Surface-1 lead Loom
+- [[Trust Layer for Data Consumption]] — point to [[Consumer Trust + DE Empowerment]] as operational form
+- [[Five Paths Decision Tree]] — Phase 2 expansion path now concretely scoped
+- [[Path to 2 Powers Roadmap]] — Phase 2 economics ($200–300K/mo combined per customer) sharpens Series A trajectory
+- [[Objection Handling]] — fold 3 new rehearsed responses
+
+---
+
+## Course-correct 2026-05-06 — MLP scope cut + Pitch Ladder + PMF Experiments
+
+**Trigger (Tarik):** *"what this misses the mark on is it talks too much about building complex product (all of which can be made but takes away PMF focus), but nowhere we talk explicitly about how to make a pitch to the ICPs with a product that is explainable in an elevator pitch, in a 5min pitch, in a 30 min meeting and how over time we would design light experiments for PMF. Again building MLP does not mean we overbuild a massive protocol and infra as a 5 person team."*
+
+**Diagnosis:** [[Receipt-as-Primitive]] page (filed earlier today) over-engineered the MLP — full JSON Receipt schema with Ed25519, content-addressed evidence blobs, Rekor anchor, Bayesian Score, telemetry warehouse, 13-week sprint plan = a 20-engineer team's spec, not a 5-engineer team's wedge. Engineering-as-procrastination dressed in rigor. Per CLAUDE.md operator-mode default.
+
+**Two-part course correction:**
+
+### Part 1 — Added MLP Scope Cut to [[Receipt-as-Primitive]]
+
+Inserted explicit "⚠ MLP SCOPE CUT" section near top of that page admitting the over-build. Defines:
+
+- **MLP = structured PR comment** posted by GitHub App with 3 sections (What changed / What we verified / Confidence Score: NN/100). One unique URL → basic HTML view. That's it.
+- **No cryptographic signing** in MLP. Add Ed25519 only when first customer asks for SOC2.
+- **No transparency log.** Add Rekor only when first regulated-industry buyer asks.
+- **No `.signalpilot/catalog.json`** — read dbt manifest directly at runtime.
+- **Telemetry = a Google Sheet** for first 5 customers. Tarik / Adib hand-track outcomes.
+- **No AutoFyn-derived Score in MLP.** Rules formula only; AutoFyn is the Q4 upgrade not the launch.
+- **Defer table** with 12 long-spec items mapped to "ship when paying customer asks for it" triggers.
+- **MLP team allocation: 5 people, 4 weeks** (Tarik 40h GTM; Daniel 30h verifier+score; Luiz 25h GitHub App; Adib 20h onboarding+sheet telemetry; Fahim 25h ICP outreach).
+- **Exit criteria week 4:** 3+ design partners installed; ≥1 outcome-priced contract closed; 10+ Receipts shipped to prod; 0 destructive ops; Spider 2.0 holds ≥51.56.
+- **Rule:** if a deferred item is asked for by an actual paying customer or term sheet, build it in <5 days. Otherwise stays deferred.
+
+### Part 2 — New page: [[Pitch Ladder + PMF Experiments]]
+
+The missing operator-mode artifact. Six parts:
+
+1. **4-level pitch ladder** with exact scripts:
+   - **Elevator (10–30s):** "SignalPilot writes a Receipt for every AI-generated dbt change — what changed, what was verified, and a Confidence Score from 0 to 100. We're #1 on Spider 2.0-DBT, and we'll guarantee the Score above 90 or refund the month. We work for dbt-shop analytics engineers running Claude Code." (50 words)
+   - **5-min** (cold reply): timed sections — Hook/Pain (0:30) → The Thing (1:30) → Proof (2:30) → Offer (3:30) → Ask (5:00)
+   - **30-min** (design-partner zoom): 7 sections with timing + materials list (triple-reviewer screenshot, 60s demo Loom fallback, contract template — that's it, no 40-slide deck)
+   - **60-min deep-dive** (technical buyer / serious investor): adds architecture deep-dive + risks (volunteered) + long-arc thesis
+
+2. **Common 5-beat skeleton** every pitch follows: PAIN → RECEIPT → PROOF → OFFER → ASK. If a beat is missing, the pitch is broken; if a sixth creeps in (vision/philosophy when not asked), kill it.
+
+3. **10 lightweight 60-90min PMF experiments** with owner + hypothesis + success/failure signals + log location:
+   - E1 Sunday-night cold-email batch (10 emails, Legora 3-line pattern)
+   - E2 dbt Slack Loom drop in `#tools-and-integrations`
+   - E3 Friend-of-friend mock test (3 texts with Receipt screenshot)
+   - E4 Triple-reviewer side-by-side demo
+   - E5 "Demo-on-their-repo" hand-rolled offer at end of every reply
+   - E6 Twitter/LinkedIn thread on Tristan correctness-punt
+   - E7 Founder-DM lottery (Mon/Wed/Fri, 3 DMs/week, no pitch — just pain question)
+   - E8 The Ramen test (drop elevator at every coffee, count follow-up Qs)
+   - E9 Score-removal anti-validation (would they still buy without Score?)
+   - E10 Refund-SLA willingness (does SLA make sale easier or harder?)
+   - **Volume rule:** ≥5 experiments running per week; ~6 hrs/week founder-time on PMF; remaining 34 hrs on hand-rolled E5 demos for replies.
+
+4. **Mon-Fri operator cadence** following CLAUDE.md daily founder rhythm — CREATE morning, REPLY midday, DISTRIBUTE afternoon, MEET evening, REFLECT night. Each day has experiment slots.
+
+5. **Honest 90-day PMF rubric** — week 4 / week 8 / week 13 explicit pass/fail criteria. **Named failure modes with what to do:**
+   - <1 design partner installed → switch from cold email to founder-DM + content
+   - Installs but no paid contract → run E10 explicitly, consider per-Receipt drop SLA for design partners
+   - Paid but Receipts unused → hand-onboarding flow is the unblock
+   - 3+ partners no Score questions → Score may be cosmetic; confirm via E9
+   - Spider 2.0 drops below 51.56 → STOP everything until baseline restored
+
+6. **What this page DOES NOT cover** + cross-links to existing wiki pages.
+
+### Why this matters
+
+The wiki had become engineering-spec-heavy and operator-light. Tarik flagged this directly:
+- [[2026-05-06 — Mid-week Sync direction snapshot]] Bottleneck #1: narrative not consumable
+- This trigger: "MLP does not mean we overbuild a massive protocol and infra as a 5 person team"
+
+Both bottlenecks now have explicit operator-mode artifacts. The pitch ladder makes the narrative consumable in spoken form. The MLP scope cut makes the build plan honest. The 10 PMF experiments make the iteration cheap.
+
+### Files created/touched
+
+- Updated: `wiki/concepts/receipt-as-primitive.md` — added "⚠ MLP SCOPE CUT" section near top with team allocation, exit criteria, defer table
+- New concept: `wiki/concepts/pitch-ladder-and-pmf-experiments.md` ★ the operator-mode page
+- Updated: `index.md` — both pages reflected; receipt-as-primitive description rewritten to lead with MLP cut
+- Updated: `log.md` (this entry)
+
+### Pages flagged for follow-up edit
+
+- [[Minimally Lovable Product]] — restate using MLP scope cut + cite Pitch Ladder for GTM ops
+- [[Visceral Pain and GTM Playbook]] — write Receipt-specific 3-line cold-email template (E1 input)
+- [[Product & Feature Roadmap]] — Q3 2026 row should reference the 4-week MLP and the validation gates
+
+---
+
+## Synthesis 2026-05-06 — Receipt-as-Primitive (operational detail)
+
+**Trigger (Tarik):** *"okay can you log this conversation in the wiki and make a page about receipt-as-primitive in detail esp w product and engineering language — make sure you explain ICP, product features, user story, and most importantly our GTM wedge and ways to validate this"*
+
+**Method:** Pure synthesis. No new external research. Operationalizes the [[Unified Product Vision — Receipts + the Loop]] concept (filed earlier same day) into product/eng/GTM/validation detail.
+
+### Conversation arc (this thread, today)
+
+1. Started session with [[End-to-End Product Design]] (3-primitive blueprint) and [[Product & Feature Roadmap]] (quarterly features through Series A)
+2. Ingested [[2026-05-06 — Mid-week Sync direction snapshot]] — surfaced two bottlenecks: narrative not consumable; PR-Receipt-vs-Hex-displacement scope drift
+3. Tarik asked: *"AutoFyn seems like a secret powerhouse weapon but lacking marketability — how do we figure out an aligned vision that productizes this along with the rest of the data suite?"*
+4. Synthesized [[Unified Product Vision — Receipts + the Loop]] — Stripe Radar / Tesla FSD pattern; Receipt is the unifying primitive; Confidence Score is AutoFyn's customer-visible manifestation
+5. Tarik asked for operational detail — this page
+
+### What this concept page contains (11 sections)
+
+1. **Receipt JSON schema v1** — full canonical shape (`receipt_id` ULID, `subject.diff_hash` content-address, `verification.checks` with evidence_refs, `provenance.lineage_hash`, `confidence` block with method/baseline/factors, Ed25519 signature, optional Rekor anchor)
+2. **Receipt lifecycle** — agent action → governed MCP intercept → verifier 7-check → catalog snapshot → Score → sign → emit → telemetry → AutoFyn → next Receipt better. Component map across L1/L2/L3.
+3. **Three surfaces** — PR Receipt (Q3 wedge), Dashboard Receipt (Q4 prod-grade if PR hits milestones), Notebook Receipt (Q4), Claim Receipt (Q1 2027 gated on frozen-team test)
+4. **ICP** — Primary (analytics engineers at dbt-native seed–Series-A SaaS, $15K–$40K/mo budget); Secondary (data eng leads); Tertiary Phase 2 (CFOs, gated). Explicit list of "NOT our ICP."
+5. **4 concrete user stories** — Sarah (Day 0 → 7 walkthrough), Ravi (contract closing), 3-month AutoFyn-derived Score climb, Maya CFO Phase 2
+6. **★ GTM wedge — 5 sequenced channels:** dbt Slack #tools-and-integrations Loom; HN "Show HN: Receipts for AI-generated dbt PRs"; 30 cold emails to YC W24/S24/W25 dbt-using companies; Coalesce 2026 CFP (assigned-this-week deadline); compete-narrative blog ("Receipts not Reviews"). 7-column wedge-test table comparing PR Receipt vs Hex displacement vs CFO Claims vs generic AI data observability — PR Receipt wins all 7.
+7. **★ 6 validation experiments** — each with claim, method, success criterion, what disproves: (1) Receipt mock test, (2) Triple-reviewer demo test (CodeRabbit + Greptile + SP side-by-side), (3) Score willingness-to-pay A/B, (4) Score-removal anti-validation, (5) Triple-surface unification test, (6) Investor-pitch A/B for Series A
+8. **Q3 2026 13-week sprint plan** mapped to L1/L2/L3 + validation gates per week
+9. **Pricing implications** — Receipt becomes the billable unit; outcome-priced SLA enforcement is mechanical via Score
+10. **Risks** — wedge-killing (dbt Labs first-party verifier at Coalesce; Anthropic native /verify; CodeRabbit/Greptile add scoring); productization (Score-as-vanity); engineering (calibration, schema lock-in, override social-engineering)
+11. **Open questions** — Score scale (0-100 vs 0-1 vs A-F); calibration formula; telemetry default; Rekor sync vs async; schema evolution policy; cross-customer transfer privacy
+
+### Explicit kill condition stated in the page
+
+If end Q3 2026: experiments #1 + #2 + #5 all fail AND <3 design partners signed AND no outcome-priced contract → Receipt-as-primitive thesis is wrong. Pivot to flat per-seat pricing, drop Score, drop SLA. Empirically testable.
+
+### Files created/touched
+
+- New concept: `wiki/concepts/receipt-as-primitive.md` ★ the operational detail
+- Updated: `index.md` (concept added under Unified Product Vision)
+- Updated: `log.md` (this entry)
+
+### Pages flagged for follow-up edit
+
+- [[Minimally Lovable Product]] — restate PR Receipt MVP using Receipt schema v1 from this page
+- [[Product & Feature Roadmap]] — fold 13-week Q3 sprint plan + validation gates into Q3 2026 row
+- [[End-to-End Product Design]] — cite Receipt schema as the L2 emit-format
+- [[Visceral Pain and GTM Playbook]] — link 5 wedge channels here
+- [[Path to 2 Powers Roadmap]] — reframe per-fix pricing as per-Receipt-with-Score-SLA pricing
+- [[Spider 2.0-DBT]] — note that the 51.56 score IS the GTM credibility receipt anchoring §6
+
+---
+
+## Synthesis 2026-05-06 — Unified Product Vision (Receipts + the Loop)
+
+**Trigger (Tarik):** *"the challenge here is autoFyn seems like a secret powerhouse of a weapon but lacking clear marketability — how do we figure out an aligned vision that also productizes this along with the rest of the data suite of the product"*
+
+**Method:** No new external research. Pure synthesis from prior wiki + analog company patterns (Stripe Radar, Tesla FSD data engine, Cloudflare threat intel, Cresta, Datadog Watchdog). Resolves the [[2026-05-06 — Mid-week Sync direction snapshot]] Bottleneck #2 (PR-Receipt-vs-Hex-displacement scope drift).
+
+### The diagnosis
+
+AutoFyn is structurally unmarketable as a standalone product — runs in our cloud, customer-felt only over time, value is temporal. But it's the only candidate for Helmer Process Power per [[Path to 2 Powers Roadmap]]. The aligned vision must do two jobs at once: make AutoFyn legible to investors (without putting it on a SKU) AND compose the three product surfaces (PR / dashboard / notebook) into one story.
+
+### The pattern (from companies that solved this)
+
+Three-layer architecture: **engine (internal moat) → public artifact (legibility) → customer manifestation (felt value)**. Stripe Radar / Tesla FSD / Cloudflare / Cresta / Datadog Watchdog all share it. Engine is never a SKU; public artifact makes the moat legible; customer manifestation is the daily felt value.
+
+### The unifying primitive
+
+**The Receipt.** Every customer-facing surface emits one. Fields: subject, verification chain, provenance, **Confidence Score** (AutoFyn-derived, per-customer), signature, timestamp, agent identity.
+
+Three surfaces today, one primitive:
+- **PR Receipt** (GitHub App) — analytics engineer ICP
+- **Dashboard Receipt** (cached JSON dashboard via MCP) — Hex-pattern users
+- **Notebook Receipt** (cached JSON notebook via MCP) — analyst + analyses-to-execs
+
+Future: **Claim Receipt** (CFO surface) — gates on Q4 2026 frozen-team test.
+
+### The legibility layer (3 public artifacts)
+
+1. **Confidence Score** (per-receipt, daily) — load-bearing artifact; rule-based v0 in Q3 2026, AutoFyn-derived from Q4 2026
+2. **AutoFyn Compounding Report** (per-customer + public, quarterly) — first public Dec 31 2026; Series A diligence canon
+3. **Skill Changelog** (public, weekly) — Linear-style changelog-as-marketing; cheapest legibility surface
+
+### The pitch (one paragraph)
+
+> SignalPilot is the Receipt layer for agent-driven data work. Every time an AI agent does data work — opens a PR, builds a dashboard, answers a CFO question — SignalPilot emits a Receipt: a cryptographically-signed verification chain with a Confidence Score. The score is derived by AutoFyn, our cross-customer learning engine that identifies failure patterns no single customer would surface and ships fixes back as plugin updates. Three surfaces today. One primitive. The moat isn't any single surface — it's the loop that makes every surface compound.
+
+### Naming strategy
+
+| Internal | External |
+|---|---|
+| AutoFyn | (no public name — "our cross-customer learning engine") |
+| Verifier subagent / 7-check | "verification" |
+| Operational catalog / governed MCP | (no public name) |
+| Receipt | **Receipt** (keep) |
+| Confidence Score | **Confidence Score** (keep) |
+| Frozen-team test | (no public name; reference quarterly results) |
+
+Stripe-Radar precedent: customers see the Score, not the model. AutoFyn lives in investor decks + engineer team-name real estate. Revisit at Series A whether to publicly brand (Tesla FSD pattern).
+
+### Roadmap delta (added to [[Product & Feature Roadmap]] — pending follow-up edit)
+
+- **Q3 2026:** Confidence Score (rule-based v0) + customer-specific Score history + Score on every PR Receipt — 3 new deliverables on existing MVP
+- **Q4 2026:** Score becomes AutoFyn-derived; per-customer accuracy dashboard ships; **first AutoFyn Compounding Report Dec 31 2026**; Skill Changelog launches
+- **Q1 2027:** Cross-customer Score transfer; Receipts in Notion / Slack ([[Symbiotic Wedge]] surface expansion)
+- **Q2–Q3 2027:** Compounding Reports as Series A diligence canon; public Score benchmark vs Spider 2.0
+
+### What this resolves
+
+- [[2026-05-06 — Mid-week Sync direction snapshot]] Bottleneck #2 (PR-Receipt-vs-Hex-displacement product debate): Option C wins. One product, three surfaces.
+- [[End-to-End Product Design]] L2 ambiguity (skill bundles → "skill bundles are *how* surfaces emit Receipts")
+- [[AutoFyn]] productization gap (manifests in Confidence Score + Compounding Report + Skill Changelog, not as a SKU)
+
+### Files created/touched
+
+- New concept: `wiki/concepts/unified-product-vision.md` ★ the aligned vision
+- Updated: `index.md` (new concept at top of list)
+- Updated: `log.md` (this entry)
+
+### Pages flagged for follow-up ingest pass
+
+- [[Minimally Lovable Product]] — promote "PR Receipt" framing to "Receipt — first surface: PR"
+- [[End-to-End Product Design]] — add Confidence Score to L1 catalog spec; Compounding Report as L3 customer artifact
+- [[Product & Feature Roadmap]] — fold roadmap delta (above) into Q3/Q4 tables
+- [[Trust Runtime Positioning]] — restructure around Receipt as the user interface
+
+---
+
+## Ingest 2026-05-06 — Mid-week Sync direction snapshot
+
+**Trigger (Tarik):** *"go through the meeting transcript today and gather what we are doing right and what we can improve + log this as a snapshot of direction in the wiki [Notion URL]"*
+
+**Method:** Notion MCP fetch of the Mid-week Sync page (2026-05-06 10:00 AM EDT, attendees: Tarik, Fahim, Adib, Daniel, Luiz). Full transcript (~67K chars) saved verbatim to `raw/2026-05-06_meeting_midweek-sync.md`. Synthesized against this week's strategic resets ([[End-to-End Product Design]], [[Product & Feature Roadmap]], [[Path to 2 Powers Roadmap]], Tristan thesis).
+
+### Headline finding
+
+**Team independently arrived at the wiki's strategic conclusions during the sync** without having read this week's writeups — strongest validation signal yet captured. Fahim delivered the layer-collapse + Vercel-moment thesis verbatim. Tarik articulated [[Trust Runtime Positioning]] in his own words ("suite of verification agents that verifies all of these claims"). Analytics-engineer ICP explicitly named.
+
+### What's working (8 items)
+
+1. Independent strategic alignment between team and wiki blueprint
+2. ICP locked in conversation: analytics engineers
+3. CVE pipeline producing distribution velocity (10+ CVEs, Light LLM/Krish approved blog, 5-customer pipeline)
+4. Knowledge-base feature is a Process-Power proof point in miniature (50% context cut, no benchmark regression — Daniel)
+5. Dashboard MCP shipped fast with sane architecture (~1min generation vs ~20min raw — Luiz)
+6. Benchmark discipline holding (40/68, working toward 42; prompts kept private to protect leaderboard)
+7. Inbound demand surfacing (Adib's client friend wants AutoFyn for strategy optimization)
+8. Tarik's strategic loop is functional (YC app + Tristan + layer-collapse all converging)
+
+### What to improve (10 items)
+
+1. **★ THE BOTTLENECK — strategic narrative not consumable** (Tarik's own words: *"having a hard time to share and get feedback… wiki is not the most fun thing to read"*). Fix: consolidated narrative doc, 5–8 pages, this week.
+2. **★ SCOPE DRIFT — PR Receipt vs Hex-displacement is two products being treated as one.** Recommendation: Option C — compose into one story (PR Receipt = substrate proof; dashboard MCP = consumer surface that consumes verified-claim-receipts).
+3. CVE → install funnel has no plumbing (10+ CVEs, no CTA, no UTM, no AutoFyn intro flow). Fix: blog footer CTA + tracking.
+4. Benchmark math went circular ~5min in sync. Fix: canonicalize on [[Spider 2.0-DBT]] entity page (Daniel was right: 40/68 = 58.8%).
+5. Coalesce 2026 CFP + Notion AI integration both unowned. Fix: assign this week.
+6. Remote RPC may be orphaned work. Fix: Tarik decides scope.
+7. "Design partner" semantics conflated with "security customer" — different funnels.
+8. Verification spec for agent-as-consumer is conceptual not technical. Fix: stub `claim-verification-protocol.md`.
+9. Legora playbook is GTM-execution lesson (Clay-style targeting, 95% of work) — apply post-PMF, NOT FDE.
+10. "Build for agents not humans" reframe needs to be load-bearing — run agent-first design review on dashboard MCP.
+
+### Direction snapshot table (in summary page)
+
+7-row roadmap-vs-reality table. Net assessment: 🟡 partial / 🔴 behind on roadmap-committed surface area; 🟢 ahead but unplanned on dashboard MCP (the scope-drift signal).
+
+### Action items (15) — top 5 priorities for next 7 days
+
+1. Tarik — consolidated narrative doc (unblocks fundraising + team alignment)
+2. Tarik — decide PR-Receipt vs Hex-displacement product question (Option A/B/C)
+3. ASSIGN — Coalesce 2026 CFP submission (gating event w/ deadline)
+4. Adib — Light LLM blog by May 15 (deadline-locked)
+5. Tarik + Adib — CVE blog → install CTA + UTM tracking (distribution leverage)
+
+### Files created/touched
+
+- New raw: `raw/2026-05-06_meeting_midweek-sync.md` (full Notion-MCP transcript)
+- New summary: `wiki/summaries/2026-05-06_midweek-sync-direction-snapshot.md` ★ the snapshot
+- Updated: `index.md` (snapshot added to summaries; raw transcript linked)
+- Updated: `log.md` (this entry)
+
+### Pages flagged for follow-up ingest pass (not modified yet)
+
+- [[Product & Feature Roadmap]] — add design-partner ≠ security-customer disambiguation
+- [[Spider 2.0-DBT]] — canonicalize 40/68 leaderboard math
+- [[Path to 2 Powers Roadmap]] — note Clay-targeting GTM pattern as post-PMF motion
+- [[Minimally Lovable Product]] — compose-or-cut dashboard MCP (gated on Tarik's product decision)
+
+---
+
+## Ingest 2026-05-05 — Tristan Handy future thesis + End-to-End Product Design
+
+**Trigger (Tarik):** *"I actually really like takes from Tristan [Five Things + BI's Second Unbundling]. Now let's go deeper and use the primitives we already have and help me design building an end to end product using the primitives we have built: 1. governed mcp for all connections, light catalog (more than human interesting is agent readability) 2. then trojan horse into claude code with vertical specific skills and tools 3. auto improve the harness / monitor (requires lot of compute but medium term compute is likely cheap). ultrathink"*
+
+**Method:** WebFetch on both Tristan posts → ingest as raw + summary → write blueprint synthesis grounding the three primitives in Tristan's framing.
+
+### The load-bearing finding
+
+Tristan's BI Second Unbundling contains the sentence: *"Leave aside, for a second, the correctness part — there has been plenty of ink spilled on the topic of creating trustworthy analytical outputs."* The CEO of dbt Labs, mapping the future of the stack, **explicitly punts on verification**. This is the cleanest external validation yet captured that [[Trust Runtime Positioning]] is unclaimed at the platform layer.
+
+### What Tristan validates (used as anchors in the blueprint)
+
+- 100× more agent queries than human queries within 36 months → governance must live where the traffic is
+- 6× harness performance gap, vertical > generic → AutoFyn loop is the durable leverage
+- Semantics migrate to MCP servers (dbt MCP + Snowflake Semantic Views) → SP composes on top with operational state, not against
+- Identity/access remains a persistent moat → SP integrates, never replaces
+- Claude Code / Cursor are creator surface → trojan horse confirmed
+- dbt MCP server growing 50% MoM → MCP is the load-bearing protocol
+
+### What Tristan does NOT validate (gaps that are the wedge)
+
+- Write-side governance (he is heavily read-side)
+- Operational-state catalog (drift, freshness, recent failures) — he stops at semantics
+- Cross-vendor governance aggregation — his worldview keeps dbt MCP + Snowflake separate
+
+### The blueprint (in [[End-to-End Product Design]])
+
+Three primitives = three layers of one system:
+- **L1** Governed MCP + agent-readable operational catalog (composes with dbt MCP + Snowflake Semantic Views; adds drift/freshness/failure history + write governance + audit log)
+- **L2** Vertical skill bundles in Claude Code (`signalpilot-dbt` Q3 2026 → `signalpilot-fintech-claims` Q1–Q2 2027 → optional Phase 3 compliance-audit) + verifier subagent + PR Receipt GitHub App + telemetry hooks
+- **L3** AutoFyn auto-improving meta-harness (failure-pattern mining → tool/skill synthesis → A/B test → ship via plugin update); $20K/mo compute Q3 2026, scales as compute-per-token drops; **frozen-team test Q4 2026 is the load-bearing experiment**
+
+Cloudflare-for-data-agents pattern (per [[Data Agent Category Long-Arc Thesis]]). Reading flows down (action). Learning flows up (improvement).
+
+### Three end-to-end traces (worked examples in concept page)
+1. Day 1, dbt-shop DE ships customer LTV model → L1 catalog read → L2 verifier 7-check → L3 telemetry counter increment
+2. Day 7, high-blast-radius rename caught → L2 blocks merge → override flow with rollback playbook → L3 clusters override patterns
+3. Month 6, Phase 2 fintech-claims plugin → CFO asks "what was Q2 ARR?" → verified-claim-receipt with derivation chain → 3-5× seat multiplier per [[Trust Layer for Data Consumption]]
+
+### Pricing (locks Counter-Positioning per [[Path to 2 Powers Roadmap]])
+
+- $2K-$5K per merged fix, 95% precision floor, 30-day money-back if accuracy <90%
+- OR $15K-$40K/mo per dbt project (unlimited)
+- Phase 2: per-verified-claim or per-finance-system pricing (gated on Mercury/Brex/Ramp design partner validation)
+
+### 90-day MVP (Aug–Sep 2026)
+
+13-week table in concept page. Exit criteria: 5 design partners installed, 3 outcome-priced fixes shipped + paid, AutoFyn baseline established for Q4 2026 frozen-team test.
+
+### Files created/touched
+
+- New raw: `raw/2026-05-05_tristan-handy-future-thesis.md` (extracted from both Tristan posts via WebFetch)
+- New summary: `wiki/summaries/2026-05-05_tristan-handy-future-thesis.md`
+- New concept: `wiki/concepts/end-to-end-product-design.md` ★ the blueprint
+- New concept: `wiki/concepts/product-feature-roadmap.md` ★ the roadmap (quarter-by-quarter features per L1/L2/L3 through Series A)
+- Updated: `index.md` (added blueprint + roadmap to top of concepts; new raw source link)
+- Updated: `log.md` (this entry)
+
+### Honesty checks applied
+
+- Tristan has incentive to position dbt as substrate; "first unbundling" narrative is self-flattering. Discounted.
+- "100× queries" + "6× harness gap" cited as directional, not literal.
+- Identity/access moat noted as time-limited (OAuth-for-agents may erode).
+- Blueprint defends against [[Durable Moat Analysis Brutal]] floor: 0 Powers today, ~40% probability of being a growing standalone company May 2028. This is the *path*, not the certainty.
+
+---
+
 ## Ingest 2026-05-04 — Path to 2 Powers by Series A (constructive companion)
 
 **Trigger (Tarik):** *"shoot off the 7-Powers agent the question 'given 0 Powers today and 1.5 in 18 months, what is the SHORTEST path to 2 Powers by Series A — counter-positioning + emerging Process Power?'"*
