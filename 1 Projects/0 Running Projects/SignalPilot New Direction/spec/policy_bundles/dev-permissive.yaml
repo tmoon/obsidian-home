@@ -1,0 +1,93 @@
+# dev-permissive — opinionated default for dev sandboxes + experimentation
+#
+# What it does: all checks run; failures are WARNINGS not blockers; save
+# proceeds. Auto-fix on for safe-class fixes. Override unrestricted.
+#
+# Use case: dev branches, sandbox repos, week-1 onboarding before customers
+# trust the verifier enough for production-strict.
+
+policy: dbt_post_build
+id: dev-permissive
+version: "1.2"
+
+applies_to:
+  models:
+    - "models/**"
+    - "tests/**"
+  exclude: []
+
+# Pre-flight — looser
+preflight:
+  ddl_block: true                       # still block destructive ops
+  function_denylist:
+    - DROP
+    - TRUNCATE
+  limit_inject:
+    default: 100000
+    override_allowed: ["any-role"]
+  budget:
+    max_rows_scanned: 5.0e9
+    max_dollars: 25.00
+  pii_redaction:
+    fields: ["ssn", "credit_card"]
+
+# Verification — same checks but failures don't block
+checks:
+  - id: models_exist
+    required: true
+  - id: column_schema_alignment
+    required: false                     # warns on type mismatch but allows
+    strict_types: false
+  - id: row_count
+    required: false
+    reference: snapshot
+    tolerance_pct: 10                   # very loose
+  - id: fan_out_detection
+    required: true                      # this stays required (dangerous bug class)
+  - id: cardinality_audit
+    required: false
+    flag:
+      - all_null_columns                # only flag the worst class
+  - id: value_spot_check
+    required: false
+    sample_size: 3
+    tolerance_numeric: 0.01
+  - id: table_names_match
+    required: true
+
+on_failure:
+  required_check_failed: post_warning   # NEVER block in dev
+  warn_check_failed: post_warning
+  budget_exceeded: post_warning
+
+override:
+  required_role: null                   # any role can override
+  rollback_playbook: optional
+  audit_log_entry: required             # still log overrides
+
+blast_radius:
+  max_models: 50                        # very loose
+  on_exceed: post_warning
+
+# Auto-fix is more permissive in dev
+auto_fix:
+  allowed:
+    - missing_cast
+    - missing_cte
+    - date_spine_error
+    # not in production-strict but ok in dev:
+    # - rename_unused_var
+  forbidden:
+    - join_type_change
+    - add_null_filter
+    - remove_coalesce
+    - rewrite_user_sql
+
+# No SLA in dev
+sla:
+  precision_floor: null
+  refund_threshold: null
+
+notifications:
+  on_block: []                          # never blocks
+  on_override: []                       # not interesting in dev

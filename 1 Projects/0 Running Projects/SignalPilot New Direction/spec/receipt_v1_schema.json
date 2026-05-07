@@ -1,0 +1,252 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://signalpilot.dev/spec/receipt/v1",
+  "title": "SignalPilot Receipt v1",
+  "description": "Cryptographically-signed verification artifact emitted by the SignalPilot verifier for AI-generated dbt changes (and other agent-driven data actions). v1 is the public contract — additive changes only; breaking changes increment the version.",
+  "type": "object",
+  "required": [
+    "receipt_version",
+    "receipt_id",
+    "created_at",
+    "context",
+    "policy",
+    "preflight",
+    "checks",
+    "score",
+    "decision",
+    "actions"
+  ],
+  "properties": {
+    "receipt_version": {
+      "type": "string",
+      "const": "signalpilot.receipt/v1"
+    },
+    "receipt_id": {
+      "type": "string",
+      "pattern": "^rcpt_[0-9A-Z]{26}$",
+      "description": "ULID with rcpt_ prefix. Content-derived from diff_hash + timestamp; tamper-evident."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "context": {
+      "type": "object",
+      "required": ["subject_kind", "diff_hash", "branch"],
+      "properties": {
+        "subject_kind": {
+          "type": "string",
+          "enum": [
+            "dbt_pr_change",
+            "dbt_model_run",
+            "sql_result",
+            "dashboard_emit",
+            "notebook_emit",
+            "claim"
+          ]
+        },
+        "pr_url": { "type": "string", "format": "uri" },
+        "diff_hash": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "branch": { "type": "string" },
+        "models_touched": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "policy": {
+      "type": "object",
+      "required": ["id", "version", "policy_hash"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "examples": ["production-strict", "dev-permissive", "ci-gate", "audit-trail-only"]
+        },
+        "version": { "type": "string", "examples": ["1.2"] },
+        "policy_hash": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        }
+      }
+    },
+    "preflight": {
+      "type": "object",
+      "description": "Gateway-side enforcement evidence — DDL block, LIMIT inject, budget, PII redaction. Closes the gap between governance and verifier.",
+      "properties": {
+        "ddl_block": { "enum": ["pass", "fail", "skipped"] },
+        "limit_inject": { "enum": ["applied", "skipped"] },
+        "budget": {
+          "type": "object",
+          "properties": {
+            "rows_scanned": { "type": "number" },
+            "limit": { "type": "number" },
+            "status": { "enum": ["pass", "fail"] }
+          }
+        },
+        "pii_redaction": { "enum": ["applied", "skipped", "fail"] },
+        "audit_log_refs": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^log_[0-9A-Z]{26}$" }
+        }
+      }
+    },
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "status", "evidence"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "examples": [
+              "models_exist",
+              "column_schema_alignment",
+              "row_count",
+              "fan_out_detection",
+              "cardinality_audit",
+              "value_spot_check",
+              "table_names_match"
+            ]
+          },
+          "status": { "enum": ["pass", "warn", "fail", "skip"] },
+          "required": { "type": "boolean" },
+          "evidence": {
+            "type": "object",
+            "required": ["summary"],
+            "properties": {
+              "summary": { "type": "string" },
+              "audit_log_refs": {
+                "type": "array",
+                "items": { "type": "string", "pattern": "^log_[0-9A-Z]{26}$" },
+                "description": "Tool calls (gateway audit log) that produced this evidence. Critical for replay + audit."
+              },
+              "tool_calls": {
+                "type": "array",
+                "items": { "type": "string" },
+                "description": "Names of tools invoked, deduplicated"
+              },
+              "detail": {
+                "type": "object",
+                "description": "Check-specific structured data: schema diffs, row counts, sample rows, etc."
+              }
+            }
+          },
+          "suggested_fix": {
+            "type": "object",
+            "properties": {
+              "fix_class": {
+                "enum": [
+                  "missing_cast",
+                  "missing_cte",
+                  "date_spine_error"
+                ]
+              },
+              "description": { "type": "string" },
+              "proposed_diff": { "type": "string" },
+              "auto_applicable": { "type": "boolean" }
+            }
+          },
+          "blocking_reason": { "type": "string" }
+        }
+      }
+    },
+    "score": {
+      "type": "object",
+      "required": ["value", "method", "factors"],
+      "properties": {
+        "value": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "method": {
+          "enum": ["rules_v0", "autofyn_v1", "autofyn_v2_with_transfer"]
+        },
+        "policy_strictness": { "type": "string" },
+        "calibration_window": {
+          "type": "string",
+          "examples": ["30d"]
+        },
+        "fleet_baseline": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "customer_baseline": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "factors": {
+          "type": "array",
+          "description": "Every factor contributing to the score, deterministic. Reader can recompute the value from these.",
+          "items": {
+            "type": "object",
+            "required": ["name", "delta"],
+            "properties": {
+              "name": { "type": "string" },
+              "delta": { "type": "integer" },
+              "note": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "decision": {
+      "enum": [
+        "MERGE_OK",
+        "MERGE_WARN",
+        "MERGE_BLOCKED",
+        "MERGE_OVERRIDDEN",
+        "GATEWAY_REFUSED"
+      ]
+    },
+    "actions": {
+      "type": "array",
+      "description": "Clickable actions exposed in the PR comment. Drives the close-the-loop UX (Tier 1 auto-fix, Tier 2 delegate, Tier 3 override).",
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "kind"],
+        "properties": {
+          "id": { "type": "string" },
+          "label": { "type": "string" },
+          "kind": {
+            "enum": [
+              "user_action",
+              "rerun",
+              "delegate",
+              "apply_fix",
+              "override"
+            ]
+          },
+          "endpoint": { "type": "string" }
+        }
+      }
+    },
+    "audit_log_chain": {
+      "type": "object",
+      "properties": {
+        "first_log_id": { "type": "string", "pattern": "^log_[0-9A-Z]{26}$" },
+        "last_log_id": { "type": "string", "pattern": "^log_[0-9A-Z]{26}$" },
+        "log_count": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "signature": {
+      "type": "object",
+      "description": "Cryptographic signature. Optional in v0 MLP; required for SOC2-track customers Q4 2026+.",
+      "properties": {
+        "alg": {
+          "enum": ["ed25519", "rs256", "es256"]
+        },
+        "key_id": { "type": "string" },
+        "value": { "type": "string", "description": "Base64-encoded signature" },
+        "signed_at": { "type": "string", "format": "date-time" },
+        "transparency_log": {
+          "type": "string",
+          "description": "Optional sigstore/Rekor anchor URI",
+          "examples": ["rekor://signalpilot/receipts/sha256:..."]
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

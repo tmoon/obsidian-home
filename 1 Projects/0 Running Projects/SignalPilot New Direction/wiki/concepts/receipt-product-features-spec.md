@@ -1,13 +1,25 @@
 ---
 name: Receipt Product Features — Policy-as-Code, Action Loop, Honest Score, Vendor-Neutral Expansion
 type: concept
-sources: [raw/2026-05-06_meeting_midweek-sync.md, raw/2026-04-27_repo_signalpilot-readme.md]
-updated: 2026-05-06
+sources:
+  - raw/2026-05-06_meeting_midweek-sync.md
+  - raw/2026-04-27_repo_signalpilot-readme.md
+updated: 2026-05-07
 ---
 
 # Receipt Product Features — Spec
 
 > **★ THE FEATURE SPEC.** Concrete, codebase-grounded product features for The Receipt — informed by the actual repo state (`benchmark/prompts/dbt_verify_subagent.md` 7-check protocol, `benchmark/agent/sql_prompts.py` 23-check SQL verifier, gateway audit log, AST parsing, budget caps). Companion to [[Receipt-as-Primitive]] (the conceptual primitive) and [[Pain Now → Offer Now → Winning the Shifts (12mo / 24mo)]] (operator plan). **Read this when deciding what to actually build in Q3 2026 sprint week-by-week.**
+
+> **Buildable companion specs** (added 2026-05-07) — these are reference implementations Daniel + Luiz can start from on Monday:
+>
+> - **`spec/dbt_verifier_protocol.py`** — Python interface stubs lifting the 7-check verifier from prompt to deterministic module; emits Receipts; defines `WarehouseAdapter` contract for vendor-neutrality
+> - **`spec/receipt_v1_schema.json`** — JSON Schema (draft-07) for Receipt v1; strict enough to validate, loose enough to evolve
+> - **`spec/policy_bundles/{production-strict, dev-permissive, ci-gate, audit-trail-only}.yaml`** — 4 opinionated bundles; customer's day-1 default
+> - **`spec/pr_comment_templates.md`** — Markdown templates for rendering Receipts as GitHub PR comments (PASS / WARN / BLOCK / short-update variants)
+> - **`spec/README.md`** — explains how to use these specs and the migration path to the product repo
+>
+> When implementation begins these lift into the product repo (likely under `signalpilot/policy/` and `signalpilot/receipt/`). Until then, the wiki's strategic spec + the `spec/` reference impls are kept in sync.
 
 > **Core thesis (refined):** the codebase has TWO verifiers (post-build dbt 7-check + pre-save SQL 23-check) and a governance gateway, but **the receipt the verifier produces is text, not artifact** — it goes back to the agent and dies. Audit logs and verifier outcomes live in different worlds. **The product breakthrough is making policy a contract, not a check.** Receipts become first-class signed artifacts referencing a declared policy. That's what turns "we have a verifier" into "we enforce your policy."
 

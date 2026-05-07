@@ -4,6 +4,102 @@ Append-only. Most recent at top.
 
 ---
 
+## Synthesis 2026-05-07 (round 7) — Buildable Reference Specs in `spec/`
+
+**Trigger (Tarik):** *"continue"* — closing the loop from receipt-product-features-spec strategy doc to buildable artifacts engineering can start from Monday.
+
+**Created `spec/` folder** parallel to `wiki/` and `raw/`. Purpose: reference implementation specs that bridge wiki strategy to actual code; not production-grade, but concrete enough to be the seed.
+
+### `spec/README.md`
+
+Explains the purpose, contents, status, ownership, and migration path. When implementation begins these lift into the SignalPilot product repo (likely `signalpilot/policy/` and `signalpilot/receipt/`).
+
+### `spec/dbt_verifier_protocol.py` (~330 lines)
+
+Python interface stubs lifting the post-build dbt 7-check verifier from prompt to deterministic module. Includes:
+- Type system: `CheckStatus` (pass/warn/fail/skip — per dbt prompt's "skip don't fabricate"), `Decision` (MERGE_OK/WARN/BLOCKED/OVERRIDDEN), `FixClass` (bounded fix authority — missing_cast/missing_cte/date_spine_error allowed; join_type_change/add_null_filter/remove_coalesce/rewrite_user_sql forbidden)
+- `Policy` dataclass — frozen, hashable; loads from YAML bundle; cites `policy_hash` so receipts replay against exact policy version
+- `ChangeManifest`, `Snapshot`, `AuditLogRef`, `Evidence`, `CheckResult`, `FixSuggestion` — strict types
+- `Score` + `ScoreFactor` + `compute_score_v0()` — deterministic factor formula in code (clamp 0..100; -12 per fail; -4 per warn; blast radius 0..6; coverage 0..3; customer history after 30d 0..5/0..8; policy strictness offset). Calibration target documented in code: Score 90 = 90% no-incident-in-30d.
+- `Receipt` dataclass — the artifact; matches JSON Schema field-by-field
+- `WarehouseAdapter` Protocol — vendor-neutrality boundary with ~6 methods (parse_change, reference_snapshot, run_checks, attempt_fix, cost_estimate)
+- `run_verifier()` orchestrator — main entry point; vendor-neutral; flow goes adapter.parse → snapshot → preflight → checks → score → decision → actions → receipt
+- Internal helper stubs (preflight, blast_radius, decision derivation, action panel population)
+
+### `spec/receipt_v1_schema.json` (~230 lines)
+
+JSON Schema draft-07 for Receipt v1. Strict enough to validate, additive-only evolution. Defines:
+- Top-level required fields: receipt_version, receipt_id (ULID `rcpt_*` pattern), created_at, context, policy, preflight, checks, score, decision, actions
+- `context.subject_kind` enum: dbt_pr_change / dbt_model_run / sql_result / dashboard_emit / notebook_emit / claim — supports Phase 2 claim receipts
+- `policy.policy_hash` — sha256 pattern; receipt is replayable
+- `preflight.audit_log_refs` — pointers to gateway audit log (closes governance↔verifier gap)
+- `checks[].evidence.audit_log_refs` — every check evidence references tool calls
+- `checks[].suggested_fix` with `fix_class` + `auto_applicable` — drives Tier 1 vs Tier 2 dispatch
+- `score.factors[]` — every factor exposed; reader recomputes value
+- `actions[]` — kind enum (user_action / rerun / delegate / apply_fix / override) drives PR comment UX
+- `signature` — optional in v0 MLP; required for SOC2-track customers Q4 2026+
+
+### `spec/policy_bundles/production-strict.yaml`
+
+Day-1 production default. Every check required; blocks save on failure; override needs `data-eng-lead` role + auto-generated rollback playbook. PII redaction on email/ssn/phone/address/dob. Budget 1×10⁹ rows / $5. Blast radius cap 8 models. SLA: 95% precision floor; refund threshold 90.
+
+### `spec/policy_bundles/dev-permissive.yaml`
+
+Dev sandbox default. All checks run as WARNINGS; save proceeds. Auto-fix on for safe-class fixes. Override unrestricted (any role). Budget 5×10⁹ rows / $25. NO SLA. Used for week-1 onboarding before prospects upgrade to production-strict.
+
+### `spec/policy_bundles/ci-gate.yaml`
+
+CI/CD pipeline default. Required-check failures exit non-zero (blocks PR check). JSON receipt saved to `.signalpilot/receipts/${PR_NUMBER}-${RUN_ID}.json` as build artifact. NEVER auto-fixes from CI (humans fix in dev). Override at CI time forbidden. **This is the killer-feature workflow per receipt-product-features-spec Part 9** ("the single feature that would prove the tenet").
+
+### `spec/policy_bundles/audit-trail-only.yaml`
+
+Observability mode. ALL checks run, NONE block, full audit log emitted, every event logged. Used for: pre-launch trial customers seeing what verifier WOULD do, compliance/SOC2 customers wanting trail without enforcement, org-wide rollout with passive verifier while team builds trust. Notifications go to `#audit-trail` channel.
+
+### `spec/pr_comment_templates.md`
+
+Markdown templates the GitHub App uses to render receipts. 4 variants:
+1. **PASS** — green check, score factors transparent, action panel (approve/rerun/Claude-Code/audit-log)
+2. **WARN** — yellow, non-required warnings shown, merge proceeds
+3. **BLOCK** — red, failed checks with affected artifacts, blocking reason, **suggested fixes by tier** (Tier 1 auto-fix → Tier 2 delegate → Tier 3 override) with explanation of each tier's mechanism
+4. **Short update** — for re-runs, edited in place rather than new comment
+
+Includes:
+- Variable substitution conventions (Liquid-style `{{ }}`)
+- Required helper functions (status_emoji, sign_pad, format_si, action_url, etc.)
+- CLI counterpart — `signalpilot test --policy production-strict` mirrors PR comment for terminal; emits identical JSON receipt to `.signalpilot/receipts/`
+- A/B testing notes — score factors visibility, suggested fixes ordering, override prominence, audit log placement
+
+### Updates to existing pages
+
+- [[Receipt Product Features — Policy-as-Code, Action Loop, Honest Score, Vendor-Neutral Expansion]] — added "Buildable companion specs" callout near top with cross-refs
+- `index.md` — new section "Reference implementation specs (`spec/`)" listing all 7 spec files with one-line summaries
+
+### Files created/touched
+
+- New: `spec/README.md`
+- New: `spec/dbt_verifier_protocol.py`
+- New: `spec/receipt_v1_schema.json`
+- New: `spec/policy_bundles/production-strict.yaml`
+- New: `spec/policy_bundles/dev-permissive.yaml`
+- New: `spec/policy_bundles/ci-gate.yaml`
+- New: `spec/policy_bundles/audit-trail-only.yaml`
+- New: `spec/pr_comment_templates.md`
+- Updated: `wiki/concepts/receipt-product-features-spec.md` (added buildable-specs callout)
+- Updated: `index.md` (new spec/ section)
+- Updated: `log.md` (this entry)
+
+### What this enables
+
+Daniel can clone the wiki and start coding from `spec/dbt_verifier_protocol.py` Monday morning. Luiz can build the GitHub App from `spec/pr_comment_templates.md`. Tarik can demo the spec to a prospect by pasting the production-strict YAML and a sample receipt JSON. Investors asking "what does this look like in practice?" get a concrete answer — not handwavy.
+
+The wiki now has matched layers:
+- **Strategic concept** (`wiki/concepts/receipt-as-primitive.md`, `wiki/concepts/receipt-product-features-spec.md`) — what + why
+- **Buildable spec** (`spec/`) — exactly how, in code
+
+When implementation begins, the buildable spec lifts into the product repo and the wiki keeps the strategic concept. They stay in sync as the product evolves.
+
+---
+
 ## Synthesis 2026-05-06 (round 6) — Receipt Product Features Spec (codebase-grounded; policy-as-code; action loop; honest score; vendor-neutral expansion)
 
 **Trigger (Tarik):** *"use this current grounding to propose product features we can build as the 'receipt'. This must be easily consumable and reviewable and then once the receipt is generated, the data engineer must be able to make necessary changes if a fix becomes required. Also think through how youd generate the trust score w this receipt. ultiamtely you want to be not gimmicky and a real product that people can use. Also rn our system is optimizd for duckdb and dbt, I imagine this needs to expand wihtout it becoming a major problem"*

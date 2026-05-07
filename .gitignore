@@ -8,6 +8,15 @@
 # Allow all markdown files
 !*.md
 
+# Allow buildable reference specs in SignalPilot New Direction project
+# (Python interface stubs, JSON Schema, policy YAML bundles).
+# Scoped narrowly to this project's spec/ folder so other folders
+# stay markdown-only.
+!**/SignalPilot New Direction/spec/**/*.py
+!**/SignalPilot New Direction/spec/**/*.json
+!**/SignalPilot New Direction/spec/**/*.yaml
+!**/SignalPilot New Direction/spec/**/*.yml
+
 # macOS system files
 .DS_Store
 .AppleDouble
