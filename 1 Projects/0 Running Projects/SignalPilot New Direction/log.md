@@ -4,6 +4,115 @@ Append-only. Most recent at top.
 
 ---
 
+## Synthesis 2026-05-06 (round 5) — Grounded Pain Now + Offer Ladder + 12mo/24mo Shifts
+
+**Trigger (Tarik):** *"so lets get back to the product and feature design for a second, grounded in this pitch ladder and roadmap. BUT let's focus a lot more on the problems at hand NOW for data orgs and data consuming orgs / roles. How are they solving their day to day problems now and what problems and pain points SignalPilot would solve NOW. Once that is consolidated, figure out a minimal offer we can put to consolidate this finding into our experiment pipeline to reaching out people (assumption: if people have the problem, they will want us to solve it--maybe push back is nobody would easily trust us without good social proof--find social proof). then think 12mo and then 24mo timeline and project what happens with further model and systems improvement and how that collapses the bi and data stack and workforce and everything becomes more agentic. draw the timeline and also think how to win those shifts as well"*
+
+**Diagnosis:** the wiki had become abstraction-heavy. Strategic concepts piled up; concrete day-in-the-life pain + concrete offer + concrete social-proof manufacturing was missing as a single artifact. This page consolidates: NOW pain (analytics engineer + data consumer day-to-day) → 4 MLP capabilities mapping to pain → 3-tier offer ladder → 8 social proof tactics → 12mo/24mo timeline projection with win moves per shift.
+
+### NOW pain (Part 1-3 of the page)
+
+**Analytics engineer day-to-day:** morning ritual (Slack helpdesk + alert triage + PR backlog) until 10:30 nothing shipped. Build window 10:30-13:00. Afternoon = 8-12 hrs/week of Slack-DM helpdesk + meetings + reviews + ad-hoc data pulls.
+
+**8 specific pain points NOW** (verbatim from research + sync transcript):
+1. AI-generated dbt code breaking prod (2-4 incidents/quarter)
+2. Schema drift staging vs prod (3-hr incidents)
+3. PR review queue depth (1-3 days)
+4. Slack-DM helpdesk for verification (5-15× per day across team)
+5. Silent prod failures (timezone, NULL, units)
+6. Onboarding new engineers takes weeks
+7. No tests on AI-generated models (coverage decays 60% → 35%)
+8. Cross-team metric conflict (sales says X, finance says Y)
+
+**Competitive landscape today:** Datafold ($5-15K/mo, not AI-native), Recce (lightweight), CodeRabbit/Greptile (advisory prose, not data-aware), dbt-tests (primitive not product), Monte Carlo (heavy/post-hoc), Hex (analyst surface). **Gap: AI-native + Score-backed + SLA-grounded + data-aware verifier across both DE surfaces.** That's our wedge.
+
+**Data consumer (PM/ops/AE/finance) pain:** dashboard doesn't have the cut → Slack the data team → wait 30 min – 2 days. Bleeding-edge ~10% try ChatGPT/Hex chat with unverified output. 5 specific pains from the consumer side.
+
+**What SignalPilot solves NOW (Q3 2026 MLP):**
+- Verifier 7-check on every PR → 60-70% reduction in PR review time
+- Confidence Score (rules v0) with explainer → reviewer trusts green check
+- Test-generation skill in Claude Code → 70-80% of new AI models get tests vs <5% baseline
+- Blast-radius warning + auto-rollback playbook → 1-2 prevented prod incidents/quarter
+
+### Minimal Offer Ladder (Part 4)
+
+3 friction levels, sequenced — never skip a step:
+
+**Offer A — "Free Receipt on your repo"** (lowest friction, ZERO commitment): 3-line cold-email template (Legora pattern). Ask for public dbt repo URL or any PR; we hand-roll Receipt + Score + suggested fixes by Friday. ~2-3 hours hand-rolling per Receipt × 5-10 prospects/week. Success: ≥1 in 5 reply with "can we install" within 7 days.
+
+**Offer B — "30-day pilot with risk-reversal"** (medium friction): install plugin, get Receipts on next 30 PRs, no charge. In exchange: 20-min weekly check-in, anonymized telemetry permission, optional public attribution. Risk reversal: walk away if <50% PR review time reduction. Else become $15K/mo customer.
+
+**Offer C — "Per-project SLA"** ($15K/mo per dbt project, 95% precision floor, 30-day money-back if Score avg <90).
+
+Sequencing rule: cold email → A → B → C. Never skip a step.
+
+### Social Proof Problem (Part 5)
+
+Tarik's pushback (correct): nobody trusts us without social proof. We have 0 paying customers, 0 case studies. Spider 2.0 #1 is technical-not-customer.
+
+**8 tactics to manufacture social proof in 4 weeks:**
+- SP1: Friend-of-friend design partners (Tarik network, 3 friendly cos, 60 min asks × 5)
+- SP2: Public Loom on public dbt repo (Mozilla / GitLab Handbook / Spider 2.0 fixtures) — anyone can verify
+- SP3: Open-source verifier checklist + Receipt JSON spec (Apache-2 GitHub)
+- SP4: Notable advisors / angels (Tristan Handy long-shot, Drew Banin, Benn Stancil, Erik Bernhardsson)
+- SP5: Coalesce 2026 CFP submission (gating event, Sept 15-18)
+- SP6: dbt Slack regular presence (5 posts/week answering verifier/test/AI questions)
+- SP7: Customer-anonymous case study (after first save, with permission)
+- SP8: Spider 2.0 amplification (dbt newsletter, Locally Optimistic, Benn newsletter, Stratechery)
+
+**4-week target:** 3 design partner names public, public Loom ≥500 views, Receipt spec on GitHub, Coalesce CFP submitted, dbt Slack reputation, 1 anonymous case study, 2-3 newsletter mentions, 1-2 advisor commitments.
+
+### 12-Month Projection (Part 6) — May 2027
+
+- Models: Claude 5+/GPT-6/Gemini 3; 5M-10M context; cost down 5-10×; multi-agent standard
+- Systems: MCP standard; Cursor/CC converge; AI-native incumbent launches
+- Workforce: AE -10-20% headcount (productivity offset); junior analyst -10-20%; new "agent supervisor" role emerging
+- BI stack: notebooks losing share at growth-stage; Tableau intact; manual SQL → 50% (was 80%)
+- SignalPilot bull: 8-15 paid, $2-5M ARR, Receipt format seed, Phase 2 in pilot, Q4 2026 frozen-team passed, 8-10 person team
+
+**Win moves at 12mo:** Notebook Receipts research-grade pilot; AutoFyn = canonical multi-agent example; Coalesce talk delivered; partner-not-compete framing public; multi-host MCP shipped (defends Threat B per Lab-Proofing).
+
+### 24-Month Projection (Part 7) — May 2028
+
+- Models: frontier gains slowing; multi-agent production-grade; compute -20-50× from baseline
+- Systems: Receipt protocols STANDARD; EU AI Act enforced; lab vertical move probability 35-50%
+- Workforce: AE -25-40% headcount; junior analyst -40-60%; BI authors -40-50%; agent supervisor role established
+- BI stack: Hex/Mode/Sigma -40-55% share; Tableau enterprise still intact (15-25% at risk); junior dashboard authoring -40-50%
+- SignalPilot bull: 30-50 paid, $15-25M ARR, Receipt format adopted by dbt Labs/Snowflake, Phase 2 production at 5-10 customers, Series A closed ($40-80M raise), 13-20 person team
+- SignalPilot bear (Q4 frozen-team failed): Harvey-pattern services, $5-15M ARR services-shaped, 5-10 person team
+
+**Win moves at 24mo:** 2-of-N moats mature (per Lab-Proofing); Phase 3 Notebook + Dashboard Receipts production at 5-10 customers; sigstore-anchored Receipts + SOC2 + EU AI Act audit pack; substrate-partner cooperation deep enough to defend OR strategic-acquisition path live.
+
+### Timeline visualization (Part 8)
+
+ASCII timeline through May 2028 across 9 dimensions (product, customers, buyer, workforce, BI stack, competitive threat, moats built, funding, key decisions, what to win this horizon). Three time columns: NOW / 12mo / 24mo.
+
+### Q3 2026 sprint plan delta
+
+ADD one priority: write the 3 cold-email/contract templates (Tarik 60 min job). Files to create as project artifacts (NOT wiki entries):
+- `playbook/cold-email-offer-A.md`
+- `playbook/30-day-pilot-template.md`
+- `playbook/sla-contract-template.md`
+- `playbook/social-proof-tracker.md`
+
+CONFIRM what we DON'T do:
+- Don't scope past 4-week MLP (per Receipt-as-Primitive scope cut)
+- Don't pitch Phase 2 to Phase 1 prospects even if they ask (strategic restraint)
+
+### Files created/touched
+
+- New concept: `wiki/concepts/pain-now-offer-now-winning-the-shifts.md` ★ the grounded operator plan
+- Updated: `index.md` (concept added at top of operator-mode pages)
+- Updated: `log.md` (this entry)
+
+### Pages flagged for follow-up
+
+- [[Visceral Pain and GTM Playbook]] — fold the 8 NOW pain points + 3-tier offer ladder into its templates section
+- [[Pitch Ladder + PMF Experiments]] — add SP1-SP8 social proof tactics to weekly cadence
+- [[Minimally Lovable Product]] — restate MVP scope around the 4 NOW-pain-mapped capabilities
+
+---
+
 ## Synthesis 2026-05-06 (round 4) — Lab-Proofing Structural Moats
 
 **Trigger (Tarik):** *"in a business (tech or otherwise) coding got automated and now with this ergonomics we might be able to automate most of data pipelining and data consumption as well. what stops ai labs from coming to take this from us? how do we create structural moat so that they are not able to take over very quickly"*
