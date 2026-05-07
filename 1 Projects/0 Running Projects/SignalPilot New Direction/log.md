@@ -4,6 +4,119 @@ Append-only. Most recent at top.
 
 ---
 
+## Synthesis 2026-05-06 (round 6) — Receipt Product Features Spec (codebase-grounded; policy-as-code; action loop; honest score; vendor-neutral expansion)
+
+**Trigger (Tarik):** *"use this current grounding to propose product features we can build as the 'receipt'. This must be easily consumable and reviewable and then once the receipt is generated, the data engineer must be able to make necessary changes if a fix becomes required. Also think through how youd generate the trust score w this receipt. ultiamtely you want to be not gimmicky and a real product that people can use. Also rn our system is optimizd for duckdb and dbt, I imagine this needs to expand wihtout it becoming a major problem"*
+
+**Provided codebase grounding:** detailed analysis of TWO verifiers (post-build dbt 7-check + pre-save SQL 23-check), governance gateway (AST parsing, DDL block, LIMIT injection, budget cap, PII redaction, audit log), and the actual gap: verifier produces text not artifact; governance audit log + verifier outcomes live in different worlds; no policy data structure connecting them.
+
+**Diagnosis:** the receipt is currently text. The codebase analysis recommended **Policy-as-Code as the foundation** for first-class receipts. This page operationalizes that into a concrete product feature spec.
+
+### Core thesis (refined from grounding)
+
+Policy isn't a check — it's a contract. Today verifier rules are prompt-encoded in markdown. For Receipt to be a real product (not gimmick) policy must be: declared (YAML), enforceable (gateway refuses), inspectable (receipt cites), signed (Ed25519), portable (across warehouses).
+
+### Policy schema (Part 3)
+
+YAML with `applies_to`, `preflight` (gateway-side: ddl_block / function_denylist / limit_inject / budget / pii_redaction), `checks` (verifier-side: 7 checks lifted from prompt to declarative), `on_failure` (block_save / post_warning / hard_refuse), `override` (role token + rollback playbook), `auto_fix` (allowed/forbidden classes per verifier prompt's bounded fix authority).
+
+**4 named bundles** (don't ship config language, ship 3-4 opinionated defaults):
+- `production-strict` — every check, no skips, blocks any failure
+- `dev-permissive` — checks as warnings, save proceeds
+- `ci-gate` — required checks block merge, posts JSON receipt as PR comment
+- `audit-trail-only` — observability without enforcement
+
+### Concrete JSON Receipt (Part 4)
+
+First-class signed artifact. Fields: `receipt_version`, `receipt_id` (ULID), `context` (PR/diff/models/branch), `policy` (id + version + hash), `preflight` (gateway evidence), `checks` (each with `tool_calls` linking to audit log), `score` (with `factors[]`), `decision`, `actions[]` (mechanical fix-dispatch), `audit_log_chain`, `signature`. Closes the gap between governance + verifier — every check evidence references audit log calls.
+
+Receipt is portable, signed, inspectable, replayable. CLI: `signalpilot verify rcpt_01J...` re-validates signature + replays checks.
+
+### PR Receipt UX (Part 5)
+
+Two ASCII mockups: pass case (Score 92, MERGE_OK, 7/7 checks green, score factors transparent) and block case (Score 64, MERGE_BLOCKED, 2 required checks failed, suggested fixes one-click). Engineer scans <30 seconds, decides.
+
+What makes it non-gimmicky: score is auditable (every factor shown), pass/fail is mechanical (derivable from policy), fix actions are concrete (not "review and consider"), override path is structured (rollback playbook + role token), audit log linked.
+
+### ★ The Action Loop (Part 6) — close-the-loop fixes
+
+Three-tier fix dispatch:
+- **Tier 1 — Auto-fix:** policy `auto_fix.allowed` includes failure class (e.g., missing_cast, missing_cte, date_spine_error). One-click apply in PR comment; commits as new commit by `signalpilot-bot`; verifier auto-reruns.
+- **Tier 2 — Delegate to Claude Code:** opens local Claude Code with full receipt + diff + suggested fix as context. Engineer never has to retrace the verifier's work — starts where verifier finished. **Cuts investigation time from 30 min to 3 min.**
+- **Tier 3 — Manual override:** structured bypass requiring reviewer role token + auto-generated rollback playbook + audit log entry. Override is "I authorize this with explicit liability acceptance," not "ignore the fail."
+
+### ★ Trust Score (Part 7) — non-gimmicky
+
+Rules-v0 deterministic formula:
+```
+score = clamp(
+    100
+    - 12 × required_check_failures
+    -  4 × required_check_warnings
+    - blast_radius_factor (0..6)
+    - change_magnitude_factor (0..4)
+    + test_coverage_factor (0..3)
+    + recent_pass_rate_factor (0..5, after 30d data)
+    - recent_incident_rate_factor (0..8)
+    + policy_strictness_modifier
+, 0, 100)
+```
+
+Every factor exposed in `score.factors[]`. Calibration target: **Score 90 = 90% of historical receipts at this Score from this customer (or fleet baseline if new) shipped without prod incident within 30 days.** Empirically measurable, honest, customer-specific over time, refund-tied to 95% precision floor SLA.
+
+Non-gimmicky comparison: empirical 30d-no-incident frequency vs arbitrary AI-confidence number; every factor in `factors[]` deterministic vs hidden weighting; customer-history-bound after 30d vs same-across-customers; mechanical from policy+checks vs editorial vibes; SLA-backed (refund) vs no anchor.
+
+Score expansion path: Q3 2026 rules-v0 → Q4 2026 AutoFyn-Bayesian (per [[Receipt-as-Primitive]] MLP scope cut) → Q1 2027 cross-customer transfer (per [[Lab-Proofing]] Moat 1).
+
+### ★ Vendor-Neutral Expansion (Part 8) — DuckDB+dbt → others without major problem
+
+Architecture: separate **protocol** (vendor-neutral: policy schema, receipt format, score formula, action manifest, audit log format) from **adapters** (per-warehouse + per-tool: dbt+DuckDB, dbt+Snowflake, dbt+Databricks, dbt+BigQuery, future Snowflake-Cortex-Code, Databricks-Genie).
+
+**Adapter contract: ~6 methods** (parse_change, reference_snapshot, run_checks, produce_evidence, attempt_fix, cost_estimate). Receipt protocol code never imports vendor-specific modules.
+
+**Expansion order (demand-driven, never pre-build):**
+- dbt + DuckDB: today
+- dbt + Snowflake: Q3 wk 5-6 MLP (most likely first design partner)
+- dbt + Databricks: Q3 wk 7-8 MLP (second most likely)
+- dbt + BigQuery: Q4 2026 per ask
+- non-dbt (Cortex Code, Genie): Q1 2027 if Phase 2
+
+Each adapter ~3-5 eng days if protocol clean. Anti-patterns: don't write dialect-specific code in protocol, use sqlglot for AST, don't bake DuckDB assumptions into reference-snapshot format (use Parquet, neutral), don't try to abstract over all warehouse semantics.
+
+### MVP Scope Cut (Part 9) — 4-week ship
+
+~24 engineering days × 5-engineer team × 4 weeks = ~100 person-days budget. Plenty of headroom.
+
+Must ship: policy schema + 3 bundles, deterministic Python verifier module (lifted from prompt), JSON Receipt format (sans signature), PR comment renderer, score rules-v0 + factors, Tier 1 auto-fix (3 classes), Tier 2 deep-link, Tier 3 override flow, `signalpilot test` CLI, dbt+Snowflake adapter.
+
+Post-MLP (Q4 2026): Databricks/BigQuery adapters, Ed25519 signing, AutoFyn-Bayesian Score, multi-warehouse policy targeting, customer Score curve dashboard.
+
+Defer indefinitely: sigstore/Rekor anchor (until SOC2 ask), receipt-graph queryability (until customer asks), cross-vendor governance aggregation, policy DSL with conditionals, policy admin UI, unifying dbt-7-check and SQL-23-check schemas.
+
+### Sharpened offer ladder (Part 10)
+
+Old Offer A: *"I'll run our verifier and email you a Receipt by Friday."*
+New Offer A: *"Pick `production-strict` or `dev-permissive`. I'll run the verifier with that policy and email you the JSON Receipt + Score breakdown by Friday. You'll see exactly what was checked, what passed/failed, and what fixes our system would have proposed."*
+
+Why sharper: policy choice up-front primes product model; "JSON Receipt" signals real artifact; "what fixes proposed" prefigures action loop.
+
+New Offer B detail: name the policy progression (dev-permissive week 1 → production-strict week 4), co-author custom policy (CSM motion), end with customer-specific Score baseline + draft custom policy. Aligns with Lab-Proofing Moats 1 + 3.
+
+### Files created/touched
+
+- New concept: `wiki/concepts/receipt-product-features-spec.md` ★ the feature spec
+- Updated: `index.md` (concept added under operator plan)
+- Updated: `log.md` (this entry)
+
+### Pages flagged for follow-up
+
+- [[Receipt-as-Primitive]] — restate in light of policy-as-code framing; make MLP scope-cut reference this spec
+- [[Minimally Lovable Product]] — fold the 4-week scope cut from Part 9 into MVP definition
+- [[End-to-End Product Design]] — L2 spec now has concrete shape; update L2 section
+- [[Lab-Proofing — Structural Moats vs Frontier Labs]] — Moats 1+2+5 are operationalized in this spec; cross-link
+
+---
+
 ## Synthesis 2026-05-06 (round 5) — Grounded Pain Now + Offer Ladder + 12mo/24mo Shifts
 
 **Trigger (Tarik):** *"so lets get back to the product and feature design for a second, grounded in this pitch ladder and roadmap. BUT let's focus a lot more on the problems at hand NOW for data orgs and data consuming orgs / roles. How are they solving their day to day problems now and what problems and pain points SignalPilot would solve NOW. Once that is consolidated, figure out a minimal offer we can put to consolidate this finding into our experiment pipeline to reaching out people (assumption: if people have the problem, they will want us to solve it--maybe push back is nobody would easily trust us without good social proof--find social proof). then think 12mo and then 24mo timeline and project what happens with further model and systems improvement and how that collapses the bi and data stack and workforce and everything becomes more agentic. draw the timeline and also think how to win those shifts as well"*
