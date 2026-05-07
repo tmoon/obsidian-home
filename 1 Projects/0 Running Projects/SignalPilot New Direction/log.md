@@ -4,6 +4,107 @@ Append-only. Most recent at top.
 
 ---
 
+## Synthesis 2026-05-07 (round 8) — Stress Test + P(PMF) Honest Lever Map
+
+**Trigger 1 (Tarik):** *"now go over this whole wiki and stress test with the following: 1. lean startup style validation model... 2. zero to one... 3. hard thing about hard thing or any other other major startup knowledge and acumen from top founders and operators in the last one decade. ultrathink"*
+
+**Trigger 2 (Tarik):** *"ultimately we are after the PMF signal: how do we optimize our chances of success for this PMF signal if not tell me honestly why and what do we do to maximize probability(pmf)"*
+
+**Two-page deliverable:** the stress test diagnoses; the P(PMF) page operationalizes.
+
+### Page 1 — [[Stress Test — Lean / Zero-to-One / Hard Things]]
+
+**LENS 1 — Lean Startup:** wiki passes most checks (10 named experiments, MLP scope cut, Spider 2.0 = real metric, 90-day rubric with failure modes, Offer A is concierge-MVP-style). **FAILS:** validated-learning loop time too long (4-week MLP); "5 design partners signed" is vanity not retention; no cohort retention analysis; no scheduled pivot/persevere gates; 8 social-proof tactics are pre-validated assumptions; receipt-as-primitive 800+ lines pre-validation; Spider 2.0 over-leveraged as proof; no plan for false-negative cohort confirmation; JSON Schema over-engineered; Phase 5 conversation drains focus.
+
+**LENS 2 — Zero to One:** 7-question test scoring **4/7 yes / 2/7 yellow / 1/7 red**:
+- Engineering: 2.5×–5× breakthrough not 10× (yellow)
+- Timing: strong yes
+- Monopoly: 0.1-0.2% of TAM by Y5 (yellow — not yet dominant in defined sub-market)
+- People: engineering strong, sales weak (RED — real Phase 2 gap)
+- Distribution: channel known, moat unclear (yellow)
+- Durability: 3-5% full / 15-25% partial collapse (yellow)
+- Secret: yes but fragile (Tristan punt could shift)
+
+**FAILS:** monopoly mechanism partly hand-waved; Secret fragile; distribution-as-channel-not-moat; last-mover advantage not made explicit; power-law thinking missing (we model linear acquisition); conformity risk (we operationalize Tristan's published thinking — where's our contrarian piece?); definite-vs-indefinite optimism not separated.
+
+**LENS 3 — Hard Things + founder wisdom:** wiki has visceral pain (talk to users), brutal-moat audit, lead-bullets honesty, mid-week-sync direct identification of bottlenecks. **FAILS:** no team/people pain coverage (Horowitz "ones and twos"); peacetime/wartime CEO framing missing; "do things that don't scale" not made explicit as principle; no Dunford positioning canvas; Hormozi $100M Offers value equation not applied intentionally; no 11-star experience exercise (Chesky); no founder-market fit articulation; "the struggle" not framed; time-vs-money tradeoffs unaddressed; Stripe-grade DX not a measured discipline; Tobi Lutke long-term compounding lens missing in operating cadence; Sam Altman "make something people want" not validated; Hormozi scarcity/urgency missing from offers; Reid Hoffman blitzscaling balance — under-pacing distribution.
+
+**5 most uncomfortable questions wiki doesn't answer well:**
+1. *What's the ONE metric you're optimizing for in week 1, 4, 13?*
+2. *What would make you give up?*
+3. *Why is Tarik specifically the right person?*
+4. *What's the contrarian thing nobody else sees?*
+5. *If I wrote a $50M check today, what would you do with it?*
+
+**Top 10 corrective actions** ranked by impact × effort. **Highest leverage: 5-day "Pure-Concierge-Week"** before MLP — Tarik personally hand-rolls 5 receipts to 5 prospects, asks for $5K pre-pay. Validates wedge before code. Cheap, fast, definitive.
+
+### Page 2 — [[P(PMF) — Honest Probability + Maximization Levers]]
+
+**Honest current P(PMF) estimate:** joint probability of 9 conditional variables (ICP 65%, Pain 80%, Product 60%, Offer 50%, Channel 70%, Team 75%, Timing 85%, Moat 50%, Focus 50%).
+
+- **P(PMF in 13 weeks) ≈ 25-35%** on current trajectory
+- **P(PMF in 26 weeks) ≈ 45-55%** with iteration on signal
+- **P(PMF eventually) ≈ 65-75%** if we don't run out of money
+
+**The 30-percentage-point gap** between status-quo and disciplined-execution is *purchasable* by changing focus from strategy → conversations.
+
+**10 PMF levers ranked by probability gain per unit effort:**
+1. Talk to 30+ users in 4 weeks (+10-15 pts)
+2. Sell BEFORE building — Concierge-Week pre-sale ask (+5-10 pts)
+3. Cut MLP scope further (4 bundles → 1, 7 checks → 3, defer GitHub App, JSON → dict, defer Snowflake adapter) (+5-8 pts)
+4. Sean Ellis test from day 1 ("how would you feel if you couldn't use this?") (+3-5 pts)
+5. Pre-stage 4 named pivots (Series B+ DEs / paid distribution / consultancies / Phase 2 directly) (+3-7 pts)
+6. Pay for distribution access ($10K/quarter — cold-email tools + paid Twitter + sponsorship) (+3-5 pts)
+7. Ban Phase 2-5 conversation in standups Q3 (+2-5 pts)
+8. Weekly pivot/persevere gates (week 2/4/8) (+2-4 pts)
+9. Real scarcity in Offer A/B/C (Sept 15 deadline + Sept 30 price-increase commitment) (+1-3 pts)
+10. Hormozi value-equation analysis on each offer (+1-3 pts)
+
+**7 things to STOP** (anti-PMF, in order of damage):
+1. Writing more wiki pages this week (we have 30+; further strategy work = diminishing returns)
+2. Building dashboard MCP / notebook MCP in parallel (Bottleneck #2)
+3. Spec'ing JSON Schema / Ed25519 / Rekor pre-customer-ask
+4. Treating "5 design partners signed" as the goal (signed ≠ retained ≠ paying)
+5. Optimizing for investor-pitch perfection before paying customers
+6. Running strategic mode > 20% of weekly time
+7. Pushing Spider 2.0 score to 52, 53 (maintain baseline; don't chase)
+
+**The 30-Day P(PMF) Maximization Plan:**
+- **Week 1:** Concierge-Week (5 hand-rolled receipts) + 30 cold emails (50% with social proof, 50% without — A/B) + 5 founder-DMs + Loom on dbt Slack + scope-cut review
+- **Week 2:** Pivot/Persevere gate Sunday Aug 11 + 3-5 design-partner calls + verifier code shipping + `signalpilot test` CLI
+- **Week 3:** 30 more emails + Sept 15 scarcity public commitment + Coalesce CFP + advisor outreach + GitHub App scaffold + first design-partner onboarded
+- **Week 4:** 30 more emails (~120 cumulative) + Sean Ellis test + founder-market-fit + small-market-we-own + **pivot/persevere gate Sunday Sept 1** with 3 named conditions (paid contract / 7-day retention / 40% Sean Ellis disappointed)
+
+**The single sentence:** *"Talk to more users, build less, sell before shipping, kill scope ruthlessly, schedule pivot gates, and ban Phase 2 conversation. Everything else is wallpaper until those are happening."*
+
+### Files created/touched
+
+- New concept: `wiki/concepts/stress-test-lean-zero-to-one-hard-things.md` ★ the brutal operational audit
+- New concept: `wiki/concepts/p-pmf-honest-levers.md` ★ the load-bearing operative page
+- Updated: `index.md` (both pages added at top of operator section)
+- Updated: `log.md` (this entry)
+
+### Critical decisions queued (Tarik action)
+
+- $10K/quarter distribution budget approval
+- AutoFyn compute reduction $20K → $5K/mo for Q3 (anti-PMF cost)
+- Sept 15 scarcity public commitment (LinkedIn / dbt Slack post)
+- Concierge-Week start date (next Monday ideal)
+- Strategic-mode time cap to <20% weekly going forward
+
+### Pages flagged for follow-up
+
+- [[Pitch Ladder + PMF Experiments]] — add pivot gates, scarcity, Hormozi analysis, Concierge-Week pre-sale ask
+- [[Pain Now → Offer Now → Winning the Shifts (12mo / 24mo)]] — add cohort retention, false-negative check, sharper ICP
+- [[Receipt-as-Primitive]] — cut JSON Schema from MLP; ship Python dict v0; add 11-star exercise
+- [[Path to 2 Powers Roadmap]] — power-law $1M+ enterprise customer profile
+- [[Niche Problem Discovery]] — sharpen to small-market-we-own
+- (NEW) Founder-market fit page
+- (NEW) Positioning canvas page (Dunford)
+- (NEW) 4 × pivot 1-pagers (Series B+ / paid distribution / consultancies / Phase 2 directly)
+
+---
+
 ## Synthesis 2026-05-07 (round 7) — Buildable Reference Specs in `spec/`
 
 **Trigger (Tarik):** *"continue"* — closing the loop from receipt-product-features-spec strategy doc to buildable artifacts engineering can start from Monday.
