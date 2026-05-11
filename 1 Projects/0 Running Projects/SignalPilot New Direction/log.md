@@ -4,6 +4,99 @@ Append-only. Most recent at top.
 
 ---
 
+## Ingest 2026-05-07 (round 9) — Agentic Data Stack Competitive Landscape (4 parallel research agents)
+
+**Trigger (Tarik):** *"can you do an extensive research on what each of the warehouse and ELT megaplayers are building adjacent to agentic workflows? esp snowflake (cortex?), databricks (genie?), postgreql, bigquery, dbt, fivetran etc? how are the direct competitions to those shaping up? what would be the clustering in this market"*
+
+**Method:** 4 parallel general-purpose research agents using WebSearch + WebFetch, each covering a different competitive segment. Total ~140 sourced URLs across the 4 reports.
+
+### Research scope per agent
+
+- **Agent 1 (`ae690a1d99c4d4c2c`):** Snowflake Cortex agentic stack — Cortex Agents, Cortex Code (Mar 2026 GA), Cortex AI SQL, Snowflake Intelligence, MCP server (GA Nov 2025), Semantic Views, AI Observability, pricing strategy
+- **Agent 2 (`a5258983a4d9ca36b`):** Databricks AI/BI stack — Genie (GA June 2025, 1.5M Spaces in 2026), Genie Code (Mar 2026), Mosaic AI Agent Framework, Agent Bricks, CLEARS eval rubric, MLflow 3 judges, Lakebase (Neon-built), Managed MCP servers, Unity AI Gateway
+- **Agent 3 (`aa8a856a1edd820e5`):** dbt Labs (post-Fivetran merger Oct 13 2025, $600M ARR combined) + BigQuery + Google Cloud — dbt Fusion engine, dbt MCP server (50% MoM growth), dbt Copilot, 4 dbt Agents (Developer/Discovery/Observability/Analyst), Coalesce → "dbt Summit 2026" Sept 15-18, BigQuery Data Engineering Agent (GA Apr 22 2026), Gemini Enterprise Agent Platform
+- **Agent 4 (`ac1494be84454efd5`):** PostgreSQL ecosystem + Independent ELT/BI + AI-native data startups — Databricks→Neon $1B, Snowflake→Crunchy $250M, Databricks→Mooncake, Supabase $5B, Fivetran→Tobiko→Linux Foundation, Airbyte, dlt (81K pipelines/mo 91% AI-built), Datafold (critical-tier competitor), Recce (OSS pincer), Hex/ThoughtSpot/Cube/Omni/Sigma/Lightdash/MotherDuck
+
+### Synthesized into [[Agentic Data Stack — Competitive Landscape + Market Clustering]]
+
+**5 strategic clusters identified:**
+
+1. **Megaplatform Bundlers** — Snowflake / Databricks / BigQuery. Ship consumption-priced AI inside their cloud. LLM-judge eval, not formal verification. **Structurally cannot price on outcome** (cannibalizes consumption) or **ship vendor-neutral** (weakens lock-in).
+
+2. **Transformation + Orchestration** — dbt Labs (post-Fivetran) / Fivetran-via-SQLMesh / Astronomer / Dagster / Airbyte / dlt / Estuary. dbt Labs consolidating: SDF + Fusion + Copilot + 4 Agents + MCP server. **Tristan explicitly punts on correctness — that punt remains the load-bearing wedge.**
+
+3. **Modern BI / Notebooks** — Hex (Threads + Notebook Agent fall 2025) / ThoughtSpot Spotter (Feb 2026 Gartner Agentic Analytics) / Cube.dev (200+ companies in 3mo) / Omni / Sigma / Lightdash / MotherDuck (Dives + Remote MCP). Tristan's "second unbundling" thesis playing out live. **No open-source BI tool offers production-grade NL→SQL as of Apr 2026** — agentic BI war is closed-source/cloud-only.
+
+4. **AI-Native Data Quality / Verification (our cluster)** — Datafold (CRITICAL — Migration Agent uses "binary verifiable outcomes" framing — same as us) + Recce (HIGH — OSS velocity, Jan 2026 Data Agent + Claude Code plugin) + dbt Labs internal (SDF/Fusion). **All three sell tools for humans (diffs, lineage, audits) — none ships outcome-priced Receipt + SLA for AI to operate autonomously.**
+
+5. **Postgres / OLTP for Agents** — Databricks Lakebase (Neon $1B) / Snowflake Postgres (Crunchy $250M) / Supabase / Yugabyte-Meko / Mooncake (Databricks). **War is essentially over — won by the megaplatforms.**
+
+### Top competitive threats ranked
+
+1. 🔴 **Datafold** — CRITICAL. Most direct competitor. Already uses "binary verifiable outcomes" framing. Could ship Score + SLA inside 6 months.
+2. 🔴 **dbt Labs (Fusion + SDF + 4 Agents + Copilot)** — HIGH. Could ship "dbt Trust" SKU at Summit Sept 15-18 2026.
+3. 🟠 **Recce** — HIGH. OSS velocity + Claude Code plugin already shipped.
+4. 🟠 **Fivetran via SQLMesh donation to Linux Foundation Mar 2026** — HIGH. Could position SQLMesh as "AI dbt" alternative + ship verifier on top.
+5. 🟡 **Snowflake Cortex Code + Intelligence + AI Observability** — MEDIUM platform threat.
+6. 🟡 **Databricks Genie Code + Mosaic AI Agent + CLEARS** — MEDIUM platform threat.
+7. 🟡 **BigQuery Data Engineering Agent + Gemini + Looker** — MEDIUM platform threat.
+
+### 8 consolidation predictions (12-24 month window)
+
+- Datafold → dbt Labs OR Snowflake (most likely)
+- Recce → dbt Labs OR Astronomer
+- Cube.dev → Snowflake OR Databricks
+- Estuary Flow → Confluent OR Snowflake
+- dlt/dltHub → Databricks OR Fivetran
+- MotherDuck → Snowflake OR Salesforce
+- Hex → Salesforce/Tableau OR ServiceNow
+- Bauplan → Databricks
+
+**Implication:** dbt Labs is the most likely acquirer of Datafold AND Recce. SignalPilot must be either aligned with the anti-dbt-Labs camp (Fivetran/SQLMesh/Astronomer/Snowflake) OR attractive enough to be acquired by dbt Labs instead.
+
+### The honest blue-ocean lane (what nobody else ships)
+
+| Capability | Megaplatforms | dbt+Fivetran | Datafold/Recce | SignalPilot |
+|---|---|---|---|---|
+| Spider 2.0-DBT benchmark-verified | No | No | No | **✓ #1 (51.56)** |
+| Outcome-priced (pay per verified PR, refund on incident) | No | No | No | **✓** |
+| Cross-warehouse verifier | Single-cloud | Snowflake-only today | Cloud-agnostic but no Score+SLA | **✓ vendor-neutral** |
+| Policy-as-code with named opinionated bundles | No | No | No | **✓** |
+| Receipt + Score + cryptographic signing | No | No | No (diffs ≠ receipts) | **✓ (in MLP)** |
+
+**No competitor ships all 6. The combination is the wedge. Time-bounded at 12-18 months.**
+
+### Immediate action implications
+
+1. **Publish Receipt JSON Schema spec publicly** with Apache-2 license on GitHub — plant standards flag NOW.
+2. **Publish operational catalog format spec** — same reason.
+3. **Multi-host MCP support** (Cursor + Cline + Claude Code) — Snowflake's MCP supports 15+ hosts; we must too.
+4. **dbt Summit 2026 CFP submission** — title-locked on "Receipt protocol for AI-generated dbt PRs" before dbt Labs ships anything competing.
+5. **Differentiator language lock:** "outcome-priced verifier with SLA refund — NOT a diff tool, NOT an LLM-judge eval, NOT a notebook assistant."
+6. **Partner outreach to Fivetran/SQLMesh/Astronomer/Snowflake** as anti-dbt-Labs-camp positioning.
+7. **Monitor dbt Summit Sept 15-18 announcements live** — watch for "dbt Trust" SKU, Datafold+dbt partnership/acquisition, Recce absorption.
+
+### Files created/touched
+
+- New raw: `raw/2026-05-07_research_snowflake-cortex-stack.md` (35 sources)
+- New raw: `raw/2026-05-07_research_databricks-agentic-stack.md` (23 sources)
+- New raw: `raw/2026-05-07_research_dbt-fivetran-bigquery-stack.md` (34 sources)
+- New raw: `raw/2026-05-07_research_postgres-independents-agentic-stack.md` (34 sources)
+- New concept: `wiki/concepts/agentic-data-stack-competitive-landscape.md` ★ the synthesized market map
+- Updated: `index.md` (added concept + 4 raw source links)
+- Updated: `log.md` (this entry)
+
+### Pages flagged for follow-up
+
+- [[Lab-Proofing — Structural Moats vs Frontier Labs]] — extend threats to Datafold + Recce + dbt-Labs-internal alongside frontier labs
+- [[Competitive Positioning vs PR Reviewers]] — refresh to Cluster 4 (Datafold/Recce); CodeRabbit becomes misread defense only
+- [[Objection Handling]] — add 3 new objections (Datafold framing, megaplatform LLM-judges, "wait for dbt Trust at Coalesce")
+- [[Five Paths Decision Tree]] — substrate-owner first-party probability updated to 40-55% within 18 months
+- [[Niche Problem Discovery]] — sharper small-market-we-own
+- (NEW entity pages) Datafold + Recce
+
+---
+
 ## Synthesis 2026-05-07 (round 8) — Stress Test + P(PMF) Honest Lever Map
 
 **Trigger 1 (Tarik):** *"now go over this whole wiki and stress test with the following: 1. lean startup style validation model... 2. zero to one... 3. hard thing about hard thing or any other other major startup knowledge and acumen from top founders and operators in the last one decade. ultrathink"*
