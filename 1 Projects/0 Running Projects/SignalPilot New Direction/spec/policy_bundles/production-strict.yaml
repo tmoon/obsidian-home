@@ -1,0 +1,103 @@
+# production-strict — opinionated default for production environments
+#
+# What it does: every check required, blocks save on any failure, override
+# requires data-eng-lead role + auto-generated rollback playbook.
+#
+# Use case: prod dbt repos at growth-stage SaaS + regulated industries.
+# Customers' day-1 default upgrade target after 1-2 weeks on dev-permissive.
+
+policy: dbt_post_build
+id: production-strict
+version: "1.2"
+
+applies_to:
+  models:
+    - "marts/**"
+    - "intermediate/**"
+    - "models/**"
+  exclude:
+    - "staging/sandbox_**"
+    - "tests/**"
+
+# Pre-flight (gateway enforces BEFORE action)
+preflight:
+  ddl_block: true
+  function_denylist:
+    - DROP
+    - TRUNCATE
+    - ALTER
+    - GRANT
+    - REVOKE
+  limit_inject:
+    default: 10000
+    override_allowed: ["analytics-engineers", "data-eng-leads"]
+  budget:
+    max_rows_scanned: 1.0e9
+    max_dollars: 5.00
+  pii_redaction:
+    fields: ["email", "ssn", "phone", "address", "dob"]
+
+# Post-build verification (verifier enforces AFTER action)
+checks:
+  - id: models_exist
+    required: true
+  - id: column_schema_alignment
+    required: true
+    strict_types: true
+  - id: row_count
+    required: true
+    reference: snapshot
+    tolerance_pct: 1
+  - id: fan_out_detection
+    required: true
+  - id: cardinality_audit
+    required: true
+    flag:
+      - constant_columns
+      - all_null_columns
+      - over_filtered
+  - id: value_spot_check
+    required: true
+    sample_size: 5
+    tolerance_numeric: 0.001
+  - id: table_names_match
+    required: true
+
+# Decision policy (what failures mean)
+on_failure:
+  required_check_failed: block_save     # gateway refuses to materialize
+  warn_check_failed: post_warning       # receipt shows warning, save proceeds
+  budget_exceeded: hard_refuse          # gateway refuses, no override
+
+# Override flow (who can bypass + how)
+override:
+  required_role: data-eng-lead
+  rollback_playbook: required           # auto-generate on override
+  audit_log_entry: required
+
+# Blast radius cap (block-or-warn if change touches >N downstream)
+blast_radius:
+  max_models: 8
+  on_exceed: block_save
+
+# Fix scope (what verifier may auto-attempt)
+auto_fix:
+  allowed:
+    - missing_cast
+    - missing_cte
+    - date_spine_error
+  forbidden:
+    - join_type_change
+    - add_null_filter
+    - remove_coalesce
+    - rewrite_user_sql
+
+# Score threshold for refund SLA
+sla:
+  precision_floor: 0.95   # 95% of receipts at score >= 90 must not cause prod incident in 30d
+  refund_threshold: 90    # below this 30d-average = month refund
+
+# Notification routing
+notifications:
+  on_block: ["#data-eng-alerts"]
+  on_override: ["#data-eng-alerts", "#audit-trail"]

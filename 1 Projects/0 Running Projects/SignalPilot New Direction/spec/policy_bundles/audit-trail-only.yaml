@@ -1,0 +1,95 @@
+# audit-trail-only — observability mode without enforcement
+#
+# What it does: ALL checks run; NONE block; full audit log emitted; receipt
+# always produced for every change. Designed for monitoring without
+# blocking the team's workflow.
+#
+# Use case:
+#   1. Pre-launch trial customers who want to see what verifier WOULD do
+#      before committing to enforcement
+#   2. Compliance / SOC2 / EU AI Act customers who want the audit trail
+#      regardless of whether they enforce blocks
+#   3. Org-wide rollout phase where the verifier is shipping passively
+#      while the team builds trust
+
+policy: dbt_post_build
+id: audit-trail-only
+version: "1.2"
+
+applies_to:
+  models:
+    - "models/**"
+  exclude: []
+
+# Pre-flight observes but doesn't enforce
+preflight:
+  ddl_block: false                      # logged but allowed
+  function_denylist: []                 # nothing denied
+  limit_inject:
+    default: null                       # don't inject; observe what was used
+    override_allowed: ["any-role"]
+  budget:
+    max_rows_scanned: null              # no cap; track what's actually scanned
+    max_dollars: null
+  pii_redaction:
+    fields: []                          # don't redact; record exposure
+
+# All checks run as observation
+checks:
+  - id: models_exist
+    required: false                     # never required; logged only
+  - id: column_schema_alignment
+    required: false
+    strict_types: true                  # but evidence still captured strictly
+  - id: row_count
+    required: false
+    reference: snapshot
+    tolerance_pct: 1
+  - id: fan_out_detection
+    required: false
+  - id: cardinality_audit
+    required: false
+    flag:
+      - constant_columns
+      - all_null_columns
+      - over_filtered
+  - id: value_spot_check
+    required: false
+    sample_size: 5
+    tolerance_numeric: 0.001
+  - id: table_names_match
+    required: false
+
+# All failures become warnings
+on_failure:
+  required_check_failed: post_warning
+  warn_check_failed: post_warning
+  budget_exceeded: post_warning
+
+override:
+  required_role: null
+  rollback_playbook: optional
+  audit_log_entry: required             # the entire point: log everything
+
+# No blast-radius blocking; we observe
+blast_radius:
+  max_models: null
+  on_exceed: post_warning
+
+# No auto-fix in observation mode
+auto_fix:
+  allowed: []
+  forbidden:
+    - "*"
+
+# No SLA — we're observing, not enforcing
+sla:
+  precision_floor: null
+  refund_threshold: null
+
+# All events surface to the audit log destination
+notifications:
+  on_block: []                          # never blocks
+  on_override: []                       # not relevant
+  on_observation:
+    - "#audit-trail"                    # every receipt summary posted here

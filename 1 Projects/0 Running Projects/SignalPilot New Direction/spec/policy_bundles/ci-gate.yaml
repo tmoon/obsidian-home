@@ -1,0 +1,103 @@
+# ci-gate — opinionated default for CI/CD pipelines
+#
+# What it does: required checks block CI step (exit non-zero); JSON receipt
+# posted as PR check + comment; auto-fix OFF (CI doesn't fix); rollback
+# playbook auto-generated on any override.
+#
+# Use case: GitHub Actions / GitLab CI / Jenkins pipeline running on every
+# PR. The killer-feature workflow per [[Receipt Product Features Spec]]
+# Part 9 ("the single feature that would prove the tenet").
+
+policy: dbt_post_build
+id: ci-gate
+version: "1.2"
+
+applies_to:
+  models:
+    - "marts/**"
+    - "intermediate/**"
+    - "models/**"
+  exclude:
+    - "staging/sandbox_**"
+
+preflight:
+  ddl_block: true
+  function_denylist:
+    - DROP
+    - TRUNCATE
+    - ALTER
+    - GRANT
+    - REVOKE
+  limit_inject:
+    default: 10000
+    override_allowed: []                # CI runs as a service account; never override at CI time
+  budget:
+    max_rows_scanned: 1.0e9
+    max_dollars: 5.00
+  pii_redaction:
+    fields: ["email", "ssn", "phone", "address", "dob"]
+
+checks:
+  - id: models_exist
+    required: true
+  - id: column_schema_alignment
+    required: true
+    strict_types: true
+  - id: row_count
+    required: true
+    reference: snapshot
+    tolerance_pct: 1
+  - id: fan_out_detection
+    required: true
+  - id: cardinality_audit
+    required: true
+    flag:
+      - constant_columns
+      - all_null_columns
+      - over_filtered
+  - id: value_spot_check
+    required: true
+    sample_size: 5
+    tolerance_numeric: 0.001
+  - id: table_names_match
+    required: true
+
+on_failure:
+  required_check_failed: block_save     # exit non-zero in CI; PR check fails
+  warn_check_failed: post_warning       # PR comment shows warning, CI passes
+  budget_exceeded: hard_refuse          # CI fails outright
+
+# Override at CI time is rare; always requires a human reviewer in PR review
+override:
+  required_role: null                   # CI doesn't override; humans do via PR
+  rollback_playbook: required
+  audit_log_entry: required
+
+blast_radius:
+  max_models: 8
+  on_exceed: block_save
+
+# CI doesn't auto-fix — fixes happen in dev. CI only verifies.
+auto_fix:
+  allowed: []                           # NEVER auto-commit from CI
+  forbidden:
+    - "*"
+
+sla:
+  precision_floor: 0.95
+  refund_threshold: 90
+
+notifications:
+  on_block:
+    - "#ci-failures"
+  on_override:
+    - "#ci-failures"
+    - "#audit-trail"
+
+# CI-specific: how the receipt surfaces
+ci_integration:
+  pr_comment: true                      # post structured Markdown comment
+  pr_check: true                        # set commit status (success/failure)
+  fail_action_on_block: true            # exit code != 0 on MERGE_BLOCKED
+  emit_json_receipt: true               # save JSON receipt as build artifact
+  json_receipt_path: ".signalpilot/receipts/${PR_NUMBER}-${RUN_ID}.json"
